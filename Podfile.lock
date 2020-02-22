@@ -1,0 +1,26 @@
+PODS:
+  - CocoaLumberjack (3.6.1):
+    - CocoaLumberjack/Core (= 3.6.1)
+  - CocoaLumberjack/Core (3.6.1)
+  - SVGKit (2.1.1):
+    - CocoaLumberjack (~> 3.0)
+  - TinyConstraints (4.0.1)
+
+DEPENDENCIES:
+  - SVGKit
+  - TinyConstraints
+
+SPEC REPOS:
+  trunk:
+    - CocoaLumberjack
+    - SVGKit
+    - TinyConstraints
+
+SPEC CHECKSUMS:
+  CocoaLumberjack: b17ae15142558d08bbacf69775fa10c4abbebcc9
+  SVGKit: 652cdf7bef8bec8564d04a8511d3ab50c7595fac
+  TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
+
+PODFILE CHECKSUM: a14b5e5801b751c1cc29e0604d4a9e909be3d3a0
+
+COCOAPODS: 1.8.4

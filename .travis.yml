@@ -1,0 +1,6 @@
+language: objective-c
+osx_image: xcode11.3
+xcode_workspace: PolitiScales.xcworkspace
+xcode_scheme: PolitiScales
+xcode_sdk: iphonesimulator13.2
+xcode_destination: platform=iOS Simulator,OS=13.3,name=iPhone 11 Pro Max

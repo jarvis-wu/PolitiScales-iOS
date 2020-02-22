@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		201EB58CF049AD863356B034 /* Pods_PolitiScales.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FAA6F0519906D3A4741DA5 /* Pods_PolitiScales.framework */; };
 		318CBE5E23C012C4004F2E3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318CBE5D23C012C4004F2E3A /* AppDelegate.swift */; };
 		318CBE6023C012C4004F2E3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318CBE5F23C012C4004F2E3A /* SceneDelegate.swift */; };
 		318CBE6223C012C4004F2E3A /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318CBE6123C012C4004F2E3A /* QuizViewController.swift */; };
@@ -16,7 +17,26 @@
 		318CBE7223C0131C004F2E3A /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318CBE7123C0131C004F2E3A /* Questions.swift */; };
 		318CBE7623C032F2004F2E3A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318CBE7523C032F2004F2E3A /* HomeViewController.swift */; };
 		318CBE7823C30B53004F2E3A /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318CBE7723C30B53004F2E3A /* ResultViewController.swift */; };
+		4622567F2401E1FB006399C5 /* PolitiScalesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4622567E2401E1FB006399C5 /* PolitiScalesUITests.swift */; };
+		4622568D2401E204006399C5 /* PolitiScalesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4622568C2401E204006399C5 /* PolitiScalesTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		462256812401E1FB006399C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 318CBE5223C012C4004F2E3A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 318CBE5923C012C4004F2E3A;
+			remoteInfo = PolitiScales;
+		};
+		4622568F2401E204006399C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 318CBE5223C012C4004F2E3A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 318CBE5923C012C4004F2E3A;
+			remoteInfo = PolitiScales;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		318CBE5A23C012C4004F2E3A /* PolitiScales.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolitiScales.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,10 +50,34 @@
 		318CBE7123C0131C004F2E3A /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		318CBE7523C032F2004F2E3A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		318CBE7723C30B53004F2E3A /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		4622567C2401E1FB006399C5 /* PolitiScalesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PolitiScalesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4622567E2401E1FB006399C5 /* PolitiScalesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolitiScalesUITests.swift; sourceTree = "<group>"; };
+		462256802401E1FB006399C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4622568A2401E204006399C5 /* PolitiScalesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PolitiScalesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4622568C2401E204006399C5 /* PolitiScalesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolitiScalesTests.swift; sourceTree = "<group>"; };
+		4622568E2401E204006399C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75BEEEDE98BB0E4F4CA0CF68 /* Pods-PolitiScales.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolitiScales.release.xcconfig"; path = "Target Support Files/Pods-PolitiScales/Pods-PolitiScales.release.xcconfig"; sourceTree = "<group>"; };
+		D1DEC38CEBA83E6460E9A7B3 /* Pods-PolitiScales.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolitiScales.debug.xcconfig"; path = "Target Support Files/Pods-PolitiScales/Pods-PolitiScales.debug.xcconfig"; sourceTree = "<group>"; };
+		F9FAA6F0519906D3A4741DA5 /* Pods_PolitiScales.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PolitiScales.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		318CBE5723C012C4004F2E3A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				201EB58CF049AD863356B034 /* Pods_PolitiScales.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		462256792401E1FB006399C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		462256872401E204006399C5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -47,7 +91,11 @@
 			isa = PBXGroup;
 			children = (
 				318CBE5C23C012C4004F2E3A /* PolitiScales */,
+				4622567D2401E1FB006399C5 /* PolitiScalesUITests */,
+				4622568B2401E204006399C5 /* PolitiScalesTests */,
 				318CBE5B23C012C4004F2E3A /* Products */,
+				9A549F0BB96DDBF05157E69C /* Pods */,
+				3ACD829AADA36BCD7B29C8D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,6 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				318CBE5A23C012C4004F2E3A /* PolitiScales.app */,
+				4622567C2401E1FB006399C5 /* PolitiScalesUITests.xctest */,
+				4622568A2401E204006399C5 /* PolitiScalesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,6 +126,41 @@
 			path = PolitiScales;
 			sourceTree = "<group>";
 		};
+		3ACD829AADA36BCD7B29C8D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9FAA6F0519906D3A4741DA5 /* Pods_PolitiScales.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4622567D2401E1FB006399C5 /* PolitiScalesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4622567E2401E1FB006399C5 /* PolitiScalesUITests.swift */,
+				462256802401E1FB006399C5 /* Info.plist */,
+			);
+			path = PolitiScalesUITests;
+			sourceTree = "<group>";
+		};
+		4622568B2401E204006399C5 /* PolitiScalesTests */ = {
+			isa = PBXGroup;
+			children = (
+				4622568C2401E204006399C5 /* PolitiScalesTests.swift */,
+				4622568E2401E204006399C5 /* Info.plist */,
+			);
+			path = PolitiScalesTests;
+			sourceTree = "<group>";
+		};
+		9A549F0BB96DDBF05157E69C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D1DEC38CEBA83E6460E9A7B3 /* Pods-PolitiScales.debug.xcconfig */,
+				75BEEEDE98BB0E4F4CA0CF68 /* Pods-PolitiScales.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,9 +168,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 318CBE6E23C012C6004F2E3A /* Build configuration list for PBXNativeTarget "PolitiScales" */;
 			buildPhases = (
+				BAC75B779C19A6B718D0FB31 /* [CP] Check Pods Manifest.lock */,
 				318CBE5623C012C4004F2E3A /* Sources */,
 				318CBE5723C012C4004F2E3A /* Frameworks */,
 				318CBE5823C012C4004F2E3A /* Resources */,
+				218B3D45AB3F914F25381925 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -96,18 +183,62 @@
 			productReference = 318CBE5A23C012C4004F2E3A /* PolitiScales.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4622567B2401E1FB006399C5 /* PolitiScalesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 462256852401E1FB006399C5 /* Build configuration list for PBXNativeTarget "PolitiScalesUITests" */;
+			buildPhases = (
+				462256782401E1FB006399C5 /* Sources */,
+				462256792401E1FB006399C5 /* Frameworks */,
+				4622567A2401E1FB006399C5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				462256822401E1FB006399C5 /* PBXTargetDependency */,
+			);
+			name = PolitiScalesUITests;
+			productName = PolitiScalesUITests;
+			productReference = 4622567C2401E1FB006399C5 /* PolitiScalesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		462256892401E204006399C5 /* PolitiScalesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 462256912401E204006399C5 /* Build configuration list for PBXNativeTarget "PolitiScalesTests" */;
+			buildPhases = (
+				462256862401E204006399C5 /* Sources */,
+				462256872401E204006399C5 /* Frameworks */,
+				462256882401E204006399C5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				462256902401E204006399C5 /* PBXTargetDependency */,
+			);
+			name = PolitiScalesTests;
+			productName = PolitiScalesTests;
+			productReference = 4622568A2401E204006399C5 /* PolitiScalesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		318CBE5223C012C4004F2E3A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = jarviswu;
 				TargetAttributes = {
 					318CBE5923C012C4004F2E3A = {
 						CreatedOnToolsVersion = 11.0;
+					};
+					4622567B2401E1FB006399C5 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = 318CBE5923C012C4004F2E3A;
+					};
+					462256892401E204006399C5 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = 318CBE5923C012C4004F2E3A;
 					};
 				};
 			};
@@ -125,6 +256,8 @@
 			projectRoot = "";
 			targets = (
 				318CBE5923C012C4004F2E3A /* PolitiScales */,
+				4622567B2401E1FB006399C5 /* PolitiScalesUITests */,
+				462256892401E204006399C5 /* PolitiScalesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -140,7 +273,63 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4622567A2401E1FB006399C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		462256882401E204006399C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		218B3D45AB3F914F25381925 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PolitiScales/Pods-PolitiScales-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PolitiScales/Pods-PolitiScales-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PolitiScales/Pods-PolitiScales-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BAC75B779C19A6B718D0FB31 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PolitiScales-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		318CBE5623C012C4004F2E3A /* Sources */ = {
@@ -156,7 +345,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		462256782401E1FB006399C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4622567F2401E1FB006399C5 /* PolitiScalesUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		462256862401E204006399C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4622568D2401E204006399C5 /* PolitiScalesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		462256822401E1FB006399C5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 318CBE5923C012C4004F2E3A /* PolitiScales */;
+			targetProxy = 462256812401E1FB006399C5 /* PBXContainerItemProxy */;
+		};
+		462256902401E204006399C5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 318CBE5923C012C4004F2E3A /* PolitiScales */;
+			targetProxy = 4622568F2401E204006399C5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		318CBE6323C012C4004F2E3A /* Main.storyboard */ = {
@@ -294,6 +512,7 @@
 		};
 		318CBE6F23C012C6004F2E3A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1DEC38CEBA83E6460E9A7B3 /* Pods-PolitiScales.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -312,6 +531,7 @@
 		};
 		318CBE7023C012C6004F2E3A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75BEEEDE98BB0E4F4CA0CF68 /* Pods-PolitiScales.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -325,6 +545,88 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		462256832401E1FB006399C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9A8H575U4L;
+				INFOPLIST_FILE = PolitiScalesUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jarviswu.PolitiScalesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PolitiScales;
+			};
+			name = Debug;
+		};
+		462256842401E1FB006399C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9A8H575U4L;
+				INFOPLIST_FILE = PolitiScalesUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jarviswu.PolitiScalesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PolitiScales;
+			};
+			name = Release;
+		};
+		462256922401E204006399C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9A8H575U4L;
+				INFOPLIST_FILE = PolitiScalesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jarviswu.PolitiScalesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PolitiScales.app/PolitiScales";
+			};
+			name = Debug;
+		};
+		462256932401E204006399C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9A8H575U4L;
+				INFOPLIST_FILE = PolitiScalesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jarviswu.PolitiScalesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PolitiScales.app/PolitiScales";
 			};
 			name = Release;
 		};
@@ -345,6 +647,24 @@
 			buildConfigurations = (
 				318CBE6F23C012C6004F2E3A /* Debug */,
 				318CBE7023C012C6004F2E3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		462256852401E1FB006399C5 /* Build configuration list for PBXNativeTarget "PolitiScalesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				462256832401E1FB006399C5 /* Debug */,
+				462256842401E1FB006399C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		462256912401E204006399C5 /* Build configuration list for PBXNativeTarget "PolitiScalesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				462256922401E204006399C5 /* Debug */,
+				462256932401E204006399C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
