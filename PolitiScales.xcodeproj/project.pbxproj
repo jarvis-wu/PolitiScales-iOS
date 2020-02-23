@@ -19,6 +19,27 @@
 		318CBE7823C30B53004F2E3A /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318CBE7723C30B53004F2E3A /* ResultViewController.swift */; };
 		4622567F2401E1FB006399C5 /* PolitiScalesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4622567E2401E1FB006399C5 /* PolitiScalesUITests.swift */; };
 		4622568D2401E204006399C5 /* PolitiScalesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4622568C2401E204006399C5 /* PolitiScalesTests.swift */; };
+		462256952401E5A6006399C5 /* DuolingoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256942401E5A6006399C5 /* DuolingoButton.swift */; };
+		462256962401E5A6006399C5 /* DuolingoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256942401E5A6006399C5 /* DuolingoButton.swift */; };
+		462256972401E5A6006399C5 /* DuolingoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256942401E5A6006399C5 /* DuolingoButton.swift */; };
+		4622569A2401E5D4006399C5 /* DuolingoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256992401E5D4006399C5 /* DuolingoExtensions.swift */; };
+		4622569B2401E5D4006399C5 /* DuolingoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256992401E5D4006399C5 /* DuolingoExtensions.swift */; };
+		4622569C2401E5D4006399C5 /* DuolingoExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256992401E5D4006399C5 /* DuolingoExtensions.swift */; };
+		4622569E2401F3B9006399C5 /* DuolingoSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4622569D2401F3B9006399C5 /* DuolingoSeparator.swift */; };
+		4622569F2401F3B9006399C5 /* DuolingoSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4622569D2401F3B9006399C5 /* DuolingoSeparator.swift */; };
+		462256A02401F3B9006399C5 /* DuolingoSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4622569D2401F3B9006399C5 /* DuolingoSeparator.swift */; };
+		462256A22401F984006399C5 /* DuolingoTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256A12401F984006399C5 /* DuolingoTitleLabel.swift */; };
+		462256A32401F984006399C5 /* DuolingoTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256A12401F984006399C5 /* DuolingoTitleLabel.swift */; };
+		462256A42401F984006399C5 /* DuolingoTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256A12401F984006399C5 /* DuolingoTitleLabel.swift */; };
+		462256A62401F98D006399C5 /* DuolingoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256A52401F98D006399C5 /* DuolingoLabel.swift */; };
+		462256A72401F98D006399C5 /* DuolingoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256A52401F98D006399C5 /* DuolingoLabel.swift */; };
+		462256A82401F98D006399C5 /* DuolingoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256A52401F98D006399C5 /* DuolingoLabel.swift */; };
+		462256AA24020626006399C5 /* DuolingoBorderedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256A924020626006399C5 /* DuolingoBorderedCard.swift */; };
+		462256AB24020626006399C5 /* DuolingoBorderedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256A924020626006399C5 /* DuolingoBorderedCard.swift */; };
+		462256AC24020626006399C5 /* DuolingoBorderedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256A924020626006399C5 /* DuolingoBorderedCard.swift */; };
+		462256D7240216E8006399C5 /* dna.svg in Resources */ = {isa = PBXBuildFile; fileRef = 462256D6240216E8006399C5 /* dna.svg */; };
+		462256D8240216E8006399C5 /* dna.svg in Resources */ = {isa = PBXBuildFile; fileRef = 462256D6240216E8006399C5 /* dna.svg */; };
+		462256D9240216E8006399C5 /* dna.svg in Resources */ = {isa = PBXBuildFile; fileRef = 462256D6240216E8006399C5 /* dna.svg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +77,13 @@
 		4622568A2401E204006399C5 /* PolitiScalesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PolitiScalesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4622568C2401E204006399C5 /* PolitiScalesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolitiScalesTests.swift; sourceTree = "<group>"; };
 		4622568E2401E204006399C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		462256942401E5A6006399C5 /* DuolingoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuolingoButton.swift; sourceTree = "<group>"; };
+		462256992401E5D4006399C5 /* DuolingoExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuolingoExtensions.swift; sourceTree = "<group>"; };
+		4622569D2401F3B9006399C5 /* DuolingoSeparator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuolingoSeparator.swift; sourceTree = "<group>"; };
+		462256A12401F984006399C5 /* DuolingoTitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuolingoTitleLabel.swift; sourceTree = "<group>"; };
+		462256A52401F98D006399C5 /* DuolingoLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuolingoLabel.swift; sourceTree = "<group>"; };
+		462256A924020626006399C5 /* DuolingoBorderedCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuolingoBorderedCard.swift; sourceTree = "<group>"; };
+		462256D6240216E8006399C5 /* dna.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = dna.svg; sourceTree = "<group>"; };
 		75BEEEDE98BB0E4F4CA0CF68 /* Pods-PolitiScales.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolitiScales.release.xcconfig"; path = "Target Support Files/Pods-PolitiScales/Pods-PolitiScales.release.xcconfig"; sourceTree = "<group>"; };
 		D1DEC38CEBA83E6460E9A7B3 /* Pods-PolitiScales.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolitiScales.debug.xcconfig"; path = "Target Support Files/Pods-PolitiScales/Pods-PolitiScales.debug.xcconfig"; sourceTree = "<group>"; };
 		F9FAA6F0519906D3A4741DA5 /* Pods_PolitiScales.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PolitiScales.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +146,8 @@
 				318CBE6123C012C4004F2E3A /* QuizViewController.swift */,
 				318CBE7723C30B53004F2E3A /* ResultViewController.swift */,
 				318CBE7123C0131C004F2E3A /* Questions.swift */,
+				462256AD24020A1D006399C5 /* SVG */,
+				462256982401E5AE006399C5 /* Duo UI */,
 				318CBE6323C012C4004F2E3A /* Main.storyboard */,
 				318CBE6623C012C6004F2E3A /* Assets.xcassets */,
 				318CBE6823C012C6004F2E3A /* LaunchScreen.storyboard */,
@@ -150,6 +180,27 @@
 				4622568E2401E204006399C5 /* Info.plist */,
 			);
 			path = PolitiScalesTests;
+			sourceTree = "<group>";
+		};
+		462256982401E5AE006399C5 /* Duo UI */ = {
+			isa = PBXGroup;
+			children = (
+				462256A924020626006399C5 /* DuolingoBorderedCard.swift */,
+				462256A52401F98D006399C5 /* DuolingoLabel.swift */,
+				462256A12401F984006399C5 /* DuolingoTitleLabel.swift */,
+				462256992401E5D4006399C5 /* DuolingoExtensions.swift */,
+				4622569D2401F3B9006399C5 /* DuolingoSeparator.swift */,
+				462256942401E5A6006399C5 /* DuolingoButton.swift */,
+			);
+			name = "Duo UI";
+			sourceTree = "<group>";
+		};
+		462256AD24020A1D006399C5 /* SVG */ = {
+			isa = PBXGroup;
+			children = (
+				462256D6240216E8006399C5 /* dna.svg */,
+			);
+			path = SVG;
 			sourceTree = "<group>";
 		};
 		9A549F0BB96DDBF05157E69C /* Pods */ = {
@@ -268,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				318CBE6A23C012C6004F2E3A /* LaunchScreen.storyboard in Resources */,
+				462256D7240216E8006399C5 /* dna.svg in Resources */,
 				318CBE6723C012C6004F2E3A /* Assets.xcassets in Resources */,
 				318CBE6523C012C4004F2E3A /* Main.storyboard in Resources */,
 			);
@@ -277,6 +329,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				462256D8240216E8006399C5 /* dna.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +337,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				462256D9240216E8006399C5 /* dna.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,11 +390,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4622569E2401F3B9006399C5 /* DuolingoSeparator.swift in Sources */,
 				318CBE7623C032F2004F2E3A /* HomeViewController.swift in Sources */,
 				318CBE6223C012C4004F2E3A /* QuizViewController.swift in Sources */,
+				462256AA24020626006399C5 /* DuolingoBorderedCard.swift in Sources */,
+				462256952401E5A6006399C5 /* DuolingoButton.swift in Sources */,
 				318CBE7223C0131C004F2E3A /* Questions.swift in Sources */,
+				462256A62401F98D006399C5 /* DuolingoLabel.swift in Sources */,
+				4622569A2401E5D4006399C5 /* DuolingoExtensions.swift in Sources */,
 				318CBE5E23C012C4004F2E3A /* AppDelegate.swift in Sources */,
 				318CBE6023C012C4004F2E3A /* SceneDelegate.swift in Sources */,
+				462256A22401F984006399C5 /* DuolingoTitleLabel.swift in Sources */,
 				318CBE7823C30B53004F2E3A /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,7 +409,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4622569F2401F3B9006399C5 /* DuolingoSeparator.swift in Sources */,
+				4622569B2401E5D4006399C5 /* DuolingoExtensions.swift in Sources */,
+				462256AB24020626006399C5 /* DuolingoBorderedCard.swift in Sources */,
+				462256962401E5A6006399C5 /* DuolingoButton.swift in Sources */,
+				462256A32401F984006399C5 /* DuolingoTitleLabel.swift in Sources */,
 				4622567F2401E1FB006399C5 /* PolitiScalesUITests.swift in Sources */,
+				462256A72401F98D006399C5 /* DuolingoLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,7 +423,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				462256A02401F3B9006399C5 /* DuolingoSeparator.swift in Sources */,
+				4622569C2401E5D4006399C5 /* DuolingoExtensions.swift in Sources */,
+				462256AC24020626006399C5 /* DuolingoBorderedCard.swift in Sources */,
+				462256972401E5A6006399C5 /* DuolingoButton.swift in Sources */,
+				462256A42401F984006399C5 /* DuolingoTitleLabel.swift in Sources */,
 				4622568D2401E204006399C5 /* PolitiScalesTests.swift in Sources */,
+				462256A82401F98D006399C5 /* DuolingoLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,7 +588,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W329T93473;
+				DEVELOPMENT_TEAM = 9A8H575U4L;
 				INFOPLIST_FILE = PolitiScales/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -535,7 +607,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W329T93473;
+				DEVELOPMENT_TEAM = 9A8H575U4L;
 				INFOPLIST_FILE = PolitiScales/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

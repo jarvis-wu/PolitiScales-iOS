@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bY1-C9-T94">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lix-Sl-0Se">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,150 +12,30 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="QuizViewController" customModule="PolitiScales" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHk-fI-ntu">
-                                <rect key="frame" x="40" y="263" width="334" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ed7-xz-MAc">
-                                <rect key="frame" x="40" y="385" width="334" height="282"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJI-ZG-fsB">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="50"/>
-                                        <color key="backgroundColor" red="0.1042599156498909" green="0.36808332800865173" blue="0.12381947785615921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="zFe-Om-Knp"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                        <state key="normal" title="Absolutely agree">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didSelectAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zXo-xW-D6s"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWo-cq-FET">
-                                        <rect key="frame" x="0.0" y="58" width="334" height="50"/>
-                                        <color key="backgroundColor" red="0.29365921020507812" green="0.68392080068588257" blue="0.31153306365013123" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="3ce-TV-MJz"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                        <state key="normal" title="Somewhat agree">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didSelectAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pyy-1G-9jF"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WBD-gQ-4Ak">
-                                        <rect key="frame" x="0.0" y="116" width="334" height="50"/>
-                                        <color key="backgroundColor" red="0.73325240612030029" green="0.73337996006011963" blue="0.73324435949325562" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="zS4-rg-qup"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                        <state key="normal" title="Neutral or hesitant">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didSelectAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X0b-Pi-gQP"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8eg-JQ-RTT">
-                                        <rect key="frame" x="0.0" y="174" width="334" height="50"/>
-                                        <color key="backgroundColor" red="0.95528727769851685" green="0.26352882385253906" blue="0.21046414971351624" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="SQc-sa-mZA"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                        <state key="normal" title="Rather disagree">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didSelectAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zfC-YI-yhs"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1J0-hW-IqX">
-                                        <rect key="frame" x="0.0" y="232" width="334" height="50"/>
-                                        <color key="backgroundColor" red="0.71789306402206421" green="0.11116447299718857" blue="0.11000914126634598" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="ho0-I2-Gvy"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                        <state key="normal" title="Absolutely disagree">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didSelectAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fLb-vn-Ha1"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0K-az-Jnv">
-                                <rect key="frame" x="40" y="762" width="334" height="50"/>
-                                <color key="backgroundColor" red="0.31259793043136597" green="0.0" blue="0.46227627992630005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="12S-ZO-NaX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <state key="normal" title="Go back to home page">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="didSelectGoBack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="er2-2f-PrR"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question 1 of 117" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tn6-9d-NGZ">
-                                <rect key="frame" x="132" y="190" width="150" height="23"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="Ed7-xz-MAc" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="1.05" id="22c-U4-rh2"/>
-                            <constraint firstItem="w0K-az-Jnv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="4gS-8S-0WG"/>
-                            <constraint firstItem="Ed7-xz-MAc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="BlC-ds-C9y"/>
-                            <constraint firstItem="w0K-az-Jnv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="DKg-mB-tnj"/>
-                            <constraint firstItem="zHk-fI-ntu" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cc1-X2-q9b"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="w0K-az-Jnv" secondAttribute="bottom" constant="50" id="gV7-Z5-qZq"/>
-                            <constraint firstItem="zHk-fI-ntu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="ksQ-wV-AnP"/>
-                            <constraint firstItem="Ed7-xz-MAc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="lDO-AL-RiY"/>
-                            <constraint firstItem="zHk-fI-ntu" firstAttribute="top" secondItem="Tn6-9d-NGZ" secondAttribute="bottom" constant="50" id="rKW-l9-kpB"/>
-                            <constraint firstItem="Tn6-9d-NGZ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="rrf-lb-Z6q"/>
-                            <constraint firstItem="Tn6-9d-NGZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="sih-07-3sH"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="PolitiScales" id="vKD-Ii-8Zl"/>
                     <connections>
-                        <outlet property="answersStackView" destination="Ed7-xz-MAc" id="WWn-Dd-sHh"/>
-                        <outlet property="goBackButton" destination="w0K-az-Jnv" id="RRd-mT-Avu"/>
-                        <outlet property="questionNumberLabel" destination="Tn6-9d-NGZ" id="d0B-Ks-yjZ"/>
-                        <outlet property="questionTextLabel" destination="zHk-fI-ntu" id="hma-KB-R3Q"/>
                         <segue destination="YzQ-PQ-jR1" kind="show" identifier="ResultSegue" id="poD-Hh-BNe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1654" y="90"/>
+            <point key="canvasLocation" x="2563.768115942029" y="89.732142857142847"/>
         </scene>
         <!--PolitiScales-->
         <scene sceneID="6Ne-rj-a7j">
             <objects>
                 <viewController id="YzQ-PQ-jR1" customClass="ResultViewController" customModule="PolitiScales" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gYq-4T-Piu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZm-Ir-CKp">
-                                <rect key="frame" x="40" y="762" width="334" height="50"/>
+                                <rect key="frame" x="40" y="674" width="334" height="50"/>
                                 <color key="backgroundColor" red="0.3125979304" green="0.0" blue="0.46227627989999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="G3o-oC-ECm"/>
@@ -185,94 +64,44 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GzC-Qc-paA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2407" y="90"/>
+            <point key="canvasLocation" x="3315.9420289855075" y="89.732142857142847"/>
         </scene>
-        <!--PolitiScales-->
+        <!--Instructions-->
         <scene sceneID="hRw-sr-AQx">
             <objects>
-                <viewController id="q9Q-mL-i6M" customClass="HomeViewController" customModule="PolitiScales" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" title="Instructions" id="q9Q-mL-i6M" customClass="HomeViewController" customModule="PolitiScales" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gy8-nQ-MU9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vqh-yK-Lk5">
-                                <rect key="frame" x="40" y="762" width="334" height="50"/>
-                                <color key="backgroundColor" red="0.3125979304" green="0.0" blue="0.46227627989999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="TVZ-ov-nbp"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <state key="normal" title="Start the test">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="wrf-Wd-hww"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instructions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGR-2N-GXY">
-                                <rect key="frame" x="154" y="190" width="106.5" height="23"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvm-MD-rdM">
-                                <rect key="frame" x="30" y="263" width="354" height="363"/>
-                                <mutableString key="text">Welcome to the PolitiScale, the online political test. You will be confronted to a series of affirmations and for each of them you will have to click on the button which corresponds the most to your opinion.  🔔 The questions assume that your are a citizen of a multi-parti political system and a market economy.
-
-🔔 You can always avoid answering a question. But if you do not understand the meaning of one of them, try to invert its meaning for a better understanding of what is implied.
-
-⚠️ This test tries to represent the wider set of ideas as possible and contains some phrases that can be shocking, notably concerning racism and homosexuality.</mutableString>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="yvm-MD-rdM" firstAttribute="top" secondItem="qGR-2N-GXY" secondAttribute="bottom" constant="50" id="0jJ-bF-Wis"/>
-                            <constraint firstItem="vqh-yK-Lk5" firstAttribute="leading" secondItem="JGi-vd-eRM" secondAttribute="leading" constant="40" id="1Zl-vy-Zp7"/>
-                            <constraint firstItem="yvm-MD-rdM" firstAttribute="centerX" secondItem="JGi-vd-eRM" secondAttribute="centerX" id="GXI-iC-1Zu"/>
-                            <constraint firstItem="yvm-MD-rdM" firstAttribute="leading" secondItem="JGi-vd-eRM" secondAttribute="leading" constant="30" id="HDh-5l-wTr"/>
-                            <constraint firstItem="qGR-2N-GXY" firstAttribute="top" secondItem="JGi-vd-eRM" secondAttribute="top" constant="50" id="boG-Ay-eJ7"/>
-                            <constraint firstItem="qGR-2N-GXY" firstAttribute="centerX" secondItem="JGi-vd-eRM" secondAttribute="centerX" id="kKa-av-Q4A"/>
-                            <constraint firstItem="vqh-yK-Lk5" firstAttribute="centerX" secondItem="JGi-vd-eRM" secondAttribute="centerX" id="rUM-9o-3N7"/>
-                            <constraint firstItem="JGi-vd-eRM" firstAttribute="bottom" secondItem="vqh-yK-Lk5" secondAttribute="bottom" constant="50" id="xmA-uQ-ZlE"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="JGi-vd-eRM"/>
                     </view>
-                    <navigationItem key="navigationItem" title="PolitiScales" id="R0r-hH-tU8"/>
+                    <navigationItem key="navigationItem" title="Instructions" id="h7v-bL-mVw"/>
                     <connections>
-                        <outlet property="startButton" destination="vqh-yK-Lk5" id="f0y-e2-M8j"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="ShowQuiz" id="MaD-YB-Ojo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Uw-JE-tcL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="900" y="90"/>
+            <point key="canvasLocation" x="1810.144927536232" y="89.732142857142847"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="ZUz-Q0-xPN">
+        <scene sceneID="UQp-Xu-dgc">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bY1-C9-T94" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lix-Sl-0Se" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="SjB-wh-IL7">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Tgf-VX-R8R">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.3125979304" green="0.0" blue="0.46227627989999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="q9Q-mL-i6M" kind="relationship" relationship="rootViewController" id="cHw-ud-Omo"/>
+                        <segue destination="q9Q-mL-i6M" kind="relationship" relationship="rootViewController" id="Ngm-Ku-K7h"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dhx-4P-F0Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pcb-ji-Rd6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="89.732142857142847"/>
+            <point key="canvasLocation" x="900.00000000000011" y="89.732142857142847"/>
         </scene>
     </scenes>
 </document>

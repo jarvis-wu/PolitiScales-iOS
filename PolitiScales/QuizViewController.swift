@@ -7,24 +7,29 @@
 //
 
 import UIKit
+import SVGKit
 
 class QuizViewController: UIViewController {
-
-    @IBOutlet weak var questionNumberLabel: UILabel!
-    @IBOutlet weak var questionTextLabel: UILabel!
-    @IBOutlet weak var answersStackView: UIStackView!
-    @IBOutlet weak var goBackButton: UIButton!
     
-    @IBAction func didSelectAnswer(_ sender: UIButton) {
-        guard let stack = sender.superview as? UIStackView else { return }
-        if let index = stack.arrangedSubviews.firstIndex(of: sender) {
+    let questionCard = DuolingoBorderedCard()
+    let questionCardIcon = SVGKFastImageView(svgkImage: nil)!
+    let questionCardRightStack = UIStackView()
+    let questionCardTitleLabel = DuolingoTitleLabel()
+    let questionCardLabel = DuolingoLabel()
+    let anwersContainerView = UIView()
+    let goBackButton = DuolingoButton()
+    let bottomView = UIView()
+    let navBarSeparator = DuolingoSeparator()
+    
+    @objc func didSelectAnswer(_ sender: UIButton) {
+        if let index = anwersContainerView.subviews.firstIndex(of: sender) {
             print("\(index) is selected")
             shuffled[currentQuestionNumber].answer = multiplierFromIndex[index]!
+            goToNext()
         }
-        goToNext()
     }
     
-    @IBAction func didSelectGoBack(_ sender: UIButton) {
+    @objc func didTapGoBack() {
         if currentQuestionNumber == 0 {
             self.navigationController?.popViewController(animated: true)
         } else {
@@ -32,17 +37,28 @@ class QuizViewController: UIViewController {
         }
     }
     
+    @objc func didTapExit() {
+        // TODO: ask for confirmation
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    // FOR DEBUG PURPOSE; OTHERWISE IT SHOULD ALWAYS BE TRUE
+    let shouldShuffle = false
+    
     let multiplierFromIndex: [Int: Double] = [0: 1, 1: 2/3, 2: 0, 3: -2/3, 4: -1]
-    
     var results = [String : (Int, Int)]()
-    
-    var shuffled = questions.shuffled()
+    var shuffled: [Question] {
+        get { return self.shouldShuffle ? questions.shuffled() : questions }
+        set {}
+    }
     
     var currentQuestionNumber = 0 {
         didSet {
             if currentQuestionNumber != questions.count {
-                questionNumberLabel.text = "Question \(currentQuestionNumber + 1) of \(questions.count)"
-                questionTextLabel.text = shuffled[currentQuestionNumber].questionText
+                questionCardLabel.text = shuffled[currentQuestionNumber].questionText
+                questionCardTitleLabel.text = "Question \(currentQuestionNumber + 1) of \(questions.count)"
+                let urlPath = Bundle.main.url(forResource: "dna", withExtension: "svg")
+                questionCardIcon.image = SVGKImage(contentsOf: urlPath)
                 goBackButton.setTitle(currentQuestionNumber == 0 ? "Go back to home page" : "Return to the previous question", for: .normal)
             } else {
                 calculateResult()
@@ -54,12 +70,94 @@ class QuizViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
-        questionNumberLabel.text = "Question \(currentQuestionNumber + 1) of \(questions.count)"
-        questionTextLabel.text = shuffled[0].questionText
-        for button in answersStackView.arrangedSubviews {
-            button.layer.cornerRadius = 8
+        self.navigationItem.title = "PolitiScale"
+        let exitButton = UIButton()
+        let exitIcon = UIImage(named: "exit")?.withRenderingMode(.alwaysTemplate)
+        exitButton.setImage(exitIcon, for: .normal)
+        exitButton.tintColor = .lightGray
+        exitButton.addTarget(self, action: #selector(didTapExit), for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: exitButton)
+        self.navigationItem.leftBarButtonItem?.customView?.width(18)
+        self.navigationItem.leftBarButtonItem?.customView?.aspectRatio(1)
+        self.view.addSubview(navBarSeparator)
+        addQuestionCard()
+        addAnswersContainerView()
+        addBottomView()
+        addConstraints()
+    }
+    
+    private func addConstraints() {
+        goBackButton.centerXToSuperview()
+        goBackButton.bottomToSuperview(offset: -30, usingSafeArea: true)
+        goBackButton.leadingToSuperview(offset: 30)
+        bottomView.topToBottom(of: goBackButton, offset: -80)
+        bottomView.widthToSuperview()
+        bottomView.bottomToSuperview()
+        
+        anwersContainerView.bottomToTop(of: bottomView, offset: -50)
+//        anwersContainerView.centerYToSuperview()
+        anwersContainerView.centerXToSuperview()
+        anwersContainerView.leadingToSuperview(offset: 30)
+        for i in 0...4 {
+            let button = anwersContainerView.subviews[i]
+            if i == 0 { button.bottomToTop(of: anwersContainerView, offset: 50) }
+            if i == 4 { button.bottomToSuperview() }
+            button.bottomToTop(of: anwersContainerView, offset: CGFloat((i + 1) * 50 + i * 12))
+            button.widthToSuperview()
         }
-        goBackButton.layer.cornerRadius = 8
+        
+        questionCard.topToSuperview(offset: 50)
+        questionCard.centerXToSuperview()
+        questionCard.leadingToSuperview(offset: 30)
+        questionCard.bottom(to: questionCardLabel, offset: 30)
+        questionCardIcon.height(80)
+        questionCardIcon.aspectRatio(1)
+        questionCardIcon.leadingToSuperview(offset: 20)
+        questionCardIcon.topToSuperview(offset: 20)
+        questionCardRightStack.top(to: questionCardIcon)
+        questionCardRightStack.trailingToSuperview(offset: 20)
+        questionCardRightStack.leadingToTrailing(of: questionCardIcon, offset: 20)
+        navBarSeparator.topToSuperview(offset: 5)
+    }
+    
+    private func addQuestionCard() {
+        questionCard.addSubview(questionCardIcon)
+        questionCard.addSubview(questionCardRightStack)
+        questionCardRightStack.axis = .vertical
+        questionCardRightStack.distribution = .equalCentering
+        questionCardRightStack.spacing = 12
+        questionCardRightStack.addArrangedSubview(questionCardTitleLabel)
+        questionCardRightStack.addArrangedSubview(questionCardLabel)
+        // TODO: Fix priming in currentQuestionNumber didSet
+        let urlPath = Bundle.main.url(forResource: "dna", withExtension: "svg")
+        questionCardIcon.image = SVGKImage(contentsOf: urlPath)
+        questionCardTitleLabel.text = "Question \(currentQuestionNumber + 1) of \(questions.count)"
+        questionCardLabel.numberOfLines = 0
+        questionCardLabel.text = shuffled[0].questionText
+        self.view.addSubview(questionCard)
+    }
+    
+    private func addAnswersContainerView() {
+        self.view.addSubview(anwersContainerView)
+        let titles = ["Absoulutely agree", "Somewhat agree", "Neutral or hesitant", "Rather disagree", "Absoulutely disagree"]
+        let colors: [UIColor] = [.systemBlue, .systemGreen, .systemYellow, .systemOrange, .systemRed]
+        for i in 0...4 {
+            let button = DuolingoButton()
+            button.mainColor = colors[i]
+            button.setTitle(titles[i], for: .normal)
+            button.addTarget(self, action: #selector(didSelectAnswer), for: .touchUpInside)
+            anwersContainerView.addSubview(button)
+        }
+    }
+    
+    private func addBottomView() {
+        view.addSubview(bottomView)
+        bottomView.addSubview(goBackButton)
+        goBackButton.setTitle("Go back to home page", for: .normal)
+        goBackButton.addTarget(self, action: #selector(didTapGoBack), for: .touchUpInside)
+        let separator = DuolingoSeparator()
+        bottomView.addSubview(separator)
+        separator.topToSuperview()
     }
     
     func calculateResult() {
