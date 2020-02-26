@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import SVGKit
 
 class QuizViewController: UIViewController {
     
     let questionCard = DuolingoBorderedCard()
-    let questionCardIcon = SVGKFastImageView(svgkImage: nil)!
+    let questionCardIcon = UIImageView()
     let questionCardRightStack = UIStackView()
     let questionCardTitleLabel = DuolingoTitleLabel()
     let questionCardLabel = DuolingoLabel()
@@ -84,8 +83,7 @@ class QuizViewController: UIViewController {
                     self.questionCard.transform = CGAffineTransform(translationX: animationDistance, y: 0)
                     self.questionCardLabel.text = self.shuffled[self.currentQuestionNumber].questionText
                     self.questionCardTitleLabel.text = "Question \(self.currentQuestionNumber + 1) of \(questions.count)"
-                    let urlPath = Bundle.main.url(forResource: "dna", withExtension: "svg")
-                    self.questionCardIcon.image = SVGKImage(contentsOf: urlPath)
+                    self.questionCardIcon.image = UIImage(named: "dna")
                     self.goBackButton.setTitle(self.currentQuestionNumber == 0 ? "Go back to home page" : "Return to the previous question", for: .normal)
                     UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
                         self.questionCard.alpha = 1
@@ -168,8 +166,7 @@ class QuizViewController: UIViewController {
         questionCardRightStack.addArrangedSubview(questionCardTitleLabel)
         questionCardRightStack.addArrangedSubview(questionCardLabel)
         // TODO: Fix code priming in currentQuestionNumber didSet
-        let urlPath = Bundle.main.url(forResource: "dna", withExtension: "svg")
-        questionCardIcon.image = SVGKImage(contentsOf: urlPath)
+        questionCardIcon.image = UIImage(named: "dna")
         questionCardTitleLabel.text = "Question \(currentQuestionNumber + 1) of \(questions.count)"
         questionCardLabel.numberOfLines = 0
         questionCardLabel.text = shuffled[0].questionText

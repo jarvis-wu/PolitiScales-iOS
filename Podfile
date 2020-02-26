@@ -7,7 +7,6 @@ target 'PolitiScales' do
 
   # Pods for PolitiScales
   pod 'TinyConstraints'
-  pod 'SVGKit'
 
   target 'PolitiScalesTests' do
     inherit! :search_paths

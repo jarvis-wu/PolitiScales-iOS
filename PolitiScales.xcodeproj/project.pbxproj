@@ -38,9 +38,6 @@
 		462256AA24020626006399C5 /* DuolingoBorderedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256A924020626006399C5 /* DuolingoBorderedCard.swift */; };
 		462256AB24020626006399C5 /* DuolingoBorderedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256A924020626006399C5 /* DuolingoBorderedCard.swift */; };
 		462256AC24020626006399C5 /* DuolingoBorderedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256A924020626006399C5 /* DuolingoBorderedCard.swift */; };
-		462256D7240216E8006399C5 /* dna.svg in Resources */ = {isa = PBXBuildFile; fileRef = 462256D6240216E8006399C5 /* dna.svg */; };
-		462256D8240216E8006399C5 /* dna.svg in Resources */ = {isa = PBXBuildFile; fileRef = 462256D6240216E8006399C5 /* dna.svg */; };
-		462256D9240216E8006399C5 /* dna.svg in Resources */ = {isa = PBXBuildFile; fileRef = 462256D6240216E8006399C5 /* dna.svg */; };
 		4C434D8A6AD2C05406F4EF7F /* Pods_PolitiScalesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC1329C53BC402CD3BC0792 /* Pods_PolitiScalesTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,7 +84,6 @@
 		462256A12401F984006399C5 /* DuolingoTitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuolingoTitleLabel.swift; sourceTree = "<group>"; };
 		462256A52401F98D006399C5 /* DuolingoLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuolingoLabel.swift; sourceTree = "<group>"; };
 		462256A924020626006399C5 /* DuolingoBorderedCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuolingoBorderedCard.swift; sourceTree = "<group>"; };
-		462256D6240216E8006399C5 /* dna.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = dna.svg; sourceTree = "<group>"; };
 		75BEEEDE98BB0E4F4CA0CF68 /* Pods-PolitiScales.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolitiScales.release.xcconfig"; path = "Target Support Files/Pods-PolitiScales/Pods-PolitiScales.release.xcconfig"; sourceTree = "<group>"; };
 		845117E4ED59E1D9BFFAA0C3 /* Pods_PolitiScales_PolitiScalesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PolitiScales_PolitiScalesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		926D5A4AB4A96F4D3FE4D1B7 /* Pods-PolitiScalesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolitiScalesTests.debug.xcconfig"; path = "Target Support Files/Pods-PolitiScalesTests/Pods-PolitiScalesTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,7 +152,6 @@
 				318CBE6123C012C4004F2E3A /* QuizViewController.swift */,
 				318CBE7723C30B53004F2E3A /* ResultViewController.swift */,
 				318CBE7123C0131C004F2E3A /* Questions.swift */,
-				462256AD24020A1D006399C5 /* SVG */,
 				462256982401E5AE006399C5 /* Duo UI */,
 				318CBE6323C012C4004F2E3A /* Main.storyboard */,
 				318CBE6623C012C6004F2E3A /* Assets.xcassets */,
@@ -205,14 +200,6 @@
 				462256942401E5A6006399C5 /* DuolingoButton.swift */,
 			);
 			name = "Duo UI";
-			sourceTree = "<group>";
-		};
-		462256AD24020A1D006399C5 /* SVG */ = {
-			isa = PBXGroup;
-			children = (
-				462256D6240216E8006399C5 /* dna.svg */,
-			);
-			path = SVG;
 			sourceTree = "<group>";
 		};
 		9A549F0BB96DDBF05157E69C /* Pods */ = {
@@ -338,7 +325,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				318CBE6A23C012C6004F2E3A /* LaunchScreen.storyboard in Resources */,
-				462256D7240216E8006399C5 /* dna.svg in Resources */,
 				318CBE6723C012C6004F2E3A /* Assets.xcassets in Resources */,
 				318CBE6523C012C4004F2E3A /* Main.storyboard in Resources */,
 			);
@@ -348,7 +334,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				462256D8240216E8006399C5 /* dna.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +341,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				462256D9240216E8006399C5 /* dna.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,7 +658,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.jarviswu.PolitiScales;
+				PRODUCT_BUNDLE_IDENTIFIER = app.jarviswu.PolitiScales;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -693,7 +677,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.jarviswu.PolitiScales;
+				PRODUCT_BUNDLE_IDENTIFIER = app.jarviswu.PolitiScales;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
