@@ -76,11 +76,22 @@ class QuizViewController: UIViewController {
         didSet {
             if currentQuestionNumber != questions.count {
                 // TODO: add sliding in and out animations here on the question card
-                questionCardLabel.text = shuffled[currentQuestionNumber].questionText
-                questionCardTitleLabel.text = "Question \(currentQuestionNumber + 1) of \(questions.count)"
-                let urlPath = Bundle.main.url(forResource: "dna", withExtension: "svg")
-                questionCardIcon.image = SVGKImage(contentsOf: urlPath)
-                goBackButton.setTitle(currentQuestionNumber == 0 ? "Go back to home page" : "Return to the previous question", for: .normal)
+                let animationDistance: CGFloat = (self.view.bounds.width + self.questionCard.bounds.width)/2
+                UIView.animate(withDuration: 0.4, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.curveLinear], animations: {
+                    self.questionCard.transform = CGAffineTransform(translationX: -animationDistance, y: 0)
+                }) { (_) in
+                    self.questionCard.alpha = 0
+                    self.questionCard.transform = CGAffineTransform(translationX: animationDistance, y: 0)
+                    self.questionCardLabel.text = self.shuffled[self.currentQuestionNumber].questionText
+                    self.questionCardTitleLabel.text = "Question \(self.currentQuestionNumber + 1) of \(questions.count)"
+                    let urlPath = Bundle.main.url(forResource: "dna", withExtension: "svg")
+                    self.questionCardIcon.image = SVGKImage(contentsOf: urlPath)
+                    self.goBackButton.setTitle(self.currentQuestionNumber == 0 ? "Go back to home page" : "Return to the previous question", for: .normal)
+                    UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
+                        self.questionCard.alpha = 1
+                        self.questionCard.transform = CGAffineTransform.identity
+                    }, completion: nil)
+                }
             } else {
                 calculateResult()
                 performSegue(withIdentifier: "ResultSegue", sender: self)
