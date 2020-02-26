@@ -38,8 +38,28 @@ class QuizViewController: UIViewController {
     }
     
     @objc func didTapExit() {
-        // TODO: ask for confirmation
-        self.navigationController?.popViewController(animated: true)
+        // TODO: we do want to ask for confirmation if the user is going BACK from later questions to the first question
+        // Which means we actually want to check progress, rather than current index
+        if currentQuestionNumber == 0 {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            let alertController = UIAlertController(title: "Do you want to save the current session?", message: "You can choose to save your answers and come back later to finish it, or delete the progress immediately. You cannot undo this action.", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Save and leave", style: .default, handler: { (_) in
+                // save here
+                self.navigationController?.popViewController(animated: true)
+            }))
+            alertController.addAction(UIAlertAction(title: "Discard and leave", style: .destructive, handler: { (_) in
+                // discard here
+                self.navigationController?.popViewController(animated: true)
+            }))
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    @objc func didTapEdit() {
+        print("Edit tapped")
+        // present a table view controller displaying all answered questions
     }
     
     // FOR DEBUG PURPOSE; OTHERWISE IT SHOULD ALWAYS BE TRUE
@@ -55,6 +75,7 @@ class QuizViewController: UIViewController {
     var currentQuestionNumber = 0 {
         didSet {
             if currentQuestionNumber != questions.count {
+                // TODO: add sliding in and out animations here on the question card
                 questionCardLabel.text = shuffled[currentQuestionNumber].questionText
                 questionCardTitleLabel.text = "Question \(currentQuestionNumber + 1) of \(questions.count)"
                 let urlPath = Bundle.main.url(forResource: "dna", withExtension: "svg")
@@ -77,8 +98,16 @@ class QuizViewController: UIViewController {
         exitButton.tintColor = .lightGray
         exitButton.addTarget(self, action: #selector(didTapExit), for: .touchUpInside)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: exitButton)
-        self.navigationItem.leftBarButtonItem?.customView?.width(18)
+        self.navigationItem.leftBarButtonItem?.customView?.height(20)
         self.navigationItem.leftBarButtonItem?.customView?.aspectRatio(1)
+        let editButton = UIButton()
+        let editIcon = UIImage(named: "edit")?.withRenderingMode(.alwaysTemplate)
+        editButton.setImage(editIcon, for: .normal)
+        editButton.tintColor = .lightGray
+        editButton.addTarget(self, action: #selector(didTapEdit), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: editButton)
+        self.navigationItem.rightBarButtonItem?.customView?.height(20)
+        self.navigationItem.rightBarButtonItem?.customView?.aspectRatio(1)
         self.view.addSubview(navBarSeparator)
         addQuestionCard()
         addAnswersContainerView()
@@ -95,7 +124,6 @@ class QuizViewController: UIViewController {
         bottomView.bottomToSuperview()
         
         anwersContainerView.bottomToTop(of: bottomView, offset: -50)
-//        anwersContainerView.centerYToSuperview()
         anwersContainerView.centerXToSuperview()
         anwersContainerView.leadingToSuperview(offset: 30)
         for i in 0...4 {
@@ -106,7 +134,7 @@ class QuizViewController: UIViewController {
             button.widthToSuperview()
         }
         
-        questionCard.topToSuperview(offset: 50)
+        questionCard.topToBottom(of: navBarSeparator, offset: 30)
         questionCard.centerXToSuperview()
         questionCard.leadingToSuperview(offset: 30)
         questionCard.bottom(to: questionCardLabel, offset: 30)
@@ -117,7 +145,7 @@ class QuizViewController: UIViewController {
         questionCardRightStack.top(to: questionCardIcon)
         questionCardRightStack.trailingToSuperview(offset: 20)
         questionCardRightStack.leadingToTrailing(of: questionCardIcon, offset: 20)
-        navBarSeparator.topToSuperview(offset: 5)
+        navBarSeparator.topToSuperview()
     }
     
     private func addQuestionCard() {
@@ -128,7 +156,7 @@ class QuizViewController: UIViewController {
         questionCardRightStack.spacing = 12
         questionCardRightStack.addArrangedSubview(questionCardTitleLabel)
         questionCardRightStack.addArrangedSubview(questionCardLabel)
-        // TODO: Fix priming in currentQuestionNumber didSet
+        // TODO: Fix code priming in currentQuestionNumber didSet
         let urlPath = Bundle.main.url(forResource: "dna", withExtension: "svg")
         questionCardIcon.image = SVGKImage(contentsOf: urlPath)
         questionCardTitleLabel.text = "Question \(currentQuestionNumber + 1) of \(questions.count)"
