@@ -19,6 +19,7 @@ class QuizViewController: UIViewController {
     let goBackButton = DuolingoButton()
     let bottomView = UIView()
     let navBarSeparator = DuolingoSeparator()
+    var anwersContainerViewTopConstraint: NSLayoutConstraint!
     
     @objc func didSelectAnswer(_ sender: UIButton) {
         if let index = anwersContainerView.subviews.firstIndex(of: sender) {
@@ -85,9 +86,12 @@ class QuizViewController: UIViewController {
                     self.questionCardTitleLabel.text = "Question \(self.currentQuestionNumber + 1) of \(questions.count)"
                     self.questionCardIcon.image = UIImage(named: "dna")
                     self.goBackButton.setTitle(self.currentQuestionNumber == 0 ? "Go back to home page" : "Return to the previous question", for: .normal)
+                    self.anwersContainerViewTopConstraint.isActive = false
+                    self.anwersContainerViewTopConstraint = self.anwersContainerView.topToBottom(of: self.questionCard, offset: 20)
                     UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
                         self.questionCard.alpha = 1
                         self.questionCard.transform = CGAffineTransform.identity
+                        self.view.layoutIfNeeded()
                     }, completion: nil)
                 }
             } else {
@@ -132,7 +136,7 @@ class QuizViewController: UIViewController {
         bottomView.widthToSuperview()
         bottomView.bottomToSuperview()
         
-        anwersContainerView.bottomToTop(of: bottomView, offset: -50)
+        anwersContainerViewTopConstraint = anwersContainerView.topToBottom(of: questionCard, offset: 20)
         anwersContainerView.centerXToSuperview()
         anwersContainerView.leadingToSuperview(offset: 30)
         for i in 0...4 {
