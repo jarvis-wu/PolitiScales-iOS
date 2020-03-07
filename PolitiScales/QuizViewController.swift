@@ -10,6 +10,8 @@ import UIKit
 
 class QuizViewController: UIViewController {
     
+    let scrollView = UIScrollView()
+    let contentView = UIView()
     let questionCard = DuolingoBorderedCard()
     let questionCardIcon = UIImageView()
     let questionCardRightStack = UIStackView()
@@ -122,10 +124,20 @@ class QuizViewController: UIViewController {
         self.navigationItem.rightBarButtonItem?.customView?.height(20)
         self.navigationItem.rightBarButtonItem?.customView?.aspectRatio(1)
         self.view.addSubview(navBarSeparator)
+        addBottomView()
+        addScrollView()
         addQuestionCard()
         addAnswersContainerView()
-        addBottomView()
         addConstraints()
+    }
+    
+    private func addScrollView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        scrollView.edgesToSuperview(excluding: [.bottom])
+        scrollView.bottomToTop(of: bottomView)
+        contentView.edgesToSuperview()
+        contentView.widthToSuperview()
     }
     
     private func addConstraints() {
@@ -135,10 +147,10 @@ class QuizViewController: UIViewController {
         bottomView.topToBottom(of: goBackButton, offset: -80)
         bottomView.widthToSuperview()
         bottomView.bottomToSuperview()
-        
         anwersContainerViewTopConstraint = anwersContainerView.topToBottom(of: questionCard, offset: 20)
         anwersContainerView.centerXToSuperview()
         anwersContainerView.leadingToSuperview(offset: 30)
+        anwersContainerView.bottom(to: contentView, offset: -30)
         for i in 0...4 {
             let button = anwersContainerView.subviews[i]
             if i == 0 { button.bottomToTop(of: anwersContainerView, offset: 50) }
@@ -146,8 +158,7 @@ class QuizViewController: UIViewController {
             button.bottomToTop(of: anwersContainerView, offset: CGFloat((i + 1) * 50 + i * 12))
             button.widthToSuperview()
         }
-        
-        questionCard.topToBottom(of: navBarSeparator, offset: 30)
+        questionCard.top(to: contentView, offset: 30)
         questionCard.centerXToSuperview()
         questionCard.leadingToSuperview(offset: 30)
         questionCard.bottom(to: questionCardLabel, offset: 30)
@@ -159,6 +170,7 @@ class QuizViewController: UIViewController {
         questionCardRightStack.trailingToSuperview(offset: 20)
         questionCardRightStack.leadingToTrailing(of: questionCardIcon, offset: 20)
         navBarSeparator.topToSuperview()
+        self.view.bringSubviewToFront(bottomView)
     }
     
     private func addQuestionCard() {
@@ -192,6 +204,7 @@ class QuizViewController: UIViewController {
     
     private func addBottomView() {
         view.addSubview(bottomView)
+        bottomView.backgroundColor = .white
         bottomView.addSubview(goBackButton)
         goBackButton.setTitle("Go back to home page", for: .normal)
         goBackButton.addTarget(self, action: #selector(didTapGoBack), for: .touchUpInside)
