@@ -86,7 +86,7 @@ class QuizViewController: UIViewController {
                     self.questionCard.transform = CGAffineTransform(translationX: animationDistance, y: 0)
                     self.questionCardLabel.text = self.shuffled[self.currentQuestionNumber].questionText
                     self.questionCardTitleLabel.text = "Question \(self.currentQuestionNumber + 1) of \(questions.count)"
-                    self.questionCardIcon.image = UIImage(named: "dna")
+                    self.questionCardIcon.image = UIImage(named: self.shuffled[self.currentQuestionNumber].imageName)
                     self.goBackButton.setTitle(self.currentQuestionNumber == 0 ? "Go back to home page" : "Return to the previous question", for: .normal)
                     self.anwersContainerViewTopConstraint.isActive = false
                     self.anwersContainerViewTopConstraint = self.anwersContainerView.topToBottom(of: self.questionCard, offset: 20)
@@ -182,7 +182,7 @@ class QuizViewController: UIViewController {
         questionCardRightStack.addArrangedSubview(questionCardTitleLabel)
         questionCardRightStack.addArrangedSubview(questionCardLabel)
         // TODO: Fix code priming in currentQuestionNumber didSet
-        questionCardIcon.image = UIImage(named: "dna")
+        questionCardIcon.image = UIImage(named: shuffled[0].imageName)
         questionCardTitleLabel.text = "Question \(currentQuestionNumber + 1) of \(questions.count)"
         questionCardLabel.numberOfLines = 0
         questionCardLabel.text = shuffled[0].questionText
@@ -192,7 +192,12 @@ class QuizViewController: UIViewController {
     private func addAnswersContainerView() {
         self.view.addSubview(anwersContainerView)
         let titles = ["Absoulutely agree", "Somewhat agree", "Neutral or hesitant", "Rather disagree", "Absoulutely disagree"]
-        let colors: [UIColor] = [.systemBlue, .systemGreen, .systemYellow, .systemOrange, .systemRed]
+//        let colors: [UIColor] = [.systemBlue, .systemGreen, .systemYellow, .systemOrange, .systemRed]
+        let colors: [UIColor] = [UIColor(red: 50/255, green: 154/255, blue: 240/255, alpha: 1),
+                                 UIColor(red: 105/255, green: 219/255, blue: 124/255, alpha: 1),
+                                 UIColor(red: 252/255, green: 196/255, blue: 25/255, alpha: 1),
+                                 UIColor(red: 255/255, green: 146/255, blue: 43/255, alpha: 1),
+                                 UIColor(red: 255/255, green: 107/255, blue: 107/255, alpha: 1)]
         for i in 0...4 {
             let button = DuolingoButton()
             button.mainColor = colors[i]

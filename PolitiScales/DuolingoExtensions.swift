@@ -40,7 +40,7 @@ class DuoUI {
   // DuoLabel
   let DUO_LABEL_TEXT_COLOR = UIColor.gray
   let DUO_LABEL_DEFAULT_TEXT = "This is just a plain normal label"
-  let DUO_LABEL_FONT_SIZE : CGFloat = 18
+  let DUO_LABEL_FONT_SIZE : CGFloat = 17
   
   // DuoTitleLabel
   let DUO_TITLE_LABEL_TEXT_COLOR = UIColor.black

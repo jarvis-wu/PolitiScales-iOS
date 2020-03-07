@@ -18,7 +18,8 @@ class DuolingoButton: UIButton, DropShadowView {
   let ui = DuoUI.shared
   var background = UIView()
   var backgroundBottomToSuperview: NSLayoutConstraint!
-  var mainColor = UIColor(red: 27/255, green: 177/255, blue: 247/255, alpha: 1) {
+  let duoBlue = UIColor(red: 27/255, green: 177/255, blue: 247/255, alpha: 1) // in case we need it
+  var mainColor = UIColor(red: 151/255, green: 117/255, blue: 250/255, alpha: 1) {
     didSet {
       // set different color for white button
       addShadow()
