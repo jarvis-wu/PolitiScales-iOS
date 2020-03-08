@@ -12,6 +12,7 @@ import TinyConstraints
 class HomeViewController: UIViewController {
 
     var ui = DuoUI.shared
+    let hapticGenerator = UISelectionFeedbackGenerator()
     let scrollView = UIScrollView()
     let contentView = UIView()
     let startButton = DuolingoButton()
@@ -204,14 +205,17 @@ class HomeViewController: UIViewController {
     }
     
     @objc func didTapStartButton() {
+        hapticGenerator.selectionChanged()
         performSegue(withIdentifier: "ShowQuiz", sender: self)
     }
     
     @objc func didTapSettingsButton() {
+        hapticGenerator.selectionChanged()
         print("open settings")
     }
     
     @objc func didTapShareButton() {
+        hapticGenerator.selectionChanged()
         print("open share")
     }
 

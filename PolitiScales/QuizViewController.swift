@@ -10,6 +10,7 @@ import UIKit
 
 class QuizViewController: UIViewController {
     
+    let hapticGenerator = UISelectionFeedbackGenerator()
     let scrollView = UIScrollView()
     let contentView = UIView()
     let questionCard = DuolingoBorderedCard()
@@ -24,22 +25,24 @@ class QuizViewController: UIViewController {
     var anwersContainerViewTopConstraint: NSLayoutConstraint!
     
     @objc func didSelectAnswer(_ sender: UIButton) {
-        if let index = anwersContainerView.subviews.firstIndex(of: sender) {
-            print("\(index) is selected")
-            shuffled[currentQuestionNumber].answer = multiplierFromIndex[index]!
-            goToNext()
-        }
+        guard let index = anwersContainerView.subviews.firstIndex(of: sender) else { return }
+        print("\(index) is selected")
+        hapticGenerator.selectionChanged()
+        shuffled[currentQuestionNumber].answer = multiplierFromIndex[index]!
+        goToNext()
     }
     
     @objc func didTapGoBack() {
-        if currentQuestionNumber == 0 {
+        hapticGenerator.selectionChanged()
+        if currentQuestionNumber == 0 { // exit
             self.navigationController?.popViewController(animated: true)
-        } else {
+        } else { // go back
             currentQuestionNumber -= 1
         }
     }
     
     @objc func didTapExit() {
+        hapticGenerator.selectionChanged()
         // TODO: we do want to ask for confirmation if the user is going BACK from later questions to the first question
         // Which means we actually want to check progress, rather than current index
         if currentQuestionNumber == 0 {
@@ -60,6 +63,7 @@ class QuizViewController: UIViewController {
     }
     
     @objc func didTapEdit() {
+        hapticGenerator.selectionChanged()
         print("Edit tapped")
         // present a table view controller displaying all answered questions
     }
@@ -75,6 +79,7 @@ class QuizViewController: UIViewController {
         didSet {
             if currentQuestionNumber != questions.count {
                 let isMovingBack = currentQuestionNumber < oldValue
+                // TODO: if is moving back, highlight the selected answer in some way
                 let animationDistance: CGFloat = (self.view.bounds.width + self.questionCard.bounds.width) / 2 * (isMovingBack ? -1 : 1)
                 UIView.animate(withDuration: 0.4, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.curveLinear], animations: {
                     self.questionCard.transform = CGAffineTransform(translationX: -animationDistance, y: 0)
