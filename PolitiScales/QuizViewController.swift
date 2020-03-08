@@ -28,7 +28,8 @@ class QuizViewController: UIViewController {
         guard let index = anwersContainerView.subviews.firstIndex(of: sender) else { return }
         print("\(index) is selected")
         hapticGenerator.selectionChanged()
-        shuffled[currentQuestionNumber].answer = multiplierFromIndex[index]!
+        shuffled[currentQuestionNumber].selectedIndex = index
+        shuffled[currentQuestionNumber].weightedAnswer = multiplierFromIndex[index]!
         goToNext()
     }
     
@@ -95,6 +96,10 @@ class QuizViewController: UIViewController {
                     UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
                         self.questionCard.alpha = 1
                         self.questionCard.transform = CGAffineTransform.identity
+                        self.resetSelectedIndicator()
+                        if isMovingBack, let selectedIndex = self.shuffled[self.currentQuestionNumber].selectedIndex {
+                            self.showSelectedAnswer(from: selectedIndex)
+                        }
                         self.view.layoutIfNeeded()
                     }, completion: nil)
                 }
@@ -195,14 +200,13 @@ class QuizViewController: UIViewController {
     private func addAnswersContainerView() {
         self.view.addSubview(anwersContainerView)
         let titles = ["Absoulutely agree", "Somewhat agree", "Neutral or hesitant", "Rather disagree", "Absoulutely disagree"]
-        let colors: [UIColor] = [UIColor(red: 50/255, green: 154/255, blue: 240/255, alpha: 1),
+        let colors: [UIColor] = [UIColor(red: 95/255, green: 162/255, blue: 250/255, alpha: 1),
                                  UIColor(red: 105/255, green: 219/255, blue: 124/255, alpha: 1),
                                  UIColor(red: 252/255, green: 196/255, blue: 25/255, alpha: 1),
                                  UIColor(red: 255/255, green: 146/255, blue: 43/255, alpha: 1),
                                  UIColor(red: 255/255, green: 107/255, blue: 107/255, alpha: 1)]
         for i in 0...4 {
-            let button = DuolingoButton()
-            button.mainColor = colors[i]
+            let button = DuolingoButton(color: colors[i])
             button.setTitle(titles[i], for: .normal)
             button.addTarget(self, action: #selector(didSelectAnswer), for: .touchUpInside)
             anwersContainerView.addSubview(button)
@@ -220,15 +224,27 @@ class QuizViewController: UIViewController {
         separator.topToSuperview()
     }
     
-    func calculateResult() {
+    private func showSelectedAnswer(from index: Int) {
+      if let button = anwersContainerView.subviews[index] as? DuolingoButton {
+        button.selectedIndicator.isHidden = false
+      }
+    }
+    
+    private func resetSelectedIndicator() {
+      for case let button as DuolingoButton in anwersContainerView.subviews {
+        button.selectedIndicator.isHidden = true
+      }
+    }
+    
+    private func calculateResult() {
         var axes = [String : (Double, Double)](); // axis name : (value, sum)
         for question in shuffled {
             for valueYes in question.valuesYes {
                 if axes[valueYes.axis] == nil {
                     axes[valueYes.axis] = (0, 0)
                 }
-                if question.answer > 0 {
-                    axes[valueYes.axis]?.0 += question.answer * Double(valueYes.value)
+                if question.weightedAnswer > 0 {
+                    axes[valueYes.axis]?.0 += question.weightedAnswer * Double(valueYes.value)
                 }
                 axes[valueYes.axis]?.1 += Double(max(valueYes.value, 0))
             }
@@ -236,8 +252,8 @@ class QuizViewController: UIViewController {
                 if axes[valueNo.axis] == nil {
                     axes[valueNo.axis] = (0, 0)
                 }
-                if question.answer < 0 {
-                    axes[valueNo.axis]?.0 -= question.answer * Double(valueNo.value)
+                if question.weightedAnswer < 0 {
+                    axes[valueNo.axis]?.0 -= question.weightedAnswer * Double(valueNo.value)
                 }
                 axes[valueNo.axis]?.1 += Double(max(valueNo.value, 0))
             }
@@ -284,7 +300,7 @@ class QuizViewController: UIViewController {
         print("Anarchism \(results["anar"]!.0) : Non-Anarchism \(results["anar"]!.1)")
     }
     
-    func goToNext() {
+    private func goToNext() {
         currentQuestionNumber += 1
     }
 
