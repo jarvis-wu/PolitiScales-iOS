@@ -259,6 +259,7 @@ class QuizViewController: UIViewController {
         print("Ecology \(results["e"]!.0) : Neutrual \(100 - results["e"]!.0 - results["e"]!.1) : Productivism \(results["e"]!.1)")
         print("Revolution \(results["t"]!.0) : Neutrual \(100 - results["t"]!.0 - results["t"]!.1) : Reformism \(results["t"]!.1)")
         
+        // TODO: How to get results of axes: femi, reli, comp, prag, mona, vega, anar?
     }
     
     func goToNext() {

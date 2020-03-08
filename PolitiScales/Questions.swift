@@ -22,44 +22,44 @@ struct Question {
 }
 
 let questionTexts: [String : String] = [
-    "qc0":  "“One is not born, but rather becomes, a woman.”", // *
-    "qc1": "Differences of treatement and quality of life in our society show that racism is still omnipresent.", // *
-    "qc2": "All sciences, even chemistry and biology are not uncompromising and are conditioned by our society.", // *
-    "qc3": "The categories “women” and “men” are social constructs that should be given up.", // *
-    "qc4": "Nobody is by nature predisposed to criminality.", // *
-    "qc5": "Sexual orientation is a social construct.", // *
-    "qc6": "Social differences between ethnic groups cannot be explained by biology.", // *
-    "qc7": "The social roles of women and men can partly be explained by biological differences.", // *
-    "qc8": "Hormonal differences can explain some differences in individual characteristics between women and men.", // *
-    "qc9": "Sexual assaults are partly caused by men's natural impulse.", // *
-    "qc10": "Transgender individuals will never really be of the gender they would like to be.", // *
-    "qc11": "Members of a nation or culture have some unchangeable characteristics that define them.", // *
-    "qc12": "Biologically, human beings are designed for heterosexuality.", // *
-    "qc13": "Selfishness is the overriding drive in the human species, no matter the context.", // *
-    "qb0": "Borders should eventually be abolished.", // *
-    "qb1": "People need to stand up for their ideals, even if it leads them to betray their country.", // *
-    "qb2": "My country must pay for the damages caused by the crimes it commited in other countries.", // *
-    "qb3": "If two countries have similar economies, social systems and environmental norms, then the free market between them has no negative impact.", // *
-    "qb4": "National Chauvinism during sport competitions is not acceptable.", // *
-    "qb5": "I am equally concerned about the inhabitants of my country and those of other the countries.", // *
-    "qb6": "Foreigners living in my country should be allowed to act politically, equally to those who have the nationality.", // *
-    "qb7": "Citizens should take priority over foreigners.", // *
-    "qb8": "The values of my country are superior to those of other countries.", // *
-    "qb9": "Multiculturalism is a threat to our society.", // *
-    "qb10": "A good citizen is a patriot.", // *
-    "qb11": "It is legitimate for a country to intervene militarily to defend its economic interests.", // *
-    "qb12": "It is necessary to teach history in order to create a sense of belonging to the nation.", // *
-    "qb13": "Research produced by my country should not be available to other countries.", // *
-    "qp0": "No one should get rich from owning a business, housing, or land.", // *
-    "qp1": "Wages by private firms is stealing from the workers.", // *
-    "qp2": "It is important that health should stay a public matter.", // *
-    "qp3": "Energy and transport structures should be a public matter.", // *
-    "qp4": "Patents should not exist.", // *
-    "qp5": "It is necessary to implement assemblies to ration our production to the consumers according to their needs.", // *
-    "qp6": "The labor market enslave workers.", // *
-    "qp7": "Looking for one's own profit is healthy for the economy.", // *
-    "qp8": "It is merit that explains differences of wealth between two individuals.", // *
-    "qp9": "The fact that some schools and universities are private is not a problem.", // *
+    "qc0":  "“One is not born, but rather becomes, a woman.”",
+    "qc1": "Differences of treatement and quality of life in our society show that racism is still omnipresent.",
+    "qc2": "All sciences, even chemistry and biology are not uncompromising and are conditioned by our society.",
+    "qc3": "The categories “women” and “men” are social constructs that should be given up.",
+    "qc4": "Nobody is by nature predisposed to criminality.",
+    "qc5": "Sexual orientation is a social construct.",
+    "qc6": "Social differences between ethnic groups cannot be explained by biology.",
+    "qc7": "The social roles of women and men can partly be explained by biological differences.",
+    "qc8": "Hormonal differences can explain some differences in individual characteristics between women and men.",
+    "qc9": "Sexual assaults are partly caused by men's natural impulse.",
+    "qc10": "Transgender individuals will never really be of the gender they would like to be.",
+    "qc11": "Members of a nation or culture have some unchangeable characteristics that define them.",
+    "qc12": "Biologically, human beings are designed for heterosexuality.",
+    "qc13": "Selfishness is the overriding drive in the human species, no matter the context.",
+    "qb0": "Borders should eventually be abolished.",
+    "qb1": "People need to stand up for their ideals, even if it leads them to betray their country.",
+    "qb2": "My country must pay for the damages caused by the crimes it commited in other countries.",
+    "qb3": "If two countries have similar economies, social systems and environmental norms, then the free market between them has no negative impact.",
+    "qb4": "National Chauvinism during sport competitions is not acceptable.",
+    "qb5": "I am equally concerned about the inhabitants of my country and those of other the countries.",
+    "qb6": "Foreigners living in my country should be allowed to act politically, equally to those who have the nationality.",
+    "qb7": "Citizens should take priority over foreigners.",
+    "qb8": "The values of my country are superior to those of other countries.",
+    "qb9": "Multiculturalism is a threat to our society.",
+    "qb10": "A good citizen is a patriot.",
+    "qb11": "It is legitimate for a country to intervene militarily to defend its economic interests.",
+    "qb12": "It is necessary to teach history in order to create a sense of belonging to the nation.",
+    "qb13": "Research produced by my country should not be available to other countries.",
+    "qp0": "No one should get rich from owning a business, housing, or land.",
+    "qp1": "Wages by private firms is stealing from the workers.",
+    "qp2": "It is important that health should stay a public matter.",
+    "qp3": "Energy and transport structures should be a public matter.",
+    "qp4": "Patents should not exist.",
+    "qp5": "It is necessary to implement assemblies to ration our production to the consumers according to their needs.",
+    "qp6": "The labor market enslave workers.",
+    "qp7": "Looking for one's own profit is healthy for the economy.",
+    "qp8": "It is merit that explains differences of wealth between two individuals.",
+    "qp9": "The fact that some schools and universities are private is not a problem.",
     "qp10": "Delocalization is a necessary evil to improve production.",
     "qp11": "It is acceptable that there are rich and poor people.",
     "qp12": "It is acceptable that some industry sectors are private.",
@@ -113,7 +113,7 @@ let questionTexts: [String : String] = [
     "qj4": "Conditions of life in jail should be greatly improved.",
     "qj5": "The filing and storage of personal records should be delimited strictly and database cross-checking should be forbidden.",
     "qj6": "The right to be anonymous on Internet should be guaranteed.",
-    "qj7": "The purposeof the judiciary system should be to punish those who went against the law.",
+    "qj7": "The purpose of the judiciary system should be to punish those who went against the law.",
     "qj8": "The police should be armed.",
     "qj9": "The sacrifice of some civil liberties is a necessity in order to be protected from terrorist acts.",
     "qj10": "Order and authority should be respected in all circumstances.",
@@ -149,7 +149,7 @@ let questions: [Question] = [
     Question(questionText: questionTexts["qc3"]!, answer: 0, valuesYes: [ValueItem(axis: "c0", value: 3), ValueItem(axis: "femi", value: 3)], valuesNo: [ValueItem(axis: "c1", value: 3)], imageName: "qc3-gender"),
     Question(questionText: questionTexts["qc4"]!, answer: 0, valuesYes: [ValueItem(axis: "c0", value: 3)], valuesNo: [ValueItem(axis: "c1", value: 3)], imageName: "qc4-criminal"),
     Question(questionText: questionTexts["qc5"]!, answer: 0, valuesYes: [ValueItem(axis: "c0", value: 3)], valuesNo: [ValueItem(axis: "c1", value: 3)], imageName: "qc5-lgbt"),
-    Question(questionText: questionTexts["qc6"]!, answer: 0, valuesYes: [ValueItem(axis: "c0", value: 3)], valuesNo: [ValueItem(axis: "c1", value: 3)], imageName: "qc6-ethnic"),
+    Question(questionText: questionTexts["qc6"]!, answer: 0, valuesYes: [ValueItem(axis: "c0", value: 3)], valuesNo: [ValueItem(axis: "c1", value: 3)], imageName: "qc6-dna"),
     Question(questionText: questionTexts["qc7"]!, answer: 0, valuesYes: [ValueItem(axis: "c1", value: 3)], valuesNo: [ValueItem(axis: "c0", value: 3), ValueItem(axis: "femi", value: 3)], imageName: "qc7-chromosome"),
     Question(questionText: questionTexts["qc8"]!, answer: 0, valuesYes: [ValueItem(axis: "c1", value: 3)], valuesNo: [ValueItem(axis: "c0", value: 3), ValueItem(axis: "femi", value: 3)], imageName: "qc8-hormone"),
     Question(questionText: questionTexts["qc9"]!, answer: 0, valuesYes: [ValueItem(axis: "c1", value: 3)], valuesNo: [ValueItem(axis: "c0", value: 3), ValueItem(axis: "femi", value: 3)], imageName: "qc9-sex"),
@@ -174,7 +174,7 @@ let questions: [Question] = [
     Question(questionText: questionTexts["qb13"]!, answer: 0, valuesYes: [ValueItem(axis: "b1", value: 3)], valuesNo: [ValueItem(axis: "b0", value: 3)], imageName: "qb13-drug"),
     // Communism : Capitalism
     Question(questionText: questionTexts["qp0"]!, answer: 0, valuesYes: [ValueItem(axis: "p0", value: 3)], valuesNo: [ValueItem(axis: "p1", value: 3)], imageName: "qp0-wallet"),
-    Question(questionText: questionTexts["qp1"]!, answer: 0, valuesYes: [ValueItem(axis: "p0", value: 3)], valuesNo: [ValueItem(axis: "p1", value: 3)], imageName: "qp1-salary"),
+    Question(questionText: questionTexts["qp1"]!, answer: 0, valuesYes: [ValueItem(axis: "p0", value: 3)], valuesNo: [ValueItem(axis: "p1", value: 3)], imageName: "qp1-worker"),
     Question(questionText: questionTexts["qp2"]!, answer: 0, valuesYes: [ValueItem(axis: "p0", value: 3)], valuesNo: [ValueItem(axis: "p1", value: 3)], imageName: "qp2-medicine"),
     Question(questionText: questionTexts["qp3"]!, answer: 0, valuesYes: [ValueItem(axis: "p0", value: 3)], valuesNo: [ValueItem(axis: "p1", value: 3)], imageName: "qp3-petroleum"),
     Question(questionText: questionTexts["qp4"]!, answer: 0, valuesYes: [ValueItem(axis: "p0", value: 3)], valuesNo: [ValueItem(axis: "p1", value: 3)], imageName: "qp4-patent"),
@@ -183,89 +183,89 @@ let questions: [Question] = [
     Question(questionText: questionTexts["qp7"]!, answer: 0, valuesYes: [ValueItem(axis: "p1", value: 3)], valuesNo: [ValueItem(axis: "p0", value: 3)], imageName: "qp7-coin"),
     Question(questionText: questionTexts["qp8"]!, answer: 0, valuesYes: [ValueItem(axis: "p1", value: 3)], valuesNo: [ValueItem(axis: "p0", value: 3)], imageName: "qp8-diamond"),
     Question(questionText: questionTexts["qp9"]!, answer: 0, valuesYes: [ValueItem(axis: "p1", value: 3)], valuesNo: [ValueItem(axis: "p0", value: 3)], imageName: "qp9-school"),
-    Question(questionText: questionTexts["qp10"]!, answer: 0, valuesYes: [ValueItem(axis: "p1", value: 3)], valuesNo: [ValueItem(axis: "p0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qp11"]!, answer: 0, valuesYes: [ValueItem(axis: "p1", value: 3)], valuesNo: [ValueItem(axis: "p0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qp12"]!, answer: 0, valuesYes: [ValueItem(axis: "p1", value: 3)], valuesNo: [ValueItem(axis: "p0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qp13"]!, answer: 0, valuesYes: [ValueItem(axis: "p1", value: 3)], valuesNo: [ValueItem(axis: "p0", value: 3)], imageName: "dna"),
+    Question(questionText: questionTexts["qp10"]!, answer: 0, valuesYes: [ValueItem(axis: "p1", value: 3)], valuesNo: [ValueItem(axis: "p0", value: 3)], imageName: "qp10-island"),
+    Question(questionText: questionTexts["qp11"]!, answer: 0, valuesYes: [ValueItem(axis: "p1", value: 3)], valuesNo: [ValueItem(axis: "p0", value: 3)], imageName: "qp11-wallet"),
+    Question(questionText: questionTexts["qp12"]!, answer: 0, valuesYes: [ValueItem(axis: "p1", value: 3)], valuesNo: [ValueItem(axis: "p0", value: 3)], imageName: "qp12-production"),
+    Question(questionText: questionTexts["qp13"]!, answer: 0, valuesYes: [ValueItem(axis: "p1", value: 3)], valuesNo: [ValueItem(axis: "p0", value: 3)], imageName: "qp13-bank"),
     // Regulationism : Laissez-faire
-    Question(questionText: questionTexts["qm0"]!, answer: 0, valuesYes: [ValueItem(axis: "m0", value: 3)], valuesNo: [ValueItem(axis: "m1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qm1"]!, answer: 0, valuesYes: [ValueItem(axis: "m0", value: 3)], valuesNo: [ValueItem(axis: "m1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qm2"]!, answer: 0, valuesYes: [ValueItem(axis: "m0", value: 3)], valuesNo: [ValueItem(axis: "m1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qm3"]!, answer: 0, valuesYes: [ValueItem(axis: "m0", value: 3)], valuesNo: [ValueItem(axis: "m1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qm4"]!, answer: 0, valuesYes: [ValueItem(axis: "m0", value: 3)], valuesNo: [ValueItem(axis: "m1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qm5"]!, answer: 0, valuesYes: [ValueItem(axis: "m0", value: 3)], valuesNo: [ValueItem(axis: "m1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qm6"]!, answer: 0, valuesYes: [ValueItem(axis: "m0", value: 3)], valuesNo: [ValueItem(axis: "m1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qm7"]!, answer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qm8"]!, answer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qm9"]!, answer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qm10"]!, answer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qm11"]!, answer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qm12"]!, answer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qm13"]!, answer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "dna"),
+    Question(questionText: questionTexts["qm0"]!, answer: 0, valuesYes: [ValueItem(axis: "m0", value: 3)], valuesNo: [ValueItem(axis: "m1", value: 3)], imageName: "qm0-tax"),
+    Question(questionText: questionTexts["qm1"]!, answer: 0, valuesYes: [ValueItem(axis: "m0", value: 3)], valuesNo: [ValueItem(axis: "m1", value: 3)], imageName: "qm1-old"),
+    Question(questionText: questionTexts["qm2"]!, answer: 0, valuesYes: [ValueItem(axis: "m0", value: 3)], valuesNo: [ValueItem(axis: "m1", value: 3)], imageName: "qm2-box"),
+    Question(questionText: questionTexts["qm3"]!, answer: 0, valuesYes: [ValueItem(axis: "m0", value: 3)], valuesNo: [ValueItem(axis: "m1", value: 3)], imageName: "qm3-salary"),
+    Question(questionText: questionTexts["qm4"]!, answer: 0, valuesYes: [ValueItem(axis: "m0", value: 3)], valuesNo: [ValueItem(axis: "m1", value: 3)], imageName: "qm4-rich"),
+    Question(questionText: questionTexts["qm5"]!, answer: 0, valuesYes: [ValueItem(axis: "m0", value: 3)], valuesNo: [ValueItem(axis: "m1", value: 3)], imageName: "qm5-money"),
+    Question(questionText: questionTexts["qm6"]!, answer: 0, valuesYes: [ValueItem(axis: "m0", value: 3)], valuesNo: [ValueItem(axis: "m1", value: 3)], imageName: "qm6-people"),
+    Question(questionText: questionTexts["qm7"]!, answer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "qm7-economy"),
+    Question(questionText: questionTexts["qm8"]!, answer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "qm8-signature"),
+    Question(questionText: questionTexts["qm9"]!, answer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "qm9-law"),
+    Question(questionText: questionTexts["qm10"]!, answer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "qm10-clock"),
+    Question(questionText: questionTexts["qm11"]!, answer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "qm11-recycled"),
+    Question(questionText: questionTexts["qm12"]!, answer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "qm12-assistance"),
+    Question(questionText: questionTexts["qm13"]!, answer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "qm13-economy"),
     // Progressism : Conservatism
-    Question(questionText: questionTexts["qs0"]!, answer: 0, valuesYes: [ValueItem(axis: "s0", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qs1"]!, answer: 0, valuesYes: [ValueItem(axis: "s0", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qs2"]!, answer: 0, valuesYes: [ValueItem(axis: "s0", value: 3), ValueItem(axis: "femi", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qs3"]!, answer: 0, valuesYes: [ValueItem(axis: "s0", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qs4"]!, answer: 0, valuesYes: [ValueItem(axis: "s0", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qs5"]!, answer: 0, valuesYes: [ValueItem(axis: "s0", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qs6"]!, answer: 0, valuesYes: [ValueItem(axis: "s0", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qs7"]!, answer: 0, valuesYes: [ValueItem(axis: "s1", value: 3)], valuesNo: [ValueItem(axis: "s0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qs8"]!, answer: 0, valuesYes: [ValueItem(axis: "s1", value: 3), ValueItem(axis: "j1", value: 3)], valuesNo: [ValueItem(axis: "s0", value: 3), ValueItem(axis: "j0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qs9"]!, answer: 0, valuesYes: [ValueItem(axis: "s1", value: 3)], valuesNo: [ValueItem(axis: "s0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qs10"]!, answer: 0, valuesYes: [ValueItem(axis: "s1", value: 3)], valuesNo: [ValueItem(axis: "s0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qs11"]!, answer: 0, valuesYes: [ValueItem(axis: "s1", value: 3)], valuesNo: [ValueItem(axis: "s0", value: 3), ValueItem(axis: "femi", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qs12"]!, answer: 0, valuesYes: [ValueItem(axis: "s1", value: 3)], valuesNo: [ValueItem(axis: "s0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qs13"]!, answer: 0, valuesYes: [ValueItem(axis: "s1", value: 3)], valuesNo: [ValueItem(axis: "s0", value: 3)], imageName: "dna"),
+    Question(questionText: questionTexts["qs0"]!, answer: 0, valuesYes: [ValueItem(axis: "s0", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "qs0-tradition"),
+    Question(questionText: questionTexts["qs1"]!, answer: 0, valuesYes: [ValueItem(axis: "s0", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "qs1-language"),
+    Question(questionText: questionTexts["qs2"]!, answer: 0, valuesYes: [ValueItem(axis: "s0", value: 3), ValueItem(axis: "femi", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "qs2-wedding"),
+    Question(questionText: questionTexts["qs3"]!, answer: 0, valuesYes: [ValueItem(axis: "s0", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "qs3-culture"),
+    Question(questionText: questionTexts["qs4"]!, answer: 0, valuesYes: [ValueItem(axis: "s0", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "qs4-religion"),
+    Question(questionText: questionTexts["qs5"]!, answer: 0, valuesYes: [ValueItem(axis: "s0", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "qs5-chat"),
+    Question(questionText: questionTexts["qs6"]!, answer: 0, valuesYes: [ValueItem(axis: "s0", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "qs6-syringe"),
+    Question(questionText: questionTexts["qs7"]!, answer: 0, valuesYes: [ValueItem(axis: "s1", value: 3)], valuesNo: [ValueItem(axis: "s0", value: 3)], imageName: "qs7-lesbian"),
+    Question(questionText: questionTexts["qs8"]!, answer: 0, valuesYes: [ValueItem(axis: "s1", value: 3), ValueItem(axis: "j1", value: 3)], valuesNo: [ValueItem(axis: "s0", value: 3), ValueItem(axis: "j0", value: 3)], imageName: "qs8-death"),
+    Question(questionText: questionTexts["qs9"]!, answer: 0, valuesYes: [ValueItem(axis: "s1", value: 3)], valuesNo: [ValueItem(axis: "s0", value: 3)], imageName: "qs9-cpu"),
+    Question(questionText: questionTexts["qs10"]!, answer: 0, valuesYes: [ValueItem(axis: "s1", value: 3)], valuesNo: [ValueItem(axis: "s0", value: 3)], imageName: "qs10-school"),
+    Question(questionText: questionTexts["qs11"]!, answer: 0, valuesYes: [ValueItem(axis: "s1", value: 3)], valuesNo: [ValueItem(axis: "s0", value: 3), ValueItem(axis: "femi", value: 3)], imageName: "qs11-abortion"),
+    Question(questionText: questionTexts["qs12"]!, answer: 0, valuesYes: [ValueItem(axis: "s1", value: 3)], valuesNo: [ValueItem(axis: "s0", value: 3)], imageName: "qs12-child"),
+    Question(questionText: questionTexts["qs13"]!, answer: 0, valuesYes: [ValueItem(axis: "s1", value: 3)], valuesNo: [ValueItem(axis: "s0", value: 3)], imageName: "qs13-condom"),
     // Ecology : Productivism
-    Question(questionText: questionTexts["qe0"]!, answer: 0, valuesYes: [ValueItem(axis: "e0", value: 3)], valuesNo: [ValueItem(axis: "e1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qe1"]!, answer: 0, valuesYes: [ValueItem(axis: "e0", value: 3)], valuesNo: [ValueItem(axis: "e1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qe2"]!, answer: 0, valuesYes: [ValueItem(axis: "e0", value: 3)], valuesNo: [ValueItem(axis: "e1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qe3"]!, answer: 0, valuesYes: [ValueItem(axis: "e0", value: 3)], valuesNo: [ValueItem(axis: "e1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qe4"]!, answer: 0, valuesYes: [ValueItem(axis: "e0", value: 3)], valuesNo: [ValueItem(axis: "e1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qe5"]!, answer: 0, valuesYes: [ValueItem(axis: "e0", value: 3)], valuesNo: [ValueItem(axis: "e1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qe6"]!, answer: 0, valuesYes: [ValueItem(axis: "e0", value: 3)], valuesNo: [ValueItem(axis: "e1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qe7"]!, answer: 0, valuesYes: [ValueItem(axis: "e1", value: 3)], valuesNo: [ValueItem(axis: "e0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qe8"]!, answer: 0, valuesYes: [ValueItem(axis: "e1", value: 3)], valuesNo: [ValueItem(axis: "e0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qe9"]!, answer: 0, valuesYes: [ValueItem(axis: "e1", value: 3)], valuesNo: [ValueItem(axis: "e0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qe10"]!, answer: 0, valuesYes: [ValueItem(axis: "e1", value: 3)], valuesNo: [ValueItem(axis: "e0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qe11"]!, answer: 0, valuesYes: [ValueItem(axis: "e1", value: 3)], valuesNo: [ValueItem(axis: "e0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qe12"]!, answer: 0, valuesYes: [ValueItem(axis: "e1", value: 3)], valuesNo: [ValueItem(axis: "e0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qe13"]!, answer: 0, valuesYes: [ValueItem(axis: "e1", value: 3)], valuesNo: [ValueItem(axis: "e0", value: 3)], imageName: "dna"),
+    Question(questionText: questionTexts["qe0"]!, answer: 0, valuesYes: [ValueItem(axis: "e0", value: 3)], valuesNo: [ValueItem(axis: "e1", value: 3)], imageName: "qe0-elephant"),
+    Question(questionText: questionTexts["qe1"]!, answer: 0, valuesYes: [ValueItem(axis: "e0", value: 3)], valuesNo: [ValueItem(axis: "e1", value: 3)], imageName: "qe1-gmo"),
+    Question(questionText: questionTexts["qe2"]!, answer: 0, valuesYes: [ValueItem(axis: "e0", value: 3)], valuesNo: [ValueItem(axis: "e1", value: 3)], imageName: "qe2-iceberg"),
+    Question(questionText: questionTexts["qe3"]!, answer: 0, valuesYes: [ValueItem(axis: "e0", value: 3)], valuesNo: [ValueItem(axis: "e1", value: 3)], imageName: "qe3-food"),
+    Question(questionText: questionTexts["qe4"]!, answer: 0, valuesYes: [ValueItem(axis: "e0", value: 3)], valuesNo: [ValueItem(axis: "e1", value: 3)], imageName: "qe4-vegetable"),
+    Question(questionText: questionTexts["qe5"]!, answer: 0, valuesYes: [ValueItem(axis: "e0", value: 3)], valuesNo: [ValueItem(axis: "e1", value: 3)], imageName: "qe5-forest"),
+    Question(questionText: questionTexts["qe6"]!, answer: 0, valuesYes: [ValueItem(axis: "e0", value: 3)], valuesNo: [ValueItem(axis: "e1", value: 3)], imageName: "qe6-trash"),
+    Question(questionText: questionTexts["qe7"]!, answer: 0, valuesYes: [ValueItem(axis: "e1", value: 3)], valuesNo: [ValueItem(axis: "e0", value: 3)], imageName: "qe7-planet"),
+    Question(questionText: questionTexts["qe8"]!, answer: 0, valuesYes: [ValueItem(axis: "e1", value: 3)], valuesNo: [ValueItem(axis: "e0", value: 3)], imageName: "qe8-ecosystem"),
+    Question(questionText: questionTexts["qe9"]!, answer: 0, valuesYes: [ValueItem(axis: "e1", value: 3)], valuesNo: [ValueItem(axis: "e0", value: 3)], imageName: "qe9-research"),
+    Question(questionText: questionTexts["qe10"]!, answer: 0, valuesYes: [ValueItem(axis: "e1", value: 3)], valuesNo: [ValueItem(axis: "e0", value: 3)], imageName: "qe10-prosthetic"),
+    Question(questionText: questionTexts["qe11"]!, answer: 0, valuesYes: [ValueItem(axis: "e1", value: 3)], valuesNo: [ValueItem(axis: "e0", value: 3)], imageName: "qe11-atom"),
+    Question(questionText: questionTexts["qe12"]!, answer: 0, valuesYes: [ValueItem(axis: "e1", value: 3)], valuesNo: [ValueItem(axis: "e0", value: 3)], imageName: "qe12-coal"),
+    Question(questionText: questionTexts["qe13"]!, answer: 0, valuesYes: [ValueItem(axis: "e1", value: 3)], valuesNo: [ValueItem(axis: "e0", value: 3)], imageName: "qe13-increase"),
     // Rehabilitative justice : Punitive justice
-    Question(questionText: questionTexts["qj0"]!, answer: 0, valuesYes: [ValueItem(axis: "j0", value: 3)], valuesNo: [ValueItem(axis: "j1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qj1"]!, answer: 0, valuesYes: [ValueItem(axis: "j0", value: 3)], valuesNo: [ValueItem(axis: "j1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qj2"]!, answer: 0, valuesYes: [ValueItem(axis: "j0", value: 3)], valuesNo: [ValueItem(axis: "j1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qj3"]!, answer: 0, valuesYes: [ValueItem(axis: "j0", value: 3)], valuesNo: [ValueItem(axis: "j1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qj4"]!, answer: 0, valuesYes: [ValueItem(axis: "j0", value: 3)], valuesNo: [ValueItem(axis: "j1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qj5"]!, answer: 0, valuesYes: [ValueItem(axis: "j0", value: 3)], valuesNo: [ValueItem(axis: "j1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qj6"]!, answer: 0, valuesYes: [ValueItem(axis: "j0", value: 3)], valuesNo: [ValueItem(axis: "j1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qj7"]!, answer: 0, valuesYes: [ValueItem(axis: "j1", value: 3)], valuesNo: [ValueItem(axis: "j0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qj8"]!, answer: 0, valuesYes: [ValueItem(axis: "j1", value: 3)], valuesNo: [ValueItem(axis: "j0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qj9"]!, answer: 0, valuesYes: [ValueItem(axis: "j1", value: 3)], valuesNo: [ValueItem(axis: "j0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qj10"]!, answer: 0, valuesYes: [ValueItem(axis: "j1", value: 3)], valuesNo: [ValueItem(axis: "j0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qj11"]!, answer: 0, valuesYes: [ValueItem(axis: "j1", value: 3)], valuesNo: [ValueItem(axis: "j0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qj12"]!, answer: 0, valuesYes: [ValueItem(axis: "j1", value: 3)], valuesNo: [ValueItem(axis: "j0", value: 3)], imageName: "dna"),
+    Question(questionText: questionTexts["qj0"]!, answer: 0, valuesYes: [ValueItem(axis: "j0", value: 3)], valuesNo: [ValueItem(axis: "j1", value: 3)], imageName: "qj0-jail"),
+    Question(questionText: questionTexts["qj1"]!, answer: 0, valuesYes: [ValueItem(axis: "j0", value: 3)], valuesNo: [ValueItem(axis: "j1", value: 3)], imageName: "qj1-law"),
+    Question(questionText: questionTexts["qj2"]!, answer: 0, valuesYes: [ValueItem(axis: "j0", value: 3)], valuesNo: [ValueItem(axis: "j1", value: 3)], imageName: "qj2-man"),
+    Question(questionText: questionTexts["qj3"]!, answer: 0, valuesYes: [ValueItem(axis: "j0", value: 3)], valuesNo: [ValueItem(axis: "j1", value: 3)], imageName: "qj3-law"),
+    Question(questionText: questionTexts["qj4"]!, answer: 0, valuesYes: [ValueItem(axis: "j0", value: 3)], valuesNo: [ValueItem(axis: "j1", value: 3)], imageName: "qj4-prison"),
+    Question(questionText: questionTexts["qj5"]!, answer: 0, valuesYes: [ValueItem(axis: "j0", value: 3)], valuesNo: [ValueItem(axis: "j1", value: 3)], imageName: "qj5-data"),
+    Question(questionText: questionTexts["qj6"]!, answer: 0, valuesYes: [ValueItem(axis: "j0", value: 3)], valuesNo: [ValueItem(axis: "j1", value: 3)], imageName: "qj6-anonymous"),
+    Question(questionText: questionTexts["qj7"]!, answer: 0, valuesYes: [ValueItem(axis: "j1", value: 3)], valuesNo: [ValueItem(axis: "j0", value: 3)], imageName: "qj7-law"),
+    Question(questionText: questionTexts["qj8"]!, answer: 0, valuesYes: [ValueItem(axis: "j1", value: 3)], valuesNo: [ValueItem(axis: "j0", value: 3)], imageName: "qj8-police"),
+    Question(questionText: questionTexts["qj9"]!, answer: 0, valuesYes: [ValueItem(axis: "j1", value: 3)], valuesNo: [ValueItem(axis: "j0", value: 3)], imageName: "qj9-terrorist"),
+    Question(questionText: questionTexts["qj10"]!, answer: 0, valuesYes: [ValueItem(axis: "j1", value: 3)], valuesNo: [ValueItem(axis: "j0", value: 3)], imageName: "qj10-government"),
+    Question(questionText: questionTexts["qj11"]!, answer: 0, valuesYes: [ValueItem(axis: "j1", value: 3)], valuesNo: [ValueItem(axis: "j0", value: 3)], imageName: "qj11-baton"),
+    Question(questionText: questionTexts["qj12"]!, answer: 0, valuesYes: [ValueItem(axis: "j1", value: 3)], valuesNo: [ValueItem(axis: "j0", value: 3)], imageName: "qj12-arrest"),
     // Revolution : Reformism
-    Question(questionText: questionTexts["qt0"]!, answer: 0, valuesYes: [ValueItem(axis: "t0", value: 3)], valuesNo: [ValueItem(axis: "t1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qt1"]!, answer: 0, valuesYes: [ValueItem(axis: "t0", value: 3)], valuesNo: [ValueItem(axis: "t1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qt2"]!, answer: 0, valuesYes: [ValueItem(axis: "t0", value: 3)], valuesNo: [ValueItem(axis: "t1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qt3"]!, answer: 0, valuesYes: [ValueItem(axis: "t0", value: 3)], valuesNo: [ValueItem(axis: "t1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qt4"]!, answer: 0, valuesYes: [ValueItem(axis: "t0", value: 3)], valuesNo: [ValueItem(axis: "t1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qt5"]!, answer: 0, valuesYes: [ValueItem(axis: "t0", value: 3)], valuesNo: [ValueItem(axis: "t1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qt6"]!, answer: 0, valuesYes: [ValueItem(axis: "t0", value: 3)], valuesNo: [ValueItem(axis: "t1", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qt7"]!, answer: 0, valuesYes: [ValueItem(axis: "t1", value: 3)], valuesNo: [ValueItem(axis: "t0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qt8"]!, answer: 0, valuesYes: [ValueItem(axis: "t1", value: 3)], valuesNo: [ValueItem(axis: "t0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qt9"]!, answer: 0, valuesYes: [ValueItem(axis: "t1", value: 3)], valuesNo: [ValueItem(axis: "t0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qt10"]!, answer: 0, valuesYes: [ValueItem(axis: "t1", value: 3)], valuesNo: [ValueItem(axis: "t0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qt11"]!, answer: 0, valuesYes: [ValueItem(axis: "t1", value: 3)], valuesNo: [ValueItem(axis: "t0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qt12"]!, answer: 0, valuesYes: [ValueItem(axis: "t1", value: 3)], valuesNo: [ValueItem(axis: "t0", value: 3)], imageName: "dna"),
-    Question(questionText: questionTexts["qt13"]!, answer: 0, valuesYes: [ValueItem(axis: "t1", value: 3)], valuesNo: [ValueItem(axis: "t0", value: 3)], imageName: "dna"),
+    Question(questionText: questionTexts["qt0"]!, answer: 0, valuesYes: [ValueItem(axis: "t0", value: 3)], valuesNo: [ValueItem(axis: "t1", value: 3)], imageName: "qt0-protest"),
+    Question(questionText: questionTexts["qt1"]!, answer: 0, valuesYes: [ValueItem(axis: "t0", value: 3)], valuesNo: [ValueItem(axis: "t1", value: 3)], imageName: "qt1-gun"),
+    Question(questionText: questionTexts["qt2"]!, answer: 0, valuesYes: [ValueItem(axis: "t0", value: 3)], valuesNo: [ValueItem(axis: "t1", value: 3)], imageName: "qt2-protest"),
+    Question(questionText: questionTexts["qt3"]!, answer: 0, valuesYes: [ValueItem(axis: "t0", value: 3)], valuesNo: [ValueItem(axis: "t1", value: 3)], imageName: "qt3-politics"),
+    Question(questionText: questionTexts["qt4"]!, answer: 0, valuesYes: [ValueItem(axis: "t0", value: 3)], valuesNo: [ValueItem(axis: "t1", value: 3)], imageName: "qt4-vote"),
+    Question(questionText: questionTexts["qt5"]!, answer: 0, valuesYes: [ValueItem(axis: "t0", value: 3)], valuesNo: [ValueItem(axis: "t1", value: 3)], imageName: "qt5-hacker"),
+    Question(questionText: questionTexts["qt6"]!, answer: 0, valuesYes: [ValueItem(axis: "t0", value: 3)], valuesNo: [ValueItem(axis: "t1", value: 3)], imageName: "qt6-fire"),
+    Question(questionText: questionTexts["qt7"]!, answer: 0, valuesYes: [ValueItem(axis: "t1", value: 3)], valuesNo: [ValueItem(axis: "t0", value: 3)], imageName: "qt7-protest"),
+    Question(questionText: questionTexts["qt8"]!, answer: 0, valuesYes: [ValueItem(axis: "t1", value: 3)], valuesNo: [ValueItem(axis: "t0", value: 3)], imageName: "qt8-sad"),
+    Question(questionText: questionTexts["qt9"]!, answer: 0, valuesYes: [ValueItem(axis: "t1", value: 3)], valuesNo: [ValueItem(axis: "t0", value: 3)], imageName: "qt9-ramp"),
+    Question(questionText: questionTexts["qt10"]!, answer: 0, valuesYes: [ValueItem(axis: "t1", value: 3)], valuesNo: [ValueItem(axis: "t0", value: 3)], imageName: "qt10-strong"),
+    Question(questionText: questionTexts["qt11"]!, answer: 0, valuesYes: [ValueItem(axis: "t1", value: 3)], valuesNo: [ValueItem(axis: "t0", value: 3)], imageName: "qt11-bomb"),
+    Question(questionText: questionTexts["qt12"]!, answer: 0, valuesYes: [ValueItem(axis: "t1", value: 3)], valuesNo: [ValueItem(axis: "t0", value: 3)], imageName: "qt12-compromise"),
+    Question(questionText: questionTexts["qt13"]!, answer: 0, valuesYes: [ValueItem(axis: "t1", value: 3)], valuesNo: [ValueItem(axis: "t0", value: 3)], imageName: "qt13-lifestyle"),
     // Bonus
-    Question(questionText: questionTexts["qreli"]!, answer: 0, valuesYes: [ValueItem(axis: "reli", value: 3)], valuesNo: [], imageName: "dna"),
-    Question(questionText: questionTexts["qcons"]!, answer: 0, valuesYes: [ValueItem(axis: "comp", value: 3)], valuesNo: [], imageName: "dna"),
-    Question(questionText: questionTexts["qprag"]!, answer: 0, valuesYes: [ValueItem(axis: "prag", value: 3)], valuesNo: [], imageName: "dna"),
-    Question(questionText: questionTexts["qmona"]!, answer: 0, valuesYes: [ValueItem(axis: "mona", value: 3)], valuesNo: [], imageName: "dna"),
-    Question(questionText: questionTexts["qvega"]!, answer: 0, valuesYes: [ValueItem(axis: "vega", value: 3)], valuesNo: [], imageName: "dna"),
-    Question(questionText: questionTexts["qanar"]!, answer: 0, valuesYes: [ValueItem(axis: "anar", value: 3)], valuesNo: [], imageName: "dna")
+    Question(questionText: questionTexts["qreli"]!, answer: 0, valuesYes: [ValueItem(axis: "reli", value: 3)], valuesNo: [], imageName: "qreli-pray"),
+    Question(questionText: questionTexts["qcons"]!, answer: 0, valuesYes: [ValueItem(axis: "comp", value: 3)], valuesNo: [], imageName: "qcons-illuminati"),
+    Question(questionText: questionTexts["qprag"]!, answer: 0, valuesYes: [ValueItem(axis: "prag", value: 3)], valuesNo: [], imageName: "qprag-policy"),
+    Question(questionText: questionTexts["qmona"]!, answer: 0, valuesYes: [ValueItem(axis: "mona", value: 3)], valuesNo: [], imageName: "qmona-king"),
+    Question(questionText: questionTexts["qvega"]!, answer: 0, valuesYes: [ValueItem(axis: "vega", value: 3)], valuesNo: [], imageName: "qvega-chicken"),
+    Question(questionText: questionTexts["qanar"]!, answer: 0, valuesYes: [ValueItem(axis: "anar", value: 3)], valuesNo: [], imageName: "qanar-earth")
 ]
