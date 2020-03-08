@@ -69,10 +69,7 @@ class QuizViewController: UIViewController {
     
     let multiplierFromIndex: [Int: Double] = [0: 1, 1: 2/3, 2: 0, 3: -2/3, 4: -1]
     var results = [String : (Int, Int)]()
-    var shuffled: [Question] {
-        get { return self.shouldShuffle ? questions.shuffled() : questions }
-        set {}
-    }
+    var shuffled: [Question]!
     
     var currentQuestionNumber = 0 {
         didSet {
@@ -105,6 +102,7 @@ class QuizViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.shuffled = self.shouldShuffle ? questions.shuffled() : questions
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.title = "PolitiScale"
         let exitButton = UIButton()
@@ -192,7 +190,6 @@ class QuizViewController: UIViewController {
     private func addAnswersContainerView() {
         self.view.addSubview(anwersContainerView)
         let titles = ["Absoulutely agree", "Somewhat agree", "Neutral or hesitant", "Rather disagree", "Absoulutely disagree"]
-//        let colors: [UIColor] = [.systemBlue, .systemGreen, .systemYellow, .systemOrange, .systemRed]
         let colors: [UIColor] = [UIColor(red: 50/255, green: 154/255, blue: 240/255, alpha: 1),
                                  UIColor(red: 105/255, green: 219/255, blue: 124/255, alpha: 1),
                                  UIColor(red: 252/255, green: 196/255, blue: 25/255, alpha: 1),
@@ -241,6 +238,8 @@ class QuizViewController: UIViewController {
             }
         }
         
+        // TODO: refactor following duplicative maths into helper funcs
+        
         results["c"] = (Int(((axes["c0"]!.0) / (axes["c0"]!.1) * 100).rounded()), Int(((axes["c1"]!.0) / (axes["c1"]!.1) * 100).rounded()))
         results["j"] = (Int(((axes["j0"]!.0) / (axes["j0"]!.1) * 100).rounded()), Int(((axes["j1"]!.0) / (axes["j1"]!.1) * 100).rounded()))
         results["s"] = (Int(((axes["s0"]!.0) / (axes["s0"]!.1) * 100).rounded()), Int(((axes["s1"]!.0) / (axes["s1"]!.1) * 100).rounded()))
@@ -250,6 +249,15 @@ class QuizViewController: UIViewController {
         results["e"] = (Int(((axes["e0"]!.0) / (axes["e0"]!.1) * 100).rounded()), Int(((axes["e1"]!.0) / (axes["e1"]!.1) * 100).rounded()))
         results["t"] = (Int(((axes["t0"]!.0) / (axes["t0"]!.1) * 100).rounded()), Int(((axes["t1"]!.0) / (axes["t1"]!.1) * 100).rounded()))
         
+        results["femi"] = (Int(((axes["femi"]!.0 / axes["femi"]!.1) * 100).rounded()), 100 - Int(((axes["femi"]!.0 / axes["femi"]!.1) * 100).rounded()))
+        results["reli"] = (Int(((axes["reli"]!.0 / axes["reli"]!.1) * 100).rounded()), 100 - Int(((axes["reli"]!.0 / axes["reli"]!.1) * 100).rounded()))
+        results["comp"] = (Int(((axes["comp"]!.0 / axes["comp"]!.1) * 100).rounded()), 100 - Int(((axes["comp"]!.0 / axes["comp"]!.1) * 100).rounded()))
+        results["prag"] = (Int(((axes["prag"]!.0 / axes["prag"]!.1) * 100).rounded()), 100 - Int(((axes["prag"]!.0 / axes["prag"]!.1) * 100).rounded()))
+        results["mona"] = (Int(((axes["mona"]!.0 / axes["mona"]!.1) * 100).rounded()), 100 - Int(((axes["mona"]!.0 / axes["mona"]!.1) * 100).rounded()))
+        results["vega"] = (Int(((axes["vega"]!.0 / axes["vega"]!.1) * 100).rounded()), 100 - Int(((axes["vega"]!.0 / axes["vega"]!.1) * 100).rounded()))
+        results["anar"] = (Int(((axes["anar"]!.0 / axes["anar"]!.1) * 100).rounded()), 100 - Int(((axes["anar"]!.0 / axes["anar"]!.1) * 100).rounded()))
+        
+        // For this section: left + neutrual + right = 100
         print("Constructivism \(results["c"]!.0) : Neutrual \(100 - results["c"]!.0 - results["c"]!.1) : Essentialism \(results["c"]!.1)")
         print("Rehabilitative justice \(results["j"]!.0) : Neutrual \(100 - results["j"]!.0 - results["j"]!.1) : Punitive justice \(results["j"]!.1)")
         print("Progressism \(results["s"]!.0) : Neutrual \(100 - results["s"]!.0 - results["s"]!.1) : Conservatism \(results["s"]!.1)")
@@ -259,7 +267,16 @@ class QuizViewController: UIViewController {
         print("Ecology \(results["e"]!.0) : Neutrual \(100 - results["e"]!.0 - results["e"]!.1) : Productivism \(results["e"]!.1)")
         print("Revolution \(results["t"]!.0) : Neutrual \(100 - results["t"]!.0 - results["t"]!.1) : Reformism \(results["t"]!.1)")
         
-        // TODO: How to get results of axes: femi, reli, comp, prag, mona, vega, anar?
+        // For this bonus section: yes + no = 100; if user selects anything neutral or negative, it will be 100% "no",
+        // because only positive values are added to the valueYes axis, and there is no valueNo axis for any of the following.
+        // i.e.: if 100%: strong characteristic; if 66%: weak characteristic; if other: no such characteristic presented
+        print("Feminism \(results["femi"]!.0) : Non-Feminism \(results["femi"]!.1)")
+        print("Missionary \(results["reli"]!.0) : Non-Missionary \(results["reli"]!.1)")
+        print("Complotism \(results["comp"]!.0) : Non-Complotism \(results["comp"]!.1)")
+        print("Pragmatism \(results["prag"]!.0) : Non-Pragmatism \(results["prag"]!.1)")
+        print("Monarchism \(results["mona"]!.0) : Non-Monarchism \(results["mona"]!.1)")
+        print("Veganism \(results["vega"]!.0) : Non-Veganism \(results["vega"]!.1)")
+        print("Anarchism \(results["anar"]!.0) : Non-Anarchism \(results["anar"]!.1)")
     }
     
     func goToNext() {
