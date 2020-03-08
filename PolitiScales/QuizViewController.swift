@@ -74,7 +74,7 @@ class QuizViewController: UIViewController {
     var currentQuestionNumber = 0 {
         didSet {
             if currentQuestionNumber != questions.count {
-                // TODO: add sliding in and out animations here on the question card
+                // TODO: if going back to previous question, should do slide animtion in reversed direction
                 let animationDistance: CGFloat = (self.view.bounds.width + self.questionCard.bounds.width)/2
                 UIView.animate(withDuration: 0.4, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.curveLinear], animations: {
                     self.questionCard.transform = CGAffineTransform(translationX: -animationDistance, y: 0)

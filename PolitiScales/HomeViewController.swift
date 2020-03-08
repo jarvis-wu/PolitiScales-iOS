@@ -12,6 +12,8 @@ import TinyConstraints
 class HomeViewController: UIViewController {
 
     var ui = DuoUI.shared
+    let scrollView = UIScrollView()
+    let contentView = UIView()
     let startButton = DuolingoButton()
     let bottomView = UIView()
     let navBarSeparator = DuolingoSeparator()
@@ -80,8 +82,18 @@ class HomeViewController: UIViewController {
     
     private func addSubviews() {
         addBottomView()
+        addScrollView()
         addTitle()
         addCards()
+    }
+    
+    private func addScrollView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        scrollView.edgesToSuperview(excluding: [.bottom])
+        scrollView.bottomToTop(of: bottomView)
+        contentView.edgesToSuperview()
+        contentView.widthToSuperview()
     }
     
     private func addTitle() {
@@ -98,7 +110,7 @@ class HomeViewController: UIViewController {
         bottomView.widthToSuperview()
         bottomView.bottomToSuperview()
         
-        titleLabel.topToSuperview(offset: 30)
+        titleLabel.top(to: contentView, offset: 30)
         titleLabel.leadingToSuperview(offset: 30)
         
         card1.topToBottom(of: titleLabel, offset: 20)
@@ -136,11 +148,13 @@ class HomeViewController: UIViewController {
         card3RightStack.top(to: card3Icon)
         card3RightStack.trailingToSuperview(offset: 20)
         card3RightStack.leadingToTrailing(of: card3Icon, offset: 20)
+        card3.bottom(to: contentView, offset: -30)
         
         self.view.bringSubviewToFront(bottomView)
     }
     
     private func addCards() {
+        card1.isUserInteractionEnabled = false
         card1.addSubview(card1Icon)
         card1.addSubview(card1RightStack)
         card1RightStack.axis = .vertical
@@ -152,6 +166,7 @@ class HomeViewController: UIViewController {
         card1Label.text = "The questions you are going to answer assume that your are a citizen of a multi-parti political system and a market economy."
         self.view.addSubview(card1)
         
+        card2.isUserInteractionEnabled = false
         card2.addSubview(card2Icon)
         card2.addSubview(card2RightStack)
         card2RightStack.axis = .vertical
@@ -163,6 +178,7 @@ class HomeViewController: UIViewController {
         card2Label.text = "You can always avoid answering a question. But if you do not understand the meaning of one of them, try to invert its meaning for a better understanding of what is implied."
         self.view.addSubview(card2)
         
+        card3.isUserInteractionEnabled = false
         card3.addSubview(card3Icon)
         card3.addSubview(card3RightStack)
         card3RightStack.axis = .vertical
