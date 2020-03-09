@@ -211,7 +211,8 @@ class HomeViewController: UIViewController {
     
     @objc func didTapSettingsButton() {
         hapticGenerator.selectionChanged()
-        print("open settings")
+        let settingsVC = SettingsViewController()
+        navigationController?.pushViewController(settingsVC, animated: true)
     }
     
     @objc func didTapShareButton() {

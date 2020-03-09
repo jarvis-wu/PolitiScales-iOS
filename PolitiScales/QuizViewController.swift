@@ -46,6 +46,7 @@ class QuizViewController: UIViewController {
         hapticGenerator.selectionChanged()
         // TODO: we do want to ask for confirmation if the user is going BACK from later questions to the first question
         // Which means we actually want to check progress, rather than current index
+        // Solution: check the count of elements in self.shuffled for which selectedIndex != nil; if count == 0, then exit without confirmation
         if currentQuestionNumber == 0 {
             self.navigationController?.popViewController(animated: true)
         } else {
