@@ -100,7 +100,7 @@ class QuizViewController: UIViewController {
                         self.questionCard.alpha = 1
                         self.questionCard.transform = CGAffineTransform.identity
                         self.resetSelectedIndicator()
-                        if isMovingBack, let selectedIndex = self.shuffled[self.currentQuestionNumber].selectedIndex {
+                        if let selectedIndex = self.shuffled[self.currentQuestionNumber].selectedIndex {
                             self.showSelectedAnswer(from: selectedIndex)
                         }
                         self.view.layoutIfNeeded()
