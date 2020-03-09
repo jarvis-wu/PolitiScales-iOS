@@ -211,13 +211,43 @@ class HomeViewController: UIViewController {
     
     @objc func didTapSettingsButton() {
         hapticGenerator.selectionChanged()
-        let settingsVC = SettingsViewController()
-        navigationController?.pushViewController(settingsVC, animated: true)
+        goToSettings()
     }
     
     @objc func didTapShareButton() {
         hapticGenerator.selectionChanged()
         print("open share")
+    }
+    
+    private func goToSettings() {
+        let settingsVC = SettingsViewController()
+        navigationController?.pushViewController(settingsVC, animated: true)
+    }
+    
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        let defaults = UserDefaults.standard
+        let isDebugActivatedKey = "isDebugActivated"
+        let isDebugActivated = defaults.bool(forKey: isDebugActivatedKey)
+        let alertTitle = isDebugActivated ? "Do you want to deactivate debug settings?" : "Do you want to activate debug settings?"
+        let alertMessage = isDebugActivated ? "All debug or beta features will be reset. You can turn in back on anytime by shaking again." :
+                                              "You will be taken to Settings > Debug to configure some debug or beta features. You can turn off debug mode afterwards by shaking again."
+        let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        if isDebugActivated {
+            alertController.addAction(UIAlertAction(title: "Deactivate", style: .default, handler: { (_) in
+                defaults.set(false, forKey: isDebugActivatedKey)
+                // TODO: reset other debug flags
+            }))
+        } else {
+            alertController.addAction(UIAlertAction(title: "Activate", style: .default, handler: { (_) in
+                defaults.set(true, forKey: isDebugActivatedKey)
+                self.goToSettings()
+            }))
+        }
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alertController, animated: true) {
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.warning)
+        }
     }
 
 }

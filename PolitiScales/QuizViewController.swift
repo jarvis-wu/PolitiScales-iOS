@@ -10,6 +10,8 @@ import UIKit
 
 class QuizViewController: UIViewController {
     
+    // TODO: add progress view?
+    
     let hapticGenerator = UISelectionFeedbackGenerator()
     let scrollView = UIScrollView()
     let contentView = UIView()
@@ -70,18 +72,18 @@ class QuizViewController: UIViewController {
         // present a table view controller displaying all answered questions
     }
     
-    // FOR DEBUG PURPOSE; OTHERWISE IT SHOULD ALWAYS BE TRUE
-    let shouldShuffle = false
+    // TODO: refactor into user defaults when implementing debug mode
+    let shouldShuffle = false // FOR DEBUG PURPOSE; OTHERWISE IT SHOULD ALWAYS BE TRUE
     
     let multiplierFromIndex: [Int: Double] = [0: 1, 1: 2/3, 2: 0, 3: -2/3, 4: -1]
     var results = [String : (Int, Int)]()
     var shuffled: [Question]!
     
+    // TODO: add a simulate button when implementing debug mode that jump right into result VC with random result
     var currentQuestionNumber = 0 {
         didSet {
             if currentQuestionNumber != questions.count {
                 let isMovingBack = currentQuestionNumber < oldValue
-                // TODO: if is moving back, highlight the selected answer in some way
                 let animationDistance: CGFloat = (self.view.bounds.width + self.questionCard.bounds.width) / 2 * (isMovingBack ? -1 : 1)
                 UIView.animate(withDuration: 0.4, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.curveLinear], animations: {
                     self.questionCard.transform = CGAffineTransform(translationX: -animationDistance, y: 0)

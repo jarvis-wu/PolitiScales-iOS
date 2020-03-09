@@ -9,6 +9,20 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
+    
+    /*
+     Settings items"
+     
+     - Debug
+         - "isDebugActivated"
+         - "isShowingRandomResultAvailable"
+         - "isShufflingQuestions"
+    */
+    
+    enum SettingsSections: String, CaseIterable {
+        case general = "General"
+        case debug = "Debug"
+    }
 
     var ui = DuoUI.shared
     let hapticGenerator = UISelectionFeedbackGenerator()
@@ -61,14 +75,36 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
+    // TODO: maintain a view model of settings item, etc
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        let numOfAllSections = SettingsSections.allCases.count
+        let isDebugActivated = UserDefaults.standard.bool(forKey: "isDebugActivated")
+        return isDebugActivated ? numOfAllSections : numOfAllSections - 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TODO: maintain a view model of settings item, etc
-        return 1
+        return 1 // we put all content of every section into one big cell
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell", for: indexPath) as! SettingsTableViewCell
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView()
+        header.backgroundColor = .white
+        let title = DuolingoTitleLabel()
+        title.text = SettingsSections.allCases[section].rawValue
+        header.addSubview(title)
+        title.topToSuperview(offset: 30)
+        title.leadingToSuperview(offset: 30)
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 70
     }
     
 }
@@ -78,7 +114,10 @@ class SettingsTableViewCell: UITableViewCell {
     // TODO
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .gray
+        let card = DuolingoBorderedCard()
+        self.addSubview(card)
+        card.height(200)
+        card.edgesToSuperview(insets: UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30))
     }
     
     required init?(coder: NSCoder) {
