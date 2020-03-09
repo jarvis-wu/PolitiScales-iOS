@@ -15,6 +15,7 @@ class QuizViewController: UIViewController {
     let hapticGenerator = UISelectionFeedbackGenerator()
     let scrollView = UIScrollView()
     let contentView = UIView()
+    let progressBar = DuolingoProgressView()
     let questionCard = DuolingoBorderedCard()
     let questionCardIcon = UIImageView()
     let questionCardRightStack = UIStackView()
@@ -82,6 +83,9 @@ class QuizViewController: UIViewController {
     // TODO: add a simulate button when implementing debug mode that jump right into result VC with random result
     var currentQuestionNumber = 0 {
         didSet {
+            let numOfAnsweredQuestions = (shuffled.filter { $0.selectedIndex != nil }).count
+            let progress = Float(numOfAnsweredQuestions) / Float(shuffled.count)
+            progressBar.progress = progress
             if currentQuestionNumber != questions.count {
                 let isMovingBack = currentQuestionNumber < oldValue
                 let animationDistance: CGFloat = (self.view.bounds.width + self.questionCard.bounds.width) / 2 * (isMovingBack ? -1 : 1)
@@ -137,6 +141,7 @@ class QuizViewController: UIViewController {
         self.view.addSubview(navBarSeparator)
         addBottomView()
         addScrollView()
+        addProgressBar()
         addQuestionCard()
         addAnswersContainerView()
         addConstraints()
@@ -169,7 +174,10 @@ class QuizViewController: UIViewController {
             button.bottomToTop(of: anwersContainerView, offset: CGFloat((i + 1) * 50 + i * 12))
             button.widthToSuperview()
         }
-        questionCard.top(to: contentView, offset: 30)
+        progressBar.top(to: contentView, offset: 30)
+        progressBar.centerXToSuperview()
+        progressBar.leadingToSuperview(offset: 30)
+        questionCard.topToBottom(of: progressBar, offset: 20)
         questionCard.centerXToSuperview()
         questionCard.leadingToSuperview(offset: 30)
         questionCard.bottom(to: questionCardLabel, offset: 30)
@@ -182,6 +190,12 @@ class QuizViewController: UIViewController {
         questionCardRightStack.leadingToTrailing(of: questionCardIcon, offset: 20)
         navBarSeparator.topToSuperview()
         self.view.bringSubviewToFront(bottomView)
+    }
+    
+    private func addProgressBar() {
+        self.view.addSubview(progressBar)
+        // TODO: load correct progress when we implement saving session
+        progressBar.setProgress(0, animated: false)
     }
     
     private func addQuestionCard() {

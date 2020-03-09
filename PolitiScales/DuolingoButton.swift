@@ -66,9 +66,10 @@ class DuolingoButton: UIButton, DropShadowView {
   
   private func addSelectedIndicator() {
     selectedIndicator.backgroundColor = mainColor.dimmed(by: 1 - ui.DUO_BUTTON_DIM_RATIO)!
-    selectedIndicator.width(6)
-    selectedIndicator.height(6)
-    selectedIndicator.layer.cornerRadius = 6 / 2
+    let radius: CGFloat = 4
+    selectedIndicator.width(radius * 2)
+    selectedIndicator.height(radius * 2)
+    selectedIndicator.layer.cornerRadius = radius
     self.addSubview(selectedIndicator)
     selectedIndicator.centerYToSuperview()
     selectedIndicator.trailingToSuperview(offset: 20)

@@ -14,9 +14,12 @@ class DuolingoProgressView: UIProgressView {
   
   override var progress: Float {
     didSet {
-      guard let _ = tintedProgressWidth else { return }
+      guard let _ = tintedProgressWidth, progress != 0 else { return }
       tintedProgressWidth.isActive = false
-      tintedProgressWidth = tintedProgress.widthToSuperview(multiplier: CGFloat(self.progress))
+      UIView.animate(withDuration: 0.5) {
+        self.tintedProgressWidth = self.tintedProgress.widthToSuperview(multiplier: CGFloat(self.progress))
+        self.layoutIfNeeded()
+      }
     }
   }
   
@@ -41,7 +44,7 @@ class DuolingoProgressView: UIProgressView {
     self.height(height)
     trackTintColor = .clear
     tintColor = .clear
-    progress = 0.5
+    progress = 0
     
     self.addSubview(trackBackgroundView)
     self.addSubview(tintedProgress)
