@@ -57,6 +57,7 @@ class SettingsViewController: UIViewController {
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: "SettingsTableViewCell")
+        tableView.allowsSelection = false
         self.view.addSubview(tableView)
     }
     

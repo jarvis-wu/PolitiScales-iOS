@@ -10,7 +10,7 @@ import UIKit
 
 class QuizViewController: UIViewController {
     
-    // TODO: add progress view?
+    // TODO: all isUserInteractionEnabled is used to let the scroll work on subviews; is this the only solution?
     
     let hapticGenerator = UISelectionFeedbackGenerator()
     let scrollView = UIScrollView()
@@ -152,15 +152,16 @@ class QuizViewController: UIViewController {
         scrollView.addSubview(contentView)
         scrollView.edgesToSuperview(excluding: [.bottom])
         scrollView.bottomToTop(of: bottomView)
+        scrollView.alwaysBounceVertical = true
         contentView.edgesToSuperview()
         contentView.widthToSuperview()
     }
     
     private func addConstraints() {
         goBackButton.centerXToSuperview()
-        goBackButton.bottomToSuperview(offset: -30, usingSafeArea: true)
+        goBackButton.bottomToSuperview(offset: -25, usingSafeArea: true)
         goBackButton.leadingToSuperview(offset: 30)
-        bottomView.topToBottom(of: goBackButton, offset: -80)
+        bottomView.topToBottom(of: goBackButton, offset: -75) // 50 + 25
         bottomView.widthToSuperview()
         bottomView.bottomToSuperview()
         anwersContainerViewTopConstraint = anwersContainerView.topToBottom(of: questionCard, offset: 20)
@@ -174,13 +175,13 @@ class QuizViewController: UIViewController {
             button.bottomToTop(of: anwersContainerView, offset: CGFloat((i + 1) * 50 + i * 12))
             button.widthToSuperview()
         }
-        progressBar.top(to: contentView, offset: 30)
+        progressBar.top(to: contentView, offset: 25)
         progressBar.centerXToSuperview()
         progressBar.leadingToSuperview(offset: 30)
         questionCard.topToBottom(of: progressBar, offset: 20)
         questionCard.centerXToSuperview()
         questionCard.leadingToSuperview(offset: 30)
-        questionCard.bottom(to: questionCardLabel, offset: 30)
+        questionCard.bottom(to: questionCardLabel, offset: 20)
         questionCardIcon.height(80)
         questionCardIcon.aspectRatio(1)
         questionCardIcon.leadingToSuperview(offset: 20)
@@ -194,16 +195,18 @@ class QuizViewController: UIViewController {
     
     private func addProgressBar() {
         self.view.addSubview(progressBar)
+        progressBar.isUserInteractionEnabled = false
         // TODO: load correct progress when we implement saving session
         progressBar.setProgress(0, animated: false)
     }
     
     private func addQuestionCard() {
+        questionCard.isUserInteractionEnabled = false
         questionCard.addSubview(questionCardIcon)
         questionCard.addSubview(questionCardRightStack)
         questionCardRightStack.axis = .vertical
         questionCardRightStack.distribution = .equalCentering
-        questionCardRightStack.spacing = 12
+        questionCardRightStack.spacing = 10
         questionCardRightStack.addArrangedSubview(questionCardTitleLabel)
         questionCardRightStack.addArrangedSubview(questionCardLabel)
         // TODO: Fix code priming in currentQuestionNumber didSet

@@ -93,6 +93,7 @@ class HomeViewController: UIViewController {
         scrollView.addSubview(contentView)
         scrollView.edgesToSuperview(excluding: [.bottom])
         scrollView.bottomToTop(of: bottomView)
+        scrollView.alwaysBounceVertical = true
         contentView.edgesToSuperview()
         contentView.widthToSuperview()
     }
@@ -104,20 +105,20 @@ class HomeViewController: UIViewController {
     
     private func addConstraints() {
         startButton.centerXToSuperview()
-        startButton.bottomToSuperview(offset: -30, usingSafeArea: true)
+        startButton.bottomToSuperview(offset: -25, usingSafeArea: true)
         startButton.leadingToSuperview(offset: 30)
         navBarSeparator.topToSuperview()
-        bottomView.topToBottom(of: startButton, offset: -80)
+        bottomView.topToBottom(of: startButton, offset: -75)
         bottomView.widthToSuperview()
         bottomView.bottomToSuperview()
         
-        titleLabel.top(to: contentView, offset: 30)
+        titleLabel.top(to: contentView, offset: 25)
         titleLabel.leadingToSuperview(offset: 30)
         
         card1.topToBottom(of: titleLabel, offset: 20)
         card1.centerXToSuperview()
         card1.leadingToSuperview(offset: 30)
-        card1.bottom(to: card1Label, offset: 30)
+        card1.bottom(to: card1Label, offset: 20)
         card1Icon.height(80)
         card1Icon.aspectRatio(1)
         card1Icon.leadingToSuperview(offset: 20)
@@ -129,7 +130,7 @@ class HomeViewController: UIViewController {
         card2.topToBottom(of: card1, offset: 20)
         card2.centerXToSuperview()
         card2.leadingToSuperview(offset: 30)
-        card2.bottom(to: card2Label, offset: 30)
+        card2.bottom(to: card2Label, offset: 20)
         card2Icon.height(80)
         card2Icon.aspectRatio(1)
         card2Icon.leadingToSuperview(offset: 20)
@@ -141,7 +142,7 @@ class HomeViewController: UIViewController {
         card3.topToBottom(of: card2, offset: 20)
         card3.centerXToSuperview()
         card3.leadingToSuperview(offset: 30)
-        card3.bottom(to: card3Label, offset: 30)
+        card3.bottom(to: card3Label, offset: 20)
         card3Icon.height(80)
         card3Icon.aspectRatio(1)
         card3Icon.leadingToSuperview(offset: 20)
@@ -160,7 +161,7 @@ class HomeViewController: UIViewController {
         card1.addSubview(card1RightStack)
         card1RightStack.axis = .vertical
         card1RightStack.distribution = .equalCentering
-        card1RightStack.spacing = 12
+        card1RightStack.spacing = 10
         card1RightStack.addArrangedSubview(card1Label)
         card1Icon.image = UIImage(named: "question")
         card1Label.numberOfLines = 0
@@ -172,7 +173,7 @@ class HomeViewController: UIViewController {
         card2.addSubview(card2RightStack)
         card2RightStack.axis = .vertical
         card2RightStack.distribution = .equalCentering
-        card2RightStack.spacing = 12
+        card2RightStack.spacing = 10
         card2RightStack.addArrangedSubview(card2Label)
         card2Icon.image = UIImage(named: "dream")
         card2Label.numberOfLines = 0
@@ -184,7 +185,7 @@ class HomeViewController: UIViewController {
         card3.addSubview(card3RightStack)
         card3RightStack.axis = .vertical
         card3RightStack.distribution = .equalCentering
-        card3RightStack.spacing = 12
+        card3RightStack.spacing = 10
         card3RightStack.addArrangedSubview(card3Label)
         card3Icon.image = UIImage(named: "pride")
         card3Label.numberOfLines = 0
