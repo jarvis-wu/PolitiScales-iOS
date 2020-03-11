@@ -10,6 +10,34 @@ import UIKit
 
 class QuizViewController: UIViewController {
     
+    struct AnswerItemMetadata {
+        let text: String
+        let color: UIColor
+    }
+    
+    enum AnswerItem: CaseIterable {
+        case absoulutelyAgree
+        case somewhatAgree
+        case neutral
+        case somewhatDisagree
+        case absolutelyDisagree
+        
+        func getMetadata() -> AnswerItemMetadata {
+            switch self {
+            case .absoulutelyAgree:
+                return AnswerItemMetadata(text: "Absoulutely agree", color: UIColor(red: 95/255, green: 162/255, blue: 250/255, alpha: 1))
+            case .somewhatAgree:
+                return AnswerItemMetadata(text: "Somewhat agree", color: UIColor(red: 105/255, green: 219/255, blue: 124/255, alpha: 1))
+            case .neutral:
+                return AnswerItemMetadata(text: "Neutral or hesitant", color: UIColor(red: 252/255, green: 196/255, blue: 25/255, alpha: 1))
+            case .somewhatDisagree:
+                return AnswerItemMetadata(text: "Rather disagree", color: UIColor(red: 255/255, green: 146/255, blue: 43/255, alpha: 1))
+            case .absolutelyDisagree:
+                return AnswerItemMetadata(text: "Absoulutely disagree", color: UIColor(red: 255/255, green: 107/255, blue: 107/255, alpha: 1))
+            }
+        }
+    }
+    
     // TODO: all isUserInteractionEnabled is used to let the scroll work on subviews; is this the only solution?
     
     let hapticGenerator = UISelectionFeedbackGenerator()
@@ -29,7 +57,7 @@ class QuizViewController: UIViewController {
     
     @objc func didSelectAnswer(_ sender: UIButton) {
         guard let index = anwersContainerView.subviews.firstIndex(of: sender) else { return }
-        print("Answer \(index + 1) is selected for question \(currentQuestionNumber + 1)")
+        logAnswer(questionIndex: currentQuestionNumber, answerIndex: index)
         hapticGenerator.selectionChanged()
         shuffled[currentQuestionNumber].selectedIndex = index
         shuffled[currentQuestionNumber].weightedAnswer = multiplierFromIndex[index]!
@@ -94,11 +122,16 @@ class QuizViewController: UIViewController {
             let isQuestionAnswered = self.shuffled[questionIndex].selectedIndex == nil
             if (keepingExistingAnswers ? isQuestionAnswered : true) {
                 let answerIndex = Int.random(in: 0...4)
-                print("Answer \(answerIndex + 1) is simulated for question \(questionIndex + 1)")
+                logAnswer(questionIndex: questionIndex, answerIndex: answerIndex, isSimulated: true)
                 self.shuffled[questionIndex].selectedIndex = answerIndex
                 self.shuffled[questionIndex].weightedAnswer = self.multiplierFromIndex[answerIndex]!
             }
         }
+    }
+    
+    private func logAnswer(questionIndex: Int, answerIndex: Int, isSimulated: Bool = false) {
+        print("🤔 Question \(questionIndex + 1): \(shuffled[questionIndex].questionText)")
+        print("✏️ Answer \(answerIndex + 1) is selected (\(AnswerItem.allCases[answerIndex].getMetadata().text))\(isSimulated ? " - simulated 🎰" : "")\n")
     }
     
     private func showExitConfirmationAlert() {
@@ -279,15 +312,10 @@ class QuizViewController: UIViewController {
     
     private func addAnswersContainerView() {
         self.view.addSubview(anwersContainerView)
-        let titles = ["Absoulutely agree", "Somewhat agree", "Neutral or hesitant", "Rather disagree", "Absoulutely disagree"]
-        let colors: [UIColor] = [UIColor(red: 95/255, green: 162/255, blue: 250/255, alpha: 1),
-                                 UIColor(red: 105/255, green: 219/255, blue: 124/255, alpha: 1),
-                                 UIColor(red: 252/255, green: 196/255, blue: 25/255, alpha: 1),
-                                 UIColor(red: 255/255, green: 146/255, blue: 43/255, alpha: 1),
-                                 UIColor(red: 255/255, green: 107/255, blue: 107/255, alpha: 1)]
         for i in 0...4 {
-            let button = DuolingoButton(color: colors[i])
-            button.setTitle(titles[i], for: .normal)
+            let answerItemMetadata = AnswerItem.allCases[i].getMetadata()
+            let button = DuolingoButton(color: answerItemMetadata.color)
+            button.setTitle(answerItemMetadata.text, for: .normal)
             button.addTarget(self, action: #selector(didSelectAnswer), for: .touchUpInside)
             anwersContainerView.addSubview(button)
         }
@@ -363,54 +391,54 @@ class QuizViewController: UIViewController {
         
         print("\n---------- Main axes ----------\n")
         // For this section: left + neutrual + right = 100
-        print("Constructivism \(results["c"]!.0) : Neutrual \(100 - results["c"]!.0 - results["c"]!.1) : Essentialism \(results["c"]!.1)")
-        print("\(String(repeating: "░", count: results["c"]!.0 ))\(String(repeating: "▒", count: 100 - results["c"]!.0 - results["c"]!.1))\(String(repeating: "▓", count: results["c"]!.1))\n")
+        print("💡 Constructivism \(results["c"]!.0) : Neutrual \(100 - results["c"]!.0 - results["c"]!.1) : Essentialism \(results["c"]!.1) 🧬")
+        print("\(String(repeating: "▒", count: results["c"]!.0 ))\(String(repeating: "░", count: 100 - results["c"]!.0 - results["c"]!.1))\(String(repeating: "▓", count: results["c"]!.1))\n")
         
-        print("Rehabilitative justice \(results["j"]!.0) : Neutrual \(100 - results["j"]!.0 - results["j"]!.1) : Punitive justice \(results["j"]!.1)")
-        print("\(String(repeating: "░", count: results["j"]!.0 ))\(String(repeating: "▒", count: 100 - results["j"]!.0 - results["j"]!.1))\(String(repeating: "▓", count: results["j"]!.1))\n")
+        print("😇 Rehabilitative justice \(results["j"]!.0) : Neutrual \(100 - results["j"]!.0 - results["j"]!.1) : Punitive justice \(results["j"]!.1) 👿")
+        print("\(String(repeating: "▒", count: results["j"]!.0 ))\(String(repeating: "░", count: 100 - results["j"]!.0 - results["j"]!.1))\(String(repeating: "▓", count: results["j"]!.1))\n")
         
-        print("Progressism \(results["s"]!.0) : Neutrual \(100 - results["s"]!.0 - results["s"]!.1) : Conservatism \(results["s"]!.1)")
-        print("\(String(repeating: "░", count: results["s"]!.0))\(String(repeating: "▒", count: 100 - results["s"]!.0 - results["s"]!.1))\(String(repeating: "▓", count: results["s"]!.1))\n")
+        print("🚀 Progressism \(results["s"]!.0) : Neutrual \(100 - results["s"]!.0 - results["s"]!.1) : Conservatism \(results["s"]!.1) ✍🏼")
+        print("\(String(repeating: "▒", count: results["s"]!.0))\(String(repeating: "░", count: 100 - results["s"]!.0 - results["s"]!.1))\(String(repeating: "▓", count: results["s"]!.1))\n")
         
-        print("Internationalism \(results["b"]!.0) : \(100 - results["b"]!.0 - results["b"]!.1) : Nationalism \(results["b"]!.1)")
-        print("\(String(repeating: "░", count: results["b"]!.0))\(String(repeating: "▒", count: 100 - results["b"]!.0 - results["b"]!.1))\(String(repeating: "▓", count: results["b"]!.1))\n")
+        print("🌍 Internationalism \(results["b"]!.0) : \(100 - results["b"]!.0 - results["b"]!.1) : Nationalism \(results["b"]!.1) 🚩")
+        print("\(String(repeating: "▒", count: results["b"]!.0))\(String(repeating: "░", count: 100 - results["b"]!.0 - results["b"]!.1))\(String(repeating: "▓", count: results["b"]!.1))\n")
         
-        print("Communism \(results["p"]!.0) : Neutrual \(100 - results["p"]!.0 - results["p"]!.1) : Capitalism \(results["p"]!.1)")
-        print("\(String(repeating: "░", count: results["p"]!.0))\(String(repeating: "▒", count: 100 - results["p"]!.0 - results["p"]!.1))\(String(repeating: "▓", count: results["p"]!.1))\n")
+        print("⚒️ Communism \(results["p"]!.0) : Neutrual \(100 - results["p"]!.0 - results["p"]!.1) : Capitalism \(results["p"]!.1) 💰")
+        print("\(String(repeating: "▒", count: results["p"]!.0))\(String(repeating: "░", count: 100 - results["p"]!.0 - results["p"]!.1))\(String(repeating: "▓", count: results["p"]!.1))\n")
         
-        print("Regulationism \(results["m"]!.0) : Neutrual \(100 - results["m"]!.0 - results["m"]!.1) : Laissez-faire \(results["m"]!.1)")
-        print("\(String(repeating: "░", count: results["m"]!.0))\(String(repeating: "▒", count: 100 - results["m"]!.0 - results["m"]!.1))\(String(repeating: "▓", count: results["m"]!.1))\n")
+        print("📐 Regulationism \(results["m"]!.0) : Neutrual \(100 - results["m"]!.0 - results["m"]!.1) : Laissez-faire \(results["m"]!.1) 🦋")
+        print("\(String(repeating: "▒", count: results["m"]!.0))\(String(repeating: "░", count: 100 - results["m"]!.0 - results["m"]!.1))\(String(repeating: "▓", count: results["m"]!.1))\n")
         
-        print("Ecology \(results["e"]!.0) : Neutrual \(100 - results["e"]!.0 - results["e"]!.1) : Productivism \(results["e"]!.1)")
-        print("\(String(repeating: "░", count: results["e"]!.0))\(String(repeating: "▒", count: 100 - results["e"]!.0 - results["e"]!.1))\(String(repeating: "▓", count: results["e"]!.1))\n")
+        print("🌱 Ecology \(results["e"]!.0) : Neutrual \(100 - results["e"]!.0 - results["e"]!.1) : Productivism \(results["e"]!.1) ⚙️")
+        print("\(String(repeating: "▒", count: results["e"]!.0))\(String(repeating: "░", count: 100 - results["e"]!.0 - results["e"]!.1))\(String(repeating: "▓", count: results["e"]!.1))\n")
         
-        print("Revolution \(results["t"]!.0) : Neutrual \(100 - results["t"]!.0 - results["t"]!.1) : Reformism \(results["t"]!.1)")
-        print("\(String(repeating: "░", count: results["t"]!.0))\(String(repeating: "▒", count: 100 - results["t"]!.0 - results["t"]!.1))\(String(repeating: "▓", count: results["t"]!.1))\n")
+        print("✊🏼 Revolution \(results["t"]!.0) : Neutrual \(100 - results["t"]!.0 - results["t"]!.1) : Reformism \(results["t"]!.1) 🗳")
+        print("\(String(repeating: "▒", count: results["t"]!.0))\(String(repeating: "░", count: 100 - results["t"]!.0 - results["t"]!.1))\(String(repeating: "▓", count: results["t"]!.1))\n")
         
         print("\n---------- Bonus axes ----------\n")
         // For this bonus section: yes + no = 100; if user selects anything neutral or negative, it will be 100% "no",
         // because only positive values are added to the valueYes axis, and there is no valueNo axis for any of the following.
         // i.e.: if 100%: strong characteristic; if 66%: weak characteristic; if other: no such characteristic presented
-        print("Feminism \(results["femi"]!.0) : Non-Feminism \(results["femi"]!.1)")
-        print("\(String(repeating: "░", count: results["femi"]!.0 ))\(String(repeating: "▓", count: results["femi"]!.1))\n")
+        print("👩🏻‍🦰 Feminism \(results["femi"]!.0) : Non-Feminism \(results["femi"]!.1)")
+        print("\(String(repeating: "▓", count: results["femi"]!.0 ))\(String(repeating: "░", count: results["femi"]!.1))\n")
         
-        print("Missionary \(results["reli"]!.0) : Non-Missionary \(results["reli"]!.1)")
-        print("\(String(repeating: "░", count: results["reli"]!.0))\(String(repeating: "▓", count: results["reli"]!.1))\n")
+        print("✝️ Missionary \(results["reli"]!.0) : Non-Missionary \(results["reli"]!.1)")
+        print("\(String(repeating: "▓", count: results["reli"]!.0))\(String(repeating: "░", count: results["reli"]!.1))\n")
         
-        print("Complotism \(results["comp"]!.0) : Non-Complotism \(results["comp"]!.1)")
-        print("\(String(repeating: "░", count: results["comp"]!.0))\(String(repeating: "▓", count: results["comp"]!.1))\n")
+        print("👁 Complotism \(results["comp"]!.0) : Non-Complotism \(results["comp"]!.1)")
+        print("\(String(repeating: "▓", count: results["comp"]!.0))\(String(repeating: "░", count: results["comp"]!.1))\n")
         
-        print("Pragmatism \(results["prag"]!.0) : Non-Pragmatism \(results["prag"]!.1)")
-        print("\(String(repeating: "░", count: results["prag"]!.0))\(String(repeating: "▓", count: results["prag"]!.1))\n")
+        print("🛠 Pragmatism \(results["prag"]!.0) : Non-Pragmatism \(results["prag"]!.1)")
+        print("\(String(repeating: "▓", count: results["prag"]!.0))\(String(repeating: "░", count: results["prag"]!.1))\n")
         
-        print("Monarchism \(results["mona"]!.0) : Non-Monarchism \(results["mona"]!.1)")
-        print("\(String(repeating: "░", count: results["mona"]!.0))\(String(repeating: "▓", count: results["mona"]!.1))\n")
+        print("👑 Monarchism \(results["mona"]!.0) : Non-Monarchism \(results["mona"]!.1)")
+        print("\(String(repeating: "▓", count: results["mona"]!.0))\(String(repeating: "░", count: results["mona"]!.1))\n")
         
-        print("Veganism \(results["vega"]!.0) : Non-Veganism \(results["vega"]!.1)")
-        print("\(String(repeating: "░", count: results["vega"]!.0))\(String(repeating: "▓", count: results["vega"]!.1))\n")
+        print("🥬 Veganism \(results["vega"]!.0) : Non-Veganism \(results["vega"]!.1)")
+        print("\(String(repeating: "▓", count: results["vega"]!.0))\(String(repeating: "░", count: results["vega"]!.1))\n")
         
-        print("Anarchism \(results["anar"]!.0) : Non-Anarchism \(results["anar"]!.1)")
-        print("\(String(repeating: "░", count: results["anar"]!.0))\(String(repeating: "▓", count: results["anar"]!.1))\n")
+        print("🏴 Anarchism \(results["anar"]!.0) : Non-Anarchism \(results["anar"]!.1)")
+        print("\(String(repeating: "▓", count: results["anar"]!.0))\(String(repeating: "░", count: results["anar"]!.1))\n")
         
     }
     
