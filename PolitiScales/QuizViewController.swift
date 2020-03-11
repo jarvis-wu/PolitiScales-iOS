@@ -38,8 +38,10 @@ class QuizViewController: UIViewController {
     
     @objc func didTapGoBack() {
         hapticGenerator.selectionChanged()
-        if currentQuestionNumber == 0 { // exit
+        if currentQuestionNumber == 0 && numOfAnsweredQuestions == 0 { // exit
             self.navigationController?.popViewController(animated: true)
+        } else if currentQuestionNumber == 0 {
+            showExitConfirmationAlert()
         } else { // go back
             currentQuestionNumber -= 1
         }
@@ -50,20 +52,10 @@ class QuizViewController: UIViewController {
         // TODO: we do want to ask for confirmation if the user is going BACK from later questions to the first question
         // Which means we actually want to check progress, rather than current index
         // Solution: check the count of elements in self.shuffled for which selectedIndex != nil; if count == 0, then exit without confirmation
-        if currentQuestionNumber == 0 {
+        if currentQuestionNumber == 0 && numOfAnsweredQuestions == 0 {
             self.navigationController?.popViewController(animated: true)
         } else {
-            let alertController = UIAlertController(title: "Do you want to save the current session?", message: "You can choose to save your answers and come back later to finish it, or delete the progress immediately. You cannot undo this action.", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Save and leave", style: .default, handler: { (_) in
-                // save here
-                self.navigationController?.popViewController(animated: true)
-            }))
-            alertController.addAction(UIAlertAction(title: "Discard and leave", style: .destructive, handler: { (_) in
-                // discard here
-                self.navigationController?.popViewController(animated: true)
-            }))
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            present(alertController, animated: true, completion: nil)
+            showExitConfirmationAlert()
         }
     }
     
@@ -73,18 +65,36 @@ class QuizViewController: UIViewController {
         // present a table view controller displaying all answered questions
     }
     
+    private func showExitConfirmationAlert() {
+        let alertController = UIAlertController(title: "Do you want to save the current session?", message: "You can choose to save your answers and come back later to finish it, or delete the progress immediately. You cannot undo this action.", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Save and leave", style: .default, handler: { (_) in
+            // save here
+            self.navigationController?.popViewController(animated: true)
+        }))
+        alertController.addAction(UIAlertAction(title: "Discard and leave", style: .destructive, handler: { (_) in
+            // discard here
+            self.navigationController?.popViewController(animated: true)
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+    
     // TODO: refactor into user defaults when implementing debug mode
     let shouldShuffle = false // FOR DEBUG PURPOSE; OTHERWISE IT SHOULD ALWAYS BE TRUE
     
     let multiplierFromIndex: [Int: Double] = [0: 1, 1: 2/3, 2: 0, 3: -2/3, 4: -1]
     var results = [String : (Int, Int)]()
     var shuffled: [Question]!
+    var numOfAnsweredQuestions: Int {
+        get {
+            return (shuffled.filter { $0.selectedIndex != nil }).count
+        }
+    }
     
     // TODO: add a simulate button when implementing debug mode that jump right into result VC with random result
     var currentQuestionNumber = 0 {
         didSet {
-            let numOfAnsweredQuestions = (shuffled.filter { $0.selectedIndex != nil }).count
-            let progress = Float(numOfAnsweredQuestions) / Float(shuffled.count)
+            let progress = Float(self.numOfAnsweredQuestions) / Float(shuffled.count)
             progressBar.progress = progress
             if currentQuestionNumber != questions.count {
                 let isMovingBack = currentQuestionNumber < oldValue
