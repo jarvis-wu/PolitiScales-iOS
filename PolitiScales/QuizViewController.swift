@@ -65,6 +65,41 @@ class QuizViewController: UIViewController {
         // present a table view controller displaying all answered questions
     }
     
+    // Debug only
+    @objc func didTapSimulate() {
+        hapticGenerator.selectionChanged()
+        
+        
+        let alertController = UIAlertController(title: "Do you want to go directly to the end of the quiz?", message: "We will run a simulation for you.", preferredStyle: .alert)
+        if self.numOfAnsweredQuestions != 0 {
+            alertController.addAction(UIAlertAction(title: "Simulate unanswered questions", style: .default, handler: { (_) in
+                self.getRandomAnswers(keepingExistingAnswers: true)
+                // go to result
+                self.calculateResult()
+                self.performSegue(withIdentifier: "ResultSegue", sender: self)
+            }))
+        }
+        alertController.addAction(UIAlertAction(title: "Simulate all questions", style: .default, handler: { (_) in
+            self.getRandomAnswers(keepingExistingAnswers: false)
+            // go to result
+            self.calculateResult()
+            self.performSegue(withIdentifier: "ResultSegue", sender: self)
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func getRandomAnswers(keepingExistingAnswers: Bool) {
+        for questionIndex in self.shuffled.indices {
+            let isQuestionAnswered = self.shuffled[questionIndex].selectedIndex == nil
+            if (keepingExistingAnswers ? isQuestionAnswered : true) {
+                let answerIndex = Int.random(in: 0...4)
+                self.shuffled[questionIndex].selectedIndex = answerIndex
+                self.shuffled[questionIndex].weightedAnswer = self.multiplierFromIndex[answerIndex]!
+            }
+        }
+    }
+    
     private func showExitConfirmationAlert() {
         let alertController = UIAlertController(title: "Do you want to save the current session?", message: "You can choose to save your answers and come back later to finish it, or delete the progress immediately. You cannot undo this action.", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Save and leave", style: .default, handler: { (_) in
@@ -145,9 +180,23 @@ class QuizViewController: UIViewController {
         editButton.setImage(editIcon, for: .normal)
         editButton.tintColor = .lightGray
         editButton.addTarget(self, action: #selector(didTapEdit), for: .touchUpInside)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: editButton)
-        self.navigationItem.rightBarButtonItem?.customView?.height(20)
-        self.navigationItem.rightBarButtonItem?.customView?.aspectRatio(1)
+        self.navigationItem.rightBarButtonItems = []
+        if UserDefaults.standard.bool(forKey: "shouldShowSimulationButton") {
+            let simulateButton = UIButton()
+            let simulateIcon = UIImage(named: "shortcut")?.withRenderingMode(.alwaysTemplate)
+            simulateButton.setImage(simulateIcon, for: .normal)
+            simulateButton.tintColor = .lightGray
+            simulateButton.addTarget(self, action: #selector(didTapSimulate), for: .touchUpInside)
+            self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(customView: simulateButton))
+            let fixedSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
+            fixedSpace.width = 15
+            self.navigationItem.rightBarButtonItems?.append(fixedSpace)
+        }
+        self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(customView: editButton))
+        for item in self.navigationItem.rightBarButtonItems! {
+            item.customView?.height(20)
+            item.customView?.aspectRatio(1)
+        }
         self.view.addSubview(navBarSeparator)
         addBottomView()
         addScrollView()

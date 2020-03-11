@@ -241,6 +241,10 @@ class HomeViewController: UIViewController {
         } else {
             alertController.addAction(UIAlertAction(title: "Activate", style: .default, handler: { (_) in
                 defaults.set(true, forKey: isDebugActivatedKey)
+                // set all default values for debug feature flags
+                // TODO: refactor to have a enum of flags keys
+                // TODO: have a global helper func interfacing with userdefaults to visit/update flags
+                defaults.set(true, forKey: "shouldShowSimulationButton")
                 self.goToSettings()
             }))
         }
