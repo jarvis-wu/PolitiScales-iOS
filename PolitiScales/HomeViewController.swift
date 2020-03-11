@@ -236,15 +236,12 @@ class HomeViewController: UIViewController {
         if isDebugActivated {
             alertController.addAction(UIAlertAction(title: "Deactivate", style: .default, handler: { (_) in
                 defaults.set(false, forKey: isDebugActivatedKey)
-                // TODO: reset other debug flags
+                self.setDefaultsForRegularMode()
             }))
         } else {
             alertController.addAction(UIAlertAction(title: "Activate", style: .default, handler: { (_) in
                 defaults.set(true, forKey: isDebugActivatedKey)
-                // set all default values for debug feature flags
-                // TODO: refactor to have a enum of flags keys
-                // TODO: have a global helper func interfacing with userdefaults to visit/update flags
-                defaults.set(true, forKey: "shouldShowSimulationButton")
+                self.setDefaultsForDebugMode()
                 self.goToSettings()
             }))
         }
@@ -253,6 +250,22 @@ class HomeViewController: UIViewController {
             let generator = UINotificationFeedbackGenerator()
             generator.notificationOccurred(.warning)
         }
+    }
+    
+    private func setDefaultsForDebugMode() {
+        // TODO: refactor to have a enum of flags keys
+        // TODO: have a global helper func interfacing with userdefaults to visit/update flags
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: "shouldShowSimulationButton")
+        defaults.set(true, forKey: "shouldShowQuestionsUnshuffled")
+    }
+    
+    private func setDefaultsForRegularMode() {
+        // TODO: refactor to have a enum of flags keys
+        // TODO: have a global helper func interfacing with userdefaults to visit/update flags
+        let defaults = UserDefaults.standard
+        defaults.set(false, forKey: "shouldShowSimulationButton")
+        defaults.set(false, forKey: "shouldShowQuestionsUnshuffled")
     }
 
 }

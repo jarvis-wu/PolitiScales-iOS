@@ -29,7 +29,7 @@ class QuizViewController: UIViewController {
     
     @objc func didSelectAnswer(_ sender: UIButton) {
         guard let index = anwersContainerView.subviews.firstIndex(of: sender) else { return }
-        print("\(index) is selected")
+        print("Answer \(index + 1) is selected for question \(currentQuestionNumber + 1)")
         hapticGenerator.selectionChanged()
         shuffled[currentQuestionNumber].selectedIndex = index
         shuffled[currentQuestionNumber].weightedAnswer = multiplierFromIndex[index]!
@@ -94,6 +94,7 @@ class QuizViewController: UIViewController {
             let isQuestionAnswered = self.shuffled[questionIndex].selectedIndex == nil
             if (keepingExistingAnswers ? isQuestionAnswered : true) {
                 let answerIndex = Int.random(in: 0...4)
+                print("Answer \(answerIndex + 1) is simulated for question \(questionIndex + 1)")
                 self.shuffled[questionIndex].selectedIndex = answerIndex
                 self.shuffled[questionIndex].weightedAnswer = self.multiplierFromIndex[answerIndex]!
             }
@@ -115,7 +116,7 @@ class QuizViewController: UIViewController {
     }
     
     // TODO: refactor into user defaults when implementing debug mode
-    let shouldShuffle = false // FOR DEBUG PURPOSE; OTHERWISE IT SHOULD ALWAYS BE TRUE
+    let shouldShuffle = !UserDefaults.standard.bool(forKey: "shouldShowQuestionsUnshuffled")
     
     let multiplierFromIndex: [Int: Double] = [0: 1, 1: 2/3, 2: 0, 3: -2/3, 4: -1]
     var results = [String : (Int, Int)]()
@@ -357,26 +358,60 @@ class QuizViewController: UIViewController {
         results["vega"] = (Int(((axes["vega"]!.0 / axes["vega"]!.1) * 100).rounded()), 100 - Int(((axes["vega"]!.0 / axes["vega"]!.1) * 100).rounded()))
         results["anar"] = (Int(((axes["anar"]!.0 / axes["anar"]!.1) * 100).rounded()), 100 - Int(((axes["anar"]!.0 / axes["anar"]!.1) * 100).rounded()))
         
+        // Begin logging the results
+        print("\n============ Result ===========")
+        
+        print("\n---------- Main axes ----------\n")
         // For this section: left + neutrual + right = 100
         print("Constructivism \(results["c"]!.0) : Neutrual \(100 - results["c"]!.0 - results["c"]!.1) : Essentialism \(results["c"]!.1)")
-        print("Rehabilitative justice \(results["j"]!.0) : Neutrual \(100 - results["j"]!.0 - results["j"]!.1) : Punitive justice \(results["j"]!.1)")
-        print("Progressism \(results["s"]!.0) : Neutrual \(100 - results["s"]!.0 - results["s"]!.1) : Conservatism \(results["s"]!.1)")
-        print("Internationalism \(results["b"]!.0) : \(100 - results["b"]!.0 - results["b"]!.1) : Nationalism \(results["b"]!.1)")
-        print("Communism \(results["p"]!.0) : Neutrual \(100 - results["p"]!.0 - results["p"]!.1) : Capitalism \(results["p"]!.1)")
-        print("Regulationism \(results["m"]!.0) : Neutrual \(100 - results["m"]!.0 - results["m"]!.1) : Laissez-faire \(results["m"]!.1)")
-        print("Ecology \(results["e"]!.0) : Neutrual \(100 - results["e"]!.0 - results["e"]!.1) : Productivism \(results["e"]!.1)")
-        print("Revolution \(results["t"]!.0) : Neutrual \(100 - results["t"]!.0 - results["t"]!.1) : Reformism \(results["t"]!.1)")
+        print("\(String(repeating: "░", count: results["c"]!.0 ))\(String(repeating: "▒", count: 100 - results["c"]!.0 - results["c"]!.1))\(String(repeating: "▓", count: results["c"]!.1))\n")
         
+        print("Rehabilitative justice \(results["j"]!.0) : Neutrual \(100 - results["j"]!.0 - results["j"]!.1) : Punitive justice \(results["j"]!.1)")
+        print("\(String(repeating: "░", count: results["j"]!.0 ))\(String(repeating: "▒", count: 100 - results["j"]!.0 - results["j"]!.1))\(String(repeating: "▓", count: results["j"]!.1))\n")
+        
+        print("Progressism \(results["s"]!.0) : Neutrual \(100 - results["s"]!.0 - results["s"]!.1) : Conservatism \(results["s"]!.1)")
+        print("\(String(repeating: "░", count: results["s"]!.0))\(String(repeating: "▒", count: 100 - results["s"]!.0 - results["s"]!.1))\(String(repeating: "▓", count: results["s"]!.1))\n")
+        
+        print("Internationalism \(results["b"]!.0) : \(100 - results["b"]!.0 - results["b"]!.1) : Nationalism \(results["b"]!.1)")
+        print("\(String(repeating: "░", count: results["b"]!.0))\(String(repeating: "▒", count: 100 - results["b"]!.0 - results["b"]!.1))\(String(repeating: "▓", count: results["b"]!.1))\n")
+        
+        print("Communism \(results["p"]!.0) : Neutrual \(100 - results["p"]!.0 - results["p"]!.1) : Capitalism \(results["p"]!.1)")
+        print("\(String(repeating: "░", count: results["p"]!.0))\(String(repeating: "▒", count: 100 - results["p"]!.0 - results["p"]!.1))\(String(repeating: "▓", count: results["p"]!.1))\n")
+        
+        print("Regulationism \(results["m"]!.0) : Neutrual \(100 - results["m"]!.0 - results["m"]!.1) : Laissez-faire \(results["m"]!.1)")
+        print("\(String(repeating: "░", count: results["m"]!.0))\(String(repeating: "▒", count: 100 - results["m"]!.0 - results["m"]!.1))\(String(repeating: "▓", count: results["m"]!.1))\n")
+        
+        print("Ecology \(results["e"]!.0) : Neutrual \(100 - results["e"]!.0 - results["e"]!.1) : Productivism \(results["e"]!.1)")
+        print("\(String(repeating: "░", count: results["e"]!.0))\(String(repeating: "▒", count: 100 - results["e"]!.0 - results["e"]!.1))\(String(repeating: "▓", count: results["e"]!.1))\n")
+        
+        print("Revolution \(results["t"]!.0) : Neutrual \(100 - results["t"]!.0 - results["t"]!.1) : Reformism \(results["t"]!.1)")
+        print("\(String(repeating: "░", count: results["t"]!.0))\(String(repeating: "▒", count: 100 - results["t"]!.0 - results["t"]!.1))\(String(repeating: "▓", count: results["t"]!.1))\n")
+        
+        print("\n---------- Bonus axes ----------\n")
         // For this bonus section: yes + no = 100; if user selects anything neutral or negative, it will be 100% "no",
         // because only positive values are added to the valueYes axis, and there is no valueNo axis for any of the following.
         // i.e.: if 100%: strong characteristic; if 66%: weak characteristic; if other: no such characteristic presented
         print("Feminism \(results["femi"]!.0) : Non-Feminism \(results["femi"]!.1)")
+        print("\(String(repeating: "░", count: results["femi"]!.0 ))\(String(repeating: "▓", count: results["femi"]!.1))\n")
+        
         print("Missionary \(results["reli"]!.0) : Non-Missionary \(results["reli"]!.1)")
+        print("\(String(repeating: "░", count: results["reli"]!.0))\(String(repeating: "▓", count: results["reli"]!.1))\n")
+        
         print("Complotism \(results["comp"]!.0) : Non-Complotism \(results["comp"]!.1)")
+        print("\(String(repeating: "░", count: results["comp"]!.0))\(String(repeating: "▓", count: results["comp"]!.1))\n")
+        
         print("Pragmatism \(results["prag"]!.0) : Non-Pragmatism \(results["prag"]!.1)")
+        print("\(String(repeating: "░", count: results["prag"]!.0))\(String(repeating: "▓", count: results["prag"]!.1))\n")
+        
         print("Monarchism \(results["mona"]!.0) : Non-Monarchism \(results["mona"]!.1)")
+        print("\(String(repeating: "░", count: results["mona"]!.0))\(String(repeating: "▓", count: results["mona"]!.1))\n")
+        
         print("Veganism \(results["vega"]!.0) : Non-Veganism \(results["vega"]!.1)")
+        print("\(String(repeating: "░", count: results["vega"]!.0))\(String(repeating: "▓", count: results["vega"]!.1))\n")
+        
         print("Anarchism \(results["anar"]!.0) : Non-Anarchism \(results["anar"]!.1)")
+        print("\(String(repeating: "░", count: results["anar"]!.0))\(String(repeating: "▓", count: results["anar"]!.1))\n")
+        
     }
     
     private func goToNext() {
