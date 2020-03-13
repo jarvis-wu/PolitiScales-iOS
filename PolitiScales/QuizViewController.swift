@@ -13,6 +13,7 @@ class QuizViewController: UIViewController {
     struct AnswerItemMetadata {
         let text: String
         let color: UIColor
+        let emoji: String
     }
     
     enum AnswerItem: CaseIterable {
@@ -25,15 +26,15 @@ class QuizViewController: UIViewController {
         func getMetadata() -> AnswerItemMetadata {
             switch self {
             case .absoulutelyAgree:
-                return AnswerItemMetadata(text: "Absoulutely agree", color: UIColor(red: 95/255, green: 162/255, blue: 250/255, alpha: 1))
+                return AnswerItemMetadata(text: "Absoulutely agree", color: UIColor(red: 95/255, green: 162/255, blue: 250/255, alpha: 1), emoji: "💙")
             case .somewhatAgree:
-                return AnswerItemMetadata(text: "Somewhat agree", color: UIColor(red: 105/255, green: 219/255, blue: 124/255, alpha: 1))
+                return AnswerItemMetadata(text: "Somewhat agree", color: UIColor(red: 105/255, green: 219/255, blue: 124/255, alpha: 1), emoji: "💚")
             case .neutral:
-                return AnswerItemMetadata(text: "Neutral or hesitant", color: UIColor(red: 252/255, green: 196/255, blue: 25/255, alpha: 1))
+                return AnswerItemMetadata(text: "Neutral or hesitant", color: UIColor(red: 252/255, green: 196/255, blue: 25/255, alpha: 1), emoji: "💛")
             case .somewhatDisagree:
-                return AnswerItemMetadata(text: "Rather disagree", color: UIColor(red: 255/255, green: 146/255, blue: 43/255, alpha: 1))
+                return AnswerItemMetadata(text: "Rather disagree", color: UIColor(red: 255/255, green: 146/255, blue: 43/255, alpha: 1), emoji: "🧡")
             case .absolutelyDisagree:
-                return AnswerItemMetadata(text: "Absoulutely disagree", color: UIColor(red: 255/255, green: 107/255, blue: 107/255, alpha: 1))
+                return AnswerItemMetadata(text: "Absoulutely disagree", color: UIColor(red: 255/255, green: 107/255, blue: 107/255, alpha: 1), emoji: "❤️")
             }
         }
     }
@@ -131,7 +132,7 @@ class QuizViewController: UIViewController {
     
     private func logAnswer(questionIndex: Int, answerIndex: Int, isSimulated: Bool = false) {
         print("🤔 Question \(questionIndex + 1): \(shuffled[questionIndex].questionText)")
-        print("✏️ Answer \(answerIndex + 1) is selected (\(AnswerItem.allCases[answerIndex].getMetadata().text))\(isSimulated ? " - simulated 🎰" : "")\n")
+        print("✏️ Answer \(answerIndex + 1) is selected (\(AnswerItem.allCases[answerIndex].getMetadata().text) \(AnswerItem.allCases[answerIndex].getMetadata().emoji))\(isSimulated ? " - simulated 🎰" : "")\n")
     }
     
     private func showExitConfirmationAlert() {
@@ -274,7 +275,8 @@ class QuizViewController: UIViewController {
         questionCard.topToBottom(of: progressBar, offset: 20)
         questionCard.centerXToSuperview()
         questionCard.leadingToSuperview(offset: 30)
-        questionCard.bottom(to: questionCardLabel, offset: 20)
+        questionCard.bottom(to: questionCardLabel, offset: 20, relation: .equalOrGreater)
+        questionCard.bottom(to: questionCardIcon, offset: 20, relation: .equalOrGreater)
         questionCardIcon.height(80)
         questionCardIcon.aspectRatio(1)
         questionCardIcon.leadingToSuperview(offset: 20)
