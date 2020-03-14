@@ -59,14 +59,14 @@ class QuizViewController: UIViewController {
     @objc func didSelectAnswer(_ sender: UIButton) {
         guard let index = anwersContainerView.subviews.firstIndex(of: sender) else { return }
         logAnswer(questionIndex: currentQuestionNumber, answerIndex: index)
-        hapticGenerator.selectionChanged()
+        tryGenerateSelectionChangedHaptic()
         shuffled[currentQuestionNumber].selectedIndex = index
         shuffled[currentQuestionNumber].weightedAnswer = multiplierFromIndex[index]!
         goToNext()
     }
     
     @objc func didTapGoBack() {
-        hapticGenerator.selectionChanged()
+        tryGenerateSelectionChangedHaptic()
         if currentQuestionNumber == 0 && numOfAnsweredQuestions == 0 { // exit
             self.navigationController?.popViewController(animated: true)
         } else if currentQuestionNumber == 0 {
@@ -77,7 +77,7 @@ class QuizViewController: UIViewController {
     }
     
     @objc func didTapExit() {
-        hapticGenerator.selectionChanged()
+        tryGenerateSelectionChangedHaptic()
         // TODO: we do want to ask for confirmation if the user is going BACK from later questions to the first question
         // Which means we actually want to check progress, rather than current index
         // Solution: check the count of elements in self.shuffled for which selectedIndex != nil; if count == 0, then exit without confirmation
@@ -89,16 +89,14 @@ class QuizViewController: UIViewController {
     }
     
     @objc func didTapEdit() {
-        hapticGenerator.selectionChanged()
+        tryGenerateSelectionChangedHaptic()
         print("Edit tapped")
         // present a table view controller displaying all answered questions
     }
     
     // Debug only
     @objc func didTapSimulate() {
-        hapticGenerator.selectionChanged()
-        
-        
+        tryGenerateSelectionChangedHaptic()
         let alertController = UIAlertController(title: "Do you want to go directly to the end of the quiz?", message: "We will run a simulation for you.", preferredStyle: .alert)
         if self.numOfAnsweredQuestions != 0 {
             alertController.addAction(UIAlertAction(title: "Simulate unanswered questions", style: .default, handler: { (_) in
@@ -149,7 +147,6 @@ class QuizViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    // TODO: refactor into user defaults when implementing debug mode
     let shouldShuffle = !UserDefaults.standard.bool(forKey: "shouldShowQuestionsUnshuffled")
     
     let multiplierFromIndex: [Int: Double] = [0: 1, 1: 2/3, 2: 0, 3: -2/3, 4: -1]
@@ -346,6 +343,12 @@ class QuizViewController: UIViewController {
       }
     }
     
+    private func tryGenerateSelectionChangedHaptic() {
+        if UserDefaults.standard.bool(forKey: "hapticEffectOn") {
+            hapticGenerator.selectionChanged()
+        }
+    }
+    
     private func calculateResult() {
         var axes = [String : (Double, Double)](); // axis name : (value, sum)
         for question in shuffled {
@@ -389,9 +392,9 @@ class QuizViewController: UIViewController {
         results["anar"] = (Int(((axes["anar"]!.0 / axes["anar"]!.1) * 100).rounded()), 100 - Int(((axes["anar"]!.0 / axes["anar"]!.1) * 100).rounded()))
         
         // Begin logging the results
-        print("\n============ Result ===========")
+        print("\n============================================== Results =============================================")
         
-        print("\n---------- Main axes ----------\n")
+        print("\n--------------------------------------------- Main axes --------------------------------------------\n")
         // For this section: left + neutrual + right = 100
         print("💡 Constructivism \(results["c"]!.0) : Neutrual \(100 - results["c"]!.0 - results["c"]!.1) : Essentialism \(results["c"]!.1) 🧬")
         print("\(String(repeating: "▒", count: results["c"]!.0 ))\(String(repeating: "░", count: 100 - results["c"]!.0 - results["c"]!.1))\(String(repeating: "▓", count: results["c"]!.1))\n")
@@ -417,7 +420,7 @@ class QuizViewController: UIViewController {
         print("✊🏼 Revolution \(results["t"]!.0) : Neutrual \(100 - results["t"]!.0 - results["t"]!.1) : Reformism \(results["t"]!.1) 🗳")
         print("\(String(repeating: "▒", count: results["t"]!.0))\(String(repeating: "░", count: 100 - results["t"]!.0 - results["t"]!.1))\(String(repeating: "▓", count: results["t"]!.1))\n")
         
-        print("\n---------- Bonus axes ----------\n")
+        print("\n-------------------------------------------- Bonus axes --------------------------------------------\n")
         // For this bonus section: yes + no = 100; if user selects anything neutral or negative, it will be 100% "no",
         // because only positive values are added to the valueYes axis, and there is no valueNo axis for any of the following.
         // i.e.: if 100%: strong characteristic; if 66%: weak characteristic; if other: no such characteristic presented

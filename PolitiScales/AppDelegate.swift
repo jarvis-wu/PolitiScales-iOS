@@ -15,8 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let defaults = UserDefaults.standard
         // TODO: can we resolve those unsatisfiable constraints?
-        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable") // hide constraints-related log in console
+        defaults.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable") // hide constraints-related log in console
+        defaults.set((defaults.value(forKey: "soundEffectOn") as? Bool) ?? true, forKey: "soundEffectOn")
+        defaults.set((defaults.value(forKey: "hapticEffectOn") as? Bool) ?? true, forKey: "soundEffectOn")
         return true
     }
 

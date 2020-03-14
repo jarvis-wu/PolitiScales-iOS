@@ -206,23 +206,29 @@ class HomeViewController: UIViewController {
     }
     
     @objc func didTapStartButton() {
-        hapticGenerator.selectionChanged()
+        tryGenerateSelectionChangedHaptic()
         performSegue(withIdentifier: "ShowQuiz", sender: self)
     }
     
     @objc func didTapSettingsButton() {
-        hapticGenerator.selectionChanged()
+        tryGenerateSelectionChangedHaptic()
         goToSettings()
     }
     
     @objc func didTapShareButton() {
-        hapticGenerator.selectionChanged()
+        tryGenerateSelectionChangedHaptic()
         print("open share")
     }
     
     private func goToSettings() {
         let settingsVC = SettingsViewController()
         navigationController?.pushViewController(settingsVC, animated: true)
+    }
+    
+    private func tryGenerateSelectionChangedHaptic() {
+        if UserDefaults.standard.bool(forKey: "hapticEffectOn") {
+            hapticGenerator.selectionChanged()
+        }
     }
     
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -248,7 +254,9 @@ class HomeViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alertController, animated: true) {
             let generator = UINotificationFeedbackGenerator()
-            generator.notificationOccurred(.warning)
+            if UserDefaults.standard.bool(forKey: "hapticEffectOn") {
+                generator.notificationOccurred(.warning)
+            }
         }
     }
     
