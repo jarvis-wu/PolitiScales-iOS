@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaults = UserDefaults.standard
         // TODO: can we resolve those unsatisfiable constraints?
         defaults.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable") // hide constraints-related log in console
-        defaults.set((defaults.value(forKey: "soundEffectOn") as? Bool) ?? true, forKey: "soundEffectOn")
+        defaults.set((defaults.value(forKey: "soundEffectOn") as? Bool) ?? true, forKey: "soundEffectOn") // TODO: does this syntax work? looks like not.
         defaults.set((defaults.value(forKey: "hapticEffectOn") as? Bool) ?? true, forKey: "soundEffectOn")
         return true
     }

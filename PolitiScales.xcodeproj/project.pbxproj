@@ -39,6 +39,7 @@
 		462256AC24020626006399C5 /* DuolingoBorderedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462256A924020626006399C5 /* DuolingoBorderedCard.swift */; };
 		46A12C442415BBA900B91E9C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A12C432415BBA900B91E9C /* SettingsViewController.swift */; };
 		46A12C462415F67700B91E9C /* DuolingoProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A12C452415F67600B91E9C /* DuolingoProgressView.swift */; };
+		46A12C4D241D8C8B00B91E9C /* click.caf in Resources */ = {isa = PBXBuildFile; fileRef = 46A12C4C241D8C8B00B91E9C /* click.caf */; };
 		D00EB7647941AC5D43135D5A /* libPods-PolitiScales-PolitiScalesUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B24C19FD2EB039A24DD32FB0 /* libPods-PolitiScales-PolitiScalesUITests.a */; };
 		F65F39550B316CCAC50370EC /* libPods-PolitiScales.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D236C9CAAFCED6B230BAEF7E /* libPods-PolitiScales.a */; };
 /* End PBXBuildFile section */
@@ -86,6 +87,7 @@
 		462256A924020626006399C5 /* DuolingoBorderedCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuolingoBorderedCard.swift; sourceTree = "<group>"; };
 		46A12C432415BBA900B91E9C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		46A12C452415F67600B91E9C /* DuolingoProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DuolingoProgressView.swift; sourceTree = "<group>"; };
+		46A12C4C241D8C8B00B91E9C /* click.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = click.caf; sourceTree = "<group>"; };
 		6C1EE55CF296C23D0424C6A9 /* Pods-PolitiScales.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolitiScales.release.xcconfig"; path = "Target Support Files/Pods-PolitiScales/Pods-PolitiScales.release.xcconfig"; sourceTree = "<group>"; };
 		7E6A60413BA1274E46F6DC0C /* Pods-PolitiScales-PolitiScalesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolitiScales-PolitiScalesUITests.debug.xcconfig"; path = "Target Support Files/Pods-PolitiScales-PolitiScalesUITests/Pods-PolitiScales-PolitiScalesUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AFA840948524ED3F3C4834D4 /* Pods-PolitiScalesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PolitiScalesTests.debug.xcconfig"; path = "Target Support Files/Pods-PolitiScalesTests/Pods-PolitiScalesTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				462256982401E5AE006399C5 /* Duo UI */,
 				318CBE6323C012C4004F2E3A /* Main.storyboard */,
 				318CBE6623C012C6004F2E3A /* Assets.xcassets */,
+				46A12C4C241D8C8B00B91E9C /* click.caf */,
 				318CBE6823C012C6004F2E3A /* LaunchScreen.storyboard */,
 				318CBE6B23C012C6004F2E3A /* Info.plist */,
 			);
@@ -331,6 +334,7 @@
 				318CBE6A23C012C6004F2E3A /* LaunchScreen.storyboard in Resources */,
 				318CBE6723C012C6004F2E3A /* Assets.xcassets in Resources */,
 				318CBE6523C012C4004F2E3A /* Main.storyboard in Resources */,
+				46A12C4D241D8C8B00B91E9C /* click.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

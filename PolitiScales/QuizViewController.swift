@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class QuizViewController: UIViewController {
     
@@ -42,6 +43,7 @@ class QuizViewController: UIViewController {
     // TODO: all isUserInteractionEnabled is used to let the scroll work on subviews; is this the only solution?
     
     let hapticGenerator = UISelectionFeedbackGenerator()
+    var clickSound: AVAudioPlayer?
     let scrollView = UIScrollView()
     let contentView = UIView()
     let progressBar = DuolingoProgressView()
@@ -58,6 +60,7 @@ class QuizViewController: UIViewController {
     
     @objc func didSelectAnswer(_ sender: UIButton) {
         guard let index = anwersContainerView.subviews.firstIndex(of: sender) else { return }
+        tryPlayClickSound()
         logAnswer(questionIndex: currentQuestionNumber, answerIndex: index)
         tryGenerateSelectionChangedHaptic()
         shuffled[currentQuestionNumber].selectedIndex = index
@@ -236,6 +239,17 @@ class QuizViewController: UIViewController {
         addQuestionCard()
         addAnswersContainerView()
         addConstraints()
+        prepareAudioPlayer()
+    }
+    
+    private func prepareAudioPlayer() {
+        let path = Bundle.main.path(forResource: "click.caf", ofType: nil)!
+        let url = URL(fileURLWithPath: path)
+        do {
+            clickSound = try AVAudioPlayer(contentsOf: url)
+            clickSound?.prepareToPlay()
+            clickSound?.volume = 0.1
+        } catch {}
     }
     
     private func addScrollView() {
@@ -347,6 +361,11 @@ class QuizViewController: UIViewController {
         if UserDefaults.standard.bool(forKey: "hapticEffectOn") {
             hapticGenerator.selectionChanged()
         }
+    }
+    
+    private func tryPlayClickSound() {
+        guard UserDefaults.standard.bool(forKey: "soundEffectOn"), let sound = self.clickSound else { return }
+        sound.play()
     }
     
     private func calculateResult() {
