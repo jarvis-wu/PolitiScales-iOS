@@ -17,8 +17,12 @@ class ResultViewController: UIViewController {
     let bottomView = UIView()
     let navBarSeparator = DuolingoSeparator()
     var goHomeButton = DuolingoButton()
-    var resultLabel = DuolingoLabel()
-    var results: [String : (Int, Int)]!
+    var resultStackView = UIStackView()
+    var results: [String : (Int, Int)]! {
+        didSet {
+            setupResultStackView()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +48,7 @@ class ResultViewController: UIViewController {
     private func addSubviews() {
         addBottomView()
         addScrollView()
-        addResultLabel()
+        addResultStackView()
     }
     
     private func addBottomView() {
@@ -67,10 +71,10 @@ class ResultViewController: UIViewController {
         bottomView.topToBottom(of: goHomeButton, offset: -75)
         bottomView.widthToSuperview()
         bottomView.bottomToSuperview()
-        resultLabel.leadingToSuperview(offset: 30)
-        resultLabel.trailingToSuperview(offset: 30)
-        resultLabel.top(to: contentView, offset: 25)
-        resultLabel.bottom(to: contentView, offset: -30)
+        resultStackView.leadingToSuperview(offset: 30)
+        resultStackView.trailingToSuperview(offset: 30)
+        resultStackView.top(to: contentView, offset: 25)
+        resultStackView.bottom(to: contentView, offset: -30)
         self.view.bringSubviewToFront(bottomView)
     }
     
@@ -84,42 +88,24 @@ class ResultViewController: UIViewController {
         contentView.widthToSuperview()
     }
     
-    private func addResultLabel() {
-        self.view.addSubview(resultLabel)
-        resultLabel.numberOfLines = 0
-        resultLabel.font = resultLabel.font.withSize(12)
-        resultLabel.text = """
-        Constructivism \(results["c"]!.0) : Neutral \(100 - results["c"]!.0 - results["c"]!.1) : Essentialism \(results["c"]!.1)
-        \(String(repeating: "▒", count: results["c"]!.0 ))\(String(repeating: "░", count: 100 - results["c"]!.0 - results["c"]!.1))\(String(repeating: "▓", count: results["c"]!.1))\n
-        Rehabilitative justice \(results["j"]!.0) : Neutral \(100 - results["j"]!.0 - results["j"]!.1) : Punitive justice \(results["j"]!.1)
-        \(String(repeating: "▒", count: results["j"]!.0 ))\(String(repeating: "░", count: 100 - results["j"]!.0 - results["j"]!.1))\(String(repeating: "▓", count: results["j"]!.1))\n
-        Progressism \(results["s"]!.0) : Neutral \(100 - results["s"]!.0 - results["s"]!.1) : Conservatism \(results["s"]!.1)
-        \(String(repeating: "▒", count: results["s"]!.0))\(String(repeating: "░", count: 100 - results["s"]!.0 - results["s"]!.1))\(String(repeating: "▓", count: results["s"]!.1))\n
-        Internationalism \(results["b"]!.0) : \(100 - results["b"]!.0 - results["b"]!.1) : Nationalism \(results["b"]!.1)
-        \(String(repeating: "▒", count: results["b"]!.0))\(String(repeating: "░", count: 100 - results["b"]!.0 - results["b"]!.1))\(String(repeating: "▓", count: results["b"]!.1))\n
-        Communism \(results["p"]!.0) : Neutral \(100 - results["p"]!.0 - results["p"]!.1) : Capitalism \(results["p"]!.1)
-        \(String(repeating: "▒", count: results["p"]!.0))\(String(repeating: "░", count: 100 - results["p"]!.0 - results["p"]!.1))\(String(repeating: "▓", count: results["p"]!.1))\n
-        Regulationism \(results["m"]!.0) : Neutral \(100 - results["m"]!.0 - results["m"]!.1) : Laissez-faire \(results["m"]!.1)
-        \(String(repeating: "▒", count: results["m"]!.0))\(String(repeating: "░", count: 100 - results["m"]!.0 - results["m"]!.1))\(String(repeating: "▓", count: results["m"]!.1))\n
-        Ecology \(results["e"]!.0) : Neutral \(100 - results["e"]!.0 - results["e"]!.1) : Productivism \(results["e"]!.1)
-        \(String(repeating: "▒", count: results["e"]!.0))\(String(repeating: "░", count: 100 - results["e"]!.0 - results["e"]!.1))\(String(repeating: "▓", count: results["e"]!.1))\n
-        Revolution \(results["t"]!.0) : Neutral \(100 - results["t"]!.0 - results["t"]!.1) : Reformism \(results["t"]!.1)
-        \(String(repeating: "▒", count: results["t"]!.0))\(String(repeating: "░", count: 100 - results["t"]!.0 - results["t"]!.1))\(String(repeating: "▓", count: results["t"]!.1))\n
-        Feminism \(results["femi"]!.0) : Non-Feminism \(results["femi"]!.1)
-        \(String(repeating: "▓", count: results["femi"]!.0 ))\(String(repeating: "░", count: results["femi"]!.1))\n
-        Missionary \(results["reli"]!.0) : Non-Missionary \(results["reli"]!.1)
-        \(String(repeating: "▓", count: results["reli"]!.0))\(String(repeating: "░", count: results["reli"]!.1))\n
-        Complotism \(results["comp"]!.0) : Non-Complotism \(results["comp"]!.1)
-        \(String(repeating: "▓", count: results["comp"]!.0))\(String(repeating: "░", count: results["comp"]!.1))\n
-        Pragmatism \(results["prag"]!.0) : Non-Pragmatism \(results["prag"]!.1)
-        \(String(repeating: "▓", count: results["prag"]!.0))\(String(repeating: "░", count: results["prag"]!.1))\n
-        Monarchism \(results["mona"]!.0) : Non-Monarchism \(results["mona"]!.1)
-        \(String(repeating: "▓", count: results["mona"]!.0))\(String(repeating: "░", count: results["mona"]!.1))\n
-        Veganism \(results["vega"]!.0) : Non-Veganism \(results["vega"]!.1)
-        \(String(repeating: "▓", count: results["vega"]!.0))\(String(repeating: "░", count: results["vega"]!.1))\n
-        Anarchism \(results["anar"]!.0) : Non-Anarchism \(results["anar"]!.1)
-        \(String(repeating: "▓", count: results["anar"]!.0))\(String(repeating: "░", count: results["anar"]!.1))\n
-        """
+    private func addResultStackView() {
+        self.view.addSubview(resultStackView)
+        resultStackView.isUserInteractionEnabled = false
+        resultStackView.axis = .vertical
+        resultStackView.spacing = 10
+    }
+    
+    private func setupResultStackView() {
+        let orderedMainKeys = ["c", "j", "s", "b", "p", "m", "e", "t"]
+        // TODO
+//        let orderedBonusKeys = ["femi", "reli", "comp", "prag", "mona", "vega", "anar"]
+        for key in orderedMainKeys {
+            resultStackView.addArrangedSubview(ResultRowView(resultItem: ResultItem(values: results[key]!,
+                                                                                    leftTitle: leftAxisTitle(for: key)!,
+                                                                                    rightTitle: rightAxisTitle(for: key)!,
+                                                                                    leftColor: leftAxisColor(for: key)!,
+                                                                                    rightColor: rightAxisColor(for: key)!)))
+        }
     }
     
     @objc func didTapGoHomeButton() {
@@ -140,4 +126,112 @@ class ResultViewController: UIViewController {
         }
     }
     
+}
+
+class ResultRowView: UIView {
+    
+    var titleStack = UIStackView()
+    var barView = UIView()
+    var leftIcon = UIImageView()
+    var rightIcon = UIImageView()
+    var leftProgress = OneSideProgressView(side: OneSideProgressView.Side.left)
+    var rightProgress = OneSideProgressView(side: OneSideProgressView.Side.right)
+    
+    init(resultItem: ResultItem) {
+        super.init(frame: .zero)
+        isUserInteractionEnabled = false
+        titleStack.axis = .horizontal
+        titleStack.distribution = .equalSpacing
+        let leftTitleLabel = DuolingoLabel()
+        leftTitleLabel.text = resultItem.leftTitle
+        let rightTitleLabel = DuolingoLabel()
+        rightTitleLabel.text = resultItem.rightTitle
+        titleStack.addArrangedSubview(leftTitleLabel)
+        titleStack.addArrangedSubview(rightTitleLabel)
+        self.addSubview(titleStack)
+        titleStack.edgesToSuperview(excluding: [.bottom])
+        barView.backgroundColor = DuoUI.shared.DUO_PROGRESS_DEFAULT_TRACK_COLOR
+        barView.height(30)
+        self.addSubview(barView)
+        barView.bottomToSuperview(offset: -10)
+        barView.leadingToSuperview(offset: 30)
+        barView.trailingToSuperview(offset: 30)
+        barView.topToBottom(of: titleStack, offset: 10)
+        self.addSubview(leftIcon)
+        leftIcon.height(40)
+        leftIcon.layer.cornerRadius = 40 / 2
+        leftIcon.aspectRatio(1)
+        leftIcon.backgroundColor = UIColor(white: 0.95, alpha: 1) // TODO: replace with icon image
+        leftIcon.centerY(to: barView)
+        leftIcon.leadingToSuperview()
+        self.addSubview(rightIcon)
+        rightIcon.height(40)
+        rightIcon.layer.cornerRadius = 40 / 2
+        rightIcon.aspectRatio(1)
+        rightIcon.backgroundColor = UIColor(white: 0.95 , alpha: 1) // TODO: replace with icon image
+        rightIcon.centerY(to: barView)
+        rightIcon.trailingToSuperview()
+        barView.addSubview(leftProgress)
+        leftProgress.backgroundColor = resultItem.leftColor
+        leftProgress.widthToSuperview(multiplier: CGFloat(resultItem.values.0) / CGFloat(100))
+        leftProgress.edgesToSuperview(excluding: [.trailing])
+        barView.addSubview(rightProgress)
+        rightProgress.backgroundColor = resultItem.rightColor
+        rightProgress.widthToSuperview(multiplier: CGFloat(resultItem.values.1) / CGFloat(100))
+        rightProgress.edgesToSuperview(excluding: [.leading])
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+class OneSideProgressView: UIView {
+    
+    var side: Side
+    
+    enum Side {
+        case left
+        case right
+    }
+    
+    init(side: Side) {
+        self.side = side
+        super.init(frame: .zero)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        switch side {
+        case .left:
+            self.roundCorners(corners: [.topRight, .bottomRight], radius: 30 / 2)
+        case .right:
+            self.roundCorners(corners: [.topLeft, .bottomLeft], radius: 30 / 2)
+        }
+    }
+    
+}
+
+struct ResultItem {
+    
+    var values: (Int, Int)
+    var leftTitle: String
+    var rightTitle: String
+    var leftColor: UIColor
+    var rightColor: UIColor
+    
+}
+
+extension UIView {
+   func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
+    }
 }

@@ -101,7 +101,7 @@ class QuizViewController: UIViewController {
     // Debug only
     @objc func didTapSimulate() {
         tryGenerateSelectionChangedHaptic()
-        let alertController = UIAlertController(title: "Do you want to go directly to the end of the quiz?", message: "We will run a simulation for you.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Do you want to jump to the end?", message: "We will run a simulation for you.", preferredStyle: .alert)
         if self.numOfAnsweredQuestions != 0 {
             alertController.addAction(UIAlertAction(title: "Simulate unanswered questions", style: .default, handler: { (_) in
                 self.getRandomAnswers(keepingExistingAnswers: true)

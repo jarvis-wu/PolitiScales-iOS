@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct ValueItem {
     var axis: String
@@ -270,3 +271,55 @@ let questions: [Question] = [
     Question(questionText: questionTexts["qvega"]!, weightedAnswer: 0, valuesYes: [ValueItem(axis: "vega", value: 3)], valuesNo: [], imageName: "qvega-chicken"),
     Question(questionText: questionTexts["qanar"]!, weightedAnswer: 0, valuesYes: [ValueItem(axis: "anar", value: 3)], valuesNo: [], imageName: "qanar-earth")
 ]
+
+// TODO: Can we refactor the funcs below?
+
+func leftAxisTitle(for key: String) -> String? {
+    let leftAxisTitles = ["c" : "Constructivism", "j" : "Rehabilitative justice", "s" : "Progressism", "b" : "Internationalism", "p" : "Communism", "m" : "Regulationism", "e" : "Ecology", "t" : "Revolution", "femi" : "Feminism", "reli" : "Missionary", "comp" : "Complotism", "prag" : "Pragmatism", "mona" : "Monarchism", "vega" : "Veganism", "anar" : "Anarchism"]
+    if let title = leftAxisTitles[key] {
+        return title
+    } else {
+        return nil
+    }
+}
+
+func rightAxisTitle(for key: String) -> String? {
+    let rightAxisTitles = ["c" : "Essentialism", "j" : "Punitive justice", "s" : "Conservatism", "b" : "Nationalism", "p" : "Capitalism", "m" : "Laissez-faire", "e" : "Productivism", "t" : "Reformism"]
+    if let title = rightAxisTitles[key] {
+        return title
+    } else {
+        return nil
+    }
+}
+
+func leftAxisColor(for key: String) -> UIColor? {
+    let leftAxisColors = ["c" : UIColor(red: 192 / 255, green: 111 / 255, blue: 201 / 255, alpha: 1),
+                          "j" : UIColor(red: 119 / 255, green: 205 / 255, blue: 224 / 255, alpha: 1),
+                          "s" : UIColor(red: 148 / 255, green: 90 / 255, blue: 148 / 255, alpha: 1),
+                          "b" : UIColor(red: 98 / 255, green: 135 / 255, blue: 245 / 255, alpha: 1),
+                          "p" : UIColor(red: 224 / 255, green: 82 / 255, blue: 82 / 255, alpha: 1),
+                          "m" : UIColor(red: 112 / 255, green: 184 / 255, blue: 120 / 255, alpha: 1),
+                          "e" : UIColor(red: 189 / 255, green: 227 / 255, blue: 113 / 255, alpha: 1),
+                          "t" : UIColor(red: 230 / 255, green: 92 / 255, blue: 140 / 255, alpha: 1)]
+    if let color = leftAxisColors[key] {
+        return color
+    } else {
+        return nil
+    }
+}
+
+func rightAxisColor(for key: String) -> UIColor? {
+    let rightAxisColors = ["c" : UIColor(red: 114 / 255, green: 176 / 255, blue: 114 / 255, alpha: 1),
+                           "j" : UIColor(red: 235 / 255, green: 221 / 255, blue: 122 / 255, alpha: 1),
+                           "s" : UIColor(red: 156 / 255, green: 62 / 255, blue: 62 / 255, alpha: 1),
+                           "b" : UIColor(red: 247 / 255, green: 173 / 255, blue: 89 / 255, alpha: 1),
+                           "p" : UIColor(red: 247 / 255, green: 198 / 255, blue: 74 / 255, alpha: 1),
+                           "m" : UIColor(red: 123 / 255, green: 62 / 255, blue: 181 / 255, alpha: 1),
+                           "e" : UIColor(red: 129 / 255, green: 222 / 255, blue: 222 / 255, alpha: 1),
+                           "t" : UIColor(red: 89 / 255, green: 217 / 255, blue: 200 / 255, alpha: 1)]
+    if let color = rightAxisColors[key] {
+        return color
+    } else {
+        return nil
+    }
+}
