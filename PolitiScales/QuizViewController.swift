@@ -95,6 +95,7 @@ class QuizViewController: UIViewController {
         tryGenerateSelectionChangedHaptic()
         print("Edit tapped")
         // present a table view controller displaying all answered questions
+        self.showAlert(withTitle: "Oops", message: "Edit is not available yet.")
     }
     
     // Debug only
@@ -414,29 +415,29 @@ class QuizViewController: UIViewController {
         print("\n============================================== Results =============================================")
         
         print("\n--------------------------------------------- Main axes --------------------------------------------\n")
-        // For this section: left + neutrual + right = 100
-        print("💡 Constructivism \(results["c"]!.0) : Neutrual \(100 - results["c"]!.0 - results["c"]!.1) : Essentialism \(results["c"]!.1) 🧬")
+        // For this section: left + Neutral + right = 100
+        print("💡 Constructivism \(results["c"]!.0) : Neutral \(100 - results["c"]!.0 - results["c"]!.1) : Essentialism \(results["c"]!.1) 🧬")
         print("\(String(repeating: "▒", count: results["c"]!.0 ))\(String(repeating: "░", count: 100 - results["c"]!.0 - results["c"]!.1))\(String(repeating: "▓", count: results["c"]!.1))\n")
         
-        print("😇 Rehabilitative justice \(results["j"]!.0) : Neutrual \(100 - results["j"]!.0 - results["j"]!.1) : Punitive justice \(results["j"]!.1) 👿")
+        print("😇 Rehabilitative justice \(results["j"]!.0) : Neutral \(100 - results["j"]!.0 - results["j"]!.1) : Punitive justice \(results["j"]!.1) 👿")
         print("\(String(repeating: "▒", count: results["j"]!.0 ))\(String(repeating: "░", count: 100 - results["j"]!.0 - results["j"]!.1))\(String(repeating: "▓", count: results["j"]!.1))\n")
         
-        print("🚀 Progressism \(results["s"]!.0) : Neutrual \(100 - results["s"]!.0 - results["s"]!.1) : Conservatism \(results["s"]!.1) ✍🏼")
+        print("🚀 Progressism \(results["s"]!.0) : Neutral \(100 - results["s"]!.0 - results["s"]!.1) : Conservatism \(results["s"]!.1) ✍🏼")
         print("\(String(repeating: "▒", count: results["s"]!.0))\(String(repeating: "░", count: 100 - results["s"]!.0 - results["s"]!.1))\(String(repeating: "▓", count: results["s"]!.1))\n")
         
-        print("🌍 Internationalism \(results["b"]!.0) : \(100 - results["b"]!.0 - results["b"]!.1) : Nationalism \(results["b"]!.1) 🚩")
+        print("🌍 Internationalism \(results["b"]!.0) : Neutral\(100 - results["b"]!.0 - results["b"]!.1) : Nationalism \(results["b"]!.1) 🚩")
         print("\(String(repeating: "▒", count: results["b"]!.0))\(String(repeating: "░", count: 100 - results["b"]!.0 - results["b"]!.1))\(String(repeating: "▓", count: results["b"]!.1))\n")
         
-        print("⚒️ Communism \(results["p"]!.0) : Neutrual \(100 - results["p"]!.0 - results["p"]!.1) : Capitalism \(results["p"]!.1) 💰")
+        print("⚒️ Communism \(results["p"]!.0) : Neutral \(100 - results["p"]!.0 - results["p"]!.1) : Capitalism \(results["p"]!.1) 💰")
         print("\(String(repeating: "▒", count: results["p"]!.0))\(String(repeating: "░", count: 100 - results["p"]!.0 - results["p"]!.1))\(String(repeating: "▓", count: results["p"]!.1))\n")
         
-        print("📐 Regulationism \(results["m"]!.0) : Neutrual \(100 - results["m"]!.0 - results["m"]!.1) : Laissez-faire \(results["m"]!.1) 🦋")
+        print("📐 Regulationism \(results["m"]!.0) : Neutral \(100 - results["m"]!.0 - results["m"]!.1) : Laissez-faire \(results["m"]!.1) 🦋")
         print("\(String(repeating: "▒", count: results["m"]!.0))\(String(repeating: "░", count: 100 - results["m"]!.0 - results["m"]!.1))\(String(repeating: "▓", count: results["m"]!.1))\n")
         
-        print("🌱 Ecology \(results["e"]!.0) : Neutrual \(100 - results["e"]!.0 - results["e"]!.1) : Productivism \(results["e"]!.1) ⚙️")
+        print("🌱 Ecology \(results["e"]!.0) : Neutral \(100 - results["e"]!.0 - results["e"]!.1) : Productivism \(results["e"]!.1) ⚙️")
         print("\(String(repeating: "▒", count: results["e"]!.0))\(String(repeating: "░", count: 100 - results["e"]!.0 - results["e"]!.1))\(String(repeating: "▓", count: results["e"]!.1))\n")
         
-        print("✊🏼 Revolution \(results["t"]!.0) : Neutrual \(100 - results["t"]!.0 - results["t"]!.1) : Reformism \(results["t"]!.1) 🗳")
+        print("✊🏼 Revolution \(results["t"]!.0) : Neutral \(100 - results["t"]!.0 - results["t"]!.1) : Reformism \(results["t"]!.1) 🗳")
         print("\(String(repeating: "▒", count: results["t"]!.0))\(String(repeating: "░", count: 100 - results["t"]!.0 - results["t"]!.1))\(String(repeating: "▓", count: results["t"]!.1))\n")
         
         print("\n-------------------------------------------- Bonus axes --------------------------------------------\n")
@@ -468,6 +469,12 @@ class QuizViewController: UIViewController {
     
     private func goToNext() {
         currentQuestionNumber += 1
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? ResultViewController {
+            destination.results = self.results
+        }
     }
 
 

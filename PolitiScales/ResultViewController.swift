@@ -17,6 +17,8 @@ class ResultViewController: UIViewController {
     let bottomView = UIView()
     let navBarSeparator = DuolingoSeparator()
     var goHomeButton = DuolingoButton()
+    var resultLabel = DuolingoLabel()
+    var results: [String : (Int, Int)]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,7 @@ class ResultViewController: UIViewController {
     private func addSubviews() {
         addBottomView()
         addScrollView()
+        addResultLabel()
     }
     
     private func addBottomView() {
@@ -64,6 +67,10 @@ class ResultViewController: UIViewController {
         bottomView.topToBottom(of: goHomeButton, offset: -75)
         bottomView.widthToSuperview()
         bottomView.bottomToSuperview()
+        resultLabel.leadingToSuperview(offset: 30)
+        resultLabel.trailingToSuperview(offset: 30)
+        resultLabel.top(to: contentView, offset: 25)
+        resultLabel.bottom(to: contentView, offset: -30)
         self.view.bringSubviewToFront(bottomView)
     }
     
@@ -77,12 +84,60 @@ class ResultViewController: UIViewController {
         contentView.widthToSuperview()
     }
     
+    private func addResultLabel() {
+        self.view.addSubview(resultLabel)
+        resultLabel.numberOfLines = 0
+        resultLabel.font = resultLabel.font.withSize(12)
+        resultLabel.text = """
+        Constructivism \(results["c"]!.0) : Neutral \(100 - results["c"]!.0 - results["c"]!.1) : Essentialism \(results["c"]!.1)
+        \(String(repeating: "▒", count: results["c"]!.0 ))\(String(repeating: "░", count: 100 - results["c"]!.0 - results["c"]!.1))\(String(repeating: "▓", count: results["c"]!.1))\n
+        Rehabilitative justice \(results["j"]!.0) : Neutral \(100 - results["j"]!.0 - results["j"]!.1) : Punitive justice \(results["j"]!.1)
+        \(String(repeating: "▒", count: results["j"]!.0 ))\(String(repeating: "░", count: 100 - results["j"]!.0 - results["j"]!.1))\(String(repeating: "▓", count: results["j"]!.1))\n
+        Progressism \(results["s"]!.0) : Neutral \(100 - results["s"]!.0 - results["s"]!.1) : Conservatism \(results["s"]!.1)
+        \(String(repeating: "▒", count: results["s"]!.0))\(String(repeating: "░", count: 100 - results["s"]!.0 - results["s"]!.1))\(String(repeating: "▓", count: results["s"]!.1))\n
+        Internationalism \(results["b"]!.0) : \(100 - results["b"]!.0 - results["b"]!.1) : Nationalism \(results["b"]!.1)
+        \(String(repeating: "▒", count: results["b"]!.0))\(String(repeating: "░", count: 100 - results["b"]!.0 - results["b"]!.1))\(String(repeating: "▓", count: results["b"]!.1))\n
+        Communism \(results["p"]!.0) : Neutral \(100 - results["p"]!.0 - results["p"]!.1) : Capitalism \(results["p"]!.1)
+        \(String(repeating: "▒", count: results["p"]!.0))\(String(repeating: "░", count: 100 - results["p"]!.0 - results["p"]!.1))\(String(repeating: "▓", count: results["p"]!.1))\n
+        Regulationism \(results["m"]!.0) : Neutral \(100 - results["m"]!.0 - results["m"]!.1) : Laissez-faire \(results["m"]!.1)
+        \(String(repeating: "▒", count: results["m"]!.0))\(String(repeating: "░", count: 100 - results["m"]!.0 - results["m"]!.1))\(String(repeating: "▓", count: results["m"]!.1))\n
+        Ecology \(results["e"]!.0) : Neutral \(100 - results["e"]!.0 - results["e"]!.1) : Productivism \(results["e"]!.1)
+        \(String(repeating: "▒", count: results["e"]!.0))\(String(repeating: "░", count: 100 - results["e"]!.0 - results["e"]!.1))\(String(repeating: "▓", count: results["e"]!.1))\n
+        Revolution \(results["t"]!.0) : Neutral \(100 - results["t"]!.0 - results["t"]!.1) : Reformism \(results["t"]!.1)
+        \(String(repeating: "▒", count: results["t"]!.0))\(String(repeating: "░", count: 100 - results["t"]!.0 - results["t"]!.1))\(String(repeating: "▓", count: results["t"]!.1))\n
+        Feminism \(results["femi"]!.0) : Non-Feminism \(results["femi"]!.1)
+        \(String(repeating: "▓", count: results["femi"]!.0 ))\(String(repeating: "░", count: results["femi"]!.1))\n
+        Missionary \(results["reli"]!.0) : Non-Missionary \(results["reli"]!.1)
+        \(String(repeating: "▓", count: results["reli"]!.0))\(String(repeating: "░", count: results["reli"]!.1))\n
+        Complotism \(results["comp"]!.0) : Non-Complotism \(results["comp"]!.1)
+        \(String(repeating: "▓", count: results["comp"]!.0))\(String(repeating: "░", count: results["comp"]!.1))\n
+        Pragmatism \(results["prag"]!.0) : Non-Pragmatism \(results["prag"]!.1)
+        \(String(repeating: "▓", count: results["prag"]!.0))\(String(repeating: "░", count: results["prag"]!.1))\n
+        Monarchism \(results["mona"]!.0) : Non-Monarchism \(results["mona"]!.1)
+        \(String(repeating: "▓", count: results["mona"]!.0))\(String(repeating: "░", count: results["mona"]!.1))\n
+        Veganism \(results["vega"]!.0) : Non-Veganism \(results["vega"]!.1)
+        \(String(repeating: "▓", count: results["vega"]!.0))\(String(repeating: "░", count: results["vega"]!.1))\n
+        Anarchism \(results["anar"]!.0) : Non-Anarchism \(results["anar"]!.1)
+        \(String(repeating: "▓", count: results["anar"]!.0))\(String(repeating: "░", count: results["anar"]!.1))\n
+        """
+    }
+    
     @objc func didTapGoHomeButton() {
+        tryGenerateSelectionChangedHaptic()
         navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func didTapShareButton() {
         print("Share tapped")
+        tryGenerateSelectionChangedHaptic()
+        self.showAlert(withTitle: "Oops", message: "Share is not available yet.")
+    }
+    
+    // TODO: how to refactor this?
+    private func tryGenerateSelectionChangedHaptic() {
+        if UserDefaults.standard.bool(forKey: "hapticEffectOn") {
+            hapticGenerator.selectionChanged()
+        }
     }
     
 }
