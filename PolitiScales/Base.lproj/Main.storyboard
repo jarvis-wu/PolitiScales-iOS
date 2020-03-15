@@ -33,34 +33,10 @@
                     <view key="view" contentMode="scaleToFill" id="gYq-4T-Piu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZm-Ir-CKp">
-                                <rect key="frame" x="40" y="674" width="334" height="50"/>
-                                <color key="backgroundColor" red="0.3125979304" green="0.0" blue="0.46227627989999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="G3o-oC-ECm"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <state key="normal" title="Restart the test">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="didSelectRestart:" destination="YzQ-PQ-jR1" eventType="touchUpInside" id="5Is-qh-LqQ"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="CZm-Ir-CKp" firstAttribute="centerX" secondItem="MO1-lo-vu1" secondAttribute="centerX" id="IwR-KN-956"/>
-                            <constraint firstItem="CZm-Ir-CKp" firstAttribute="leading" secondItem="MO1-lo-vu1" secondAttribute="leading" constant="40" id="MiD-jI-PzE"/>
-                            <constraint firstItem="MO1-lo-vu1" firstAttribute="bottom" secondItem="CZm-Ir-CKp" secondAttribute="bottom" constant="50" id="QJU-Dk-0U1"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="MO1-lo-vu1"/>
                     </view>
                     <navigationItem key="navigationItem" title="PolitiScales" id="bOl-QB-DgF"/>
-                    <connections>
-                        <outlet property="restartButton" destination="CZm-Ir-CKp" id="IBs-lA-lYw"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GzC-Qc-paA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
