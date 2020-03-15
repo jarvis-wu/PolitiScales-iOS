@@ -422,7 +422,7 @@ class QuizViewController: UIViewController {
         print("😇 Rehabilitative justice \(results["j"]!.0) : Neutral \(100 - results["j"]!.0 - results["j"]!.1) : Punitive justice \(results["j"]!.1) 👿")
         print("\(String(repeating: "▒", count: results["j"]!.0 ))\(String(repeating: "░", count: 100 - results["j"]!.0 - results["j"]!.1))\(String(repeating: "▓", count: results["j"]!.1))\n")
         
-        print("🚀 Progressism \(results["s"]!.0) : Neutral \(100 - results["s"]!.0 - results["s"]!.1) : Conservatism \(results["s"]!.1) ✍🏼")
+        print("🚀 Progressivism \(results["s"]!.0) : Neutral \(100 - results["s"]!.0 - results["s"]!.1) : Conservatism \(results["s"]!.1) ✍🏼")
         print("\(String(repeating: "▒", count: results["s"]!.0))\(String(repeating: "░", count: 100 - results["s"]!.0 - results["s"]!.1))\(String(repeating: "▓", count: results["s"]!.1))\n")
         
         print("🌍 Internationalism \(results["b"]!.0) : Neutral\(100 - results["b"]!.0 - results["b"]!.1) : Nationalism \(results["b"]!.1) 🚩")

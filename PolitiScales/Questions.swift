@@ -204,7 +204,7 @@ let questions: [Question] = [
     Question(questionText: questionTexts["qm11"]!, weightedAnswer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "qm11-recycled"),
     Question(questionText: questionTexts["qm12"]!, weightedAnswer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "qm12-assistance"),
     Question(questionText: questionTexts["qm13"]!, weightedAnswer: 0, valuesYes: [ValueItem(axis: "m1", value: 3)], valuesNo: [ValueItem(axis: "m0", value: 3)], imageName: "qm13-economy"),
-    // Progressism : Conservatism
+    // Progressivism : Conservatism
     Question(questionText: questionTexts["qs0"]!, weightedAnswer: 0, valuesYes: [ValueItem(axis: "s0", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "qs0-tradition"),
     Question(questionText: questionTexts["qs1"]!, weightedAnswer: 0, valuesYes: [ValueItem(axis: "s0", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "qs1-language"),
     Question(questionText: questionTexts["qs2"]!, weightedAnswer: 0, valuesYes: [ValueItem(axis: "s0", value: 3), ValueItem(axis: "femi", value: 3)], valuesNo: [ValueItem(axis: "s1", value: 3)], imageName: "qs2-wedding"),
@@ -275,7 +275,7 @@ let questions: [Question] = [
 // TODO: Can we refactor the funcs below?
 
 func leftAxisTitle(for key: String) -> String? {
-    let leftAxisTitles = ["c" : "Constructivism", "j" : "Rehabilitative justice", "s" : "Progressism", "b" : "Internationalism", "p" : "Communism", "m" : "Regulationism", "e" : "Ecology", "t" : "Revolution", "femi" : "Feminism", "reli" : "Missionary", "comp" : "Complotism", "prag" : "Pragmatism", "mona" : "Monarchism", "vega" : "Veganism", "anar" : "Anarchism"]
+    let leftAxisTitles = ["c" : "Constructivism", "j" : "Rehabilitative justice", "s" : "Progressivism", "b" : "Internationalism", "p" : "Communism", "m" : "Regulationism", "e" : "Ecology", "t" : "Revolution", "femi" : "Feminism", "reli" : "Missionary", "comp" : "Complotism", "prag" : "Pragmatism", "mona" : "Monarchism", "vega" : "Veganism", "anar" : "Anarchism"]
     if let title = leftAxisTitles[key] {
         return title
     } else {
@@ -293,14 +293,14 @@ func rightAxisTitle(for key: String) -> String? {
 }
 
 func leftAxisColor(for key: String) -> UIColor? {
-    let leftAxisColors = ["c" : UIColor(red: 192 / 255, green: 111 / 255, blue: 201 / 255, alpha: 1),
-                          "j" : UIColor(red: 119 / 255, green: 205 / 255, blue: 224 / 255, alpha: 1),
-                          "s" : UIColor(red: 148 / 255, green: 90 / 255, blue: 148 / 255, alpha: 1),
-                          "b" : UIColor(red: 98 / 255, green: 135 / 255, blue: 245 / 255, alpha: 1),
-                          "p" : UIColor(red: 224 / 255, green: 82 / 255, blue: 82 / 255, alpha: 1),
-                          "m" : UIColor(red: 112 / 255, green: 184 / 255, blue: 120 / 255, alpha: 1),
-                          "e" : UIColor(red: 189 / 255, green: 227 / 255, blue: 113 / 255, alpha: 1),
-                          "t" : UIColor(red: 230 / 255, green: 92 / 255, blue: 140 / 255, alpha: 1)]
+    let leftAxisColors = ["c" : UIColor(red: 235 / 255, green: 120 / 255, blue: 156 / 255, alpha: 1),
+                          "j" : UIColor(red: 129 / 255, green: 131 / 255, blue: 247 / 255, alpha: 1),
+                          "s" : UIColor(red: 105 / 255, green: 200 / 255, blue: 150 / 255, alpha: 1),
+                          "b" : UIColor(red: 123 / 255, green: 170 / 255, blue: 233 / 255, alpha: 1),
+                          "p" : UIColor(red: 237 / 255, green: 137 / 255, blue: 107 / 255, alpha: 1),
+                          "m" : UIColor(red: 247 / 255, green: 204 / 255, blue: 87 / 255, alpha: 1),
+                          "e" : UIColor(red: 110 / 255, green: 204 / 255, blue: 127 / 255, alpha: 1),
+                          "t" : UIColor(red: 247 / 255, green: 152 / 255, blue: 100 / 255, alpha: 1)]
     if let color = leftAxisColors[key] {
         return color
     } else {
@@ -309,16 +309,48 @@ func leftAxisColor(for key: String) -> UIColor? {
 }
 
 func rightAxisColor(for key: String) -> UIColor? {
-    let rightAxisColors = ["c" : UIColor(red: 114 / 255, green: 176 / 255, blue: 114 / 255, alpha: 1),
-                           "j" : UIColor(red: 235 / 255, green: 221 / 255, blue: 122 / 255, alpha: 1),
-                           "s" : UIColor(red: 156 / 255, green: 62 / 255, blue: 62 / 255, alpha: 1),
-                           "b" : UIColor(red: 247 / 255, green: 173 / 255, blue: 89 / 255, alpha: 1),
-                           "p" : UIColor(red: 247 / 255, green: 198 / 255, blue: 74 / 255, alpha: 1),
-                           "m" : UIColor(red: 123 / 255, green: 62 / 255, blue: 181 / 255, alpha: 1),
-                           "e" : UIColor(red: 129 / 255, green: 222 / 255, blue: 222 / 255, alpha: 1),
+    let rightAxisColors = ["c" : UIColor(red: 120 / 255, green: 194 / 255, blue: 139 / 255, alpha: 1),
+                           "j" : UIColor(red: 123 / 255, green: 138 / 255, blue: 189 / 255, alpha: 1),
+                           "s" : UIColor(red: 240 / 255, green: 186 / 255, blue: 117 / 255, alpha: 1),
+                           "b" : UIColor(red: 245 / 255, green: 112 / 255, blue: 105 / 255, alpha: 1),
+                           "p" : UIColor(red: 54 / 255, green: 185 / 255, blue: 144 / 255, alpha: 1),
+                           "m" : UIColor(red: 115 / 255, green: 162 / 255, blue: 255 / 255, alpha: 1),
+                           "e" : UIColor(red: 129 / 255, green: 222 / 255, blue: 177 / 255, alpha: 1),
                            "t" : UIColor(red: 89 / 255, green: 217 / 255, blue: 200 / 255, alpha: 1)]
     if let color = rightAxisColors[key] {
         return color
+    } else {
+        return nil
+    }
+}
+
+func leftAxisImage(for key: String) -> UIImage? {
+    let leftAxisImages = ["c" : UIImage(named: "constructivism"),
+                          "j" : UIImage(named: "rehabilitative"),
+                          "s" : UIImage(named: "progressivism"),
+                          "b" : UIImage(named: "internationalism"),
+                          "p" : UIImage(named: "communism"),
+                          "m" : UIImage(named: "regulationism"),
+                          "e" : UIImage(named: "ecology"),
+                          "t" : UIImage(named: "revolution")]
+    if let image = leftAxisImages[key] {
+        return image
+    } else {
+        return nil
+    }
+}
+
+func rightAxisImage(for key: String) -> UIImage? {
+    let rightAxisImages = ["c" : UIImage(named: "essentialism"),
+                           "j" : UIImage(named: "punitive"),
+                           "s" : UIImage(named: "conservatism"),
+                           "b" : UIImage(named: "nationalism"),
+                           "p" : UIImage(named: "capitalism"),
+                           "m" : UIImage(named: "laissez-faire"),
+                           "e" : UIImage(named: "productivism"),
+                           "t" : UIImage(named: "reformism")]
+    if let image = rightAxisImages[key] {
+        return image
     } else {
         return nil
     }

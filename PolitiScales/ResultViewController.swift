@@ -104,7 +104,9 @@ class ResultViewController: UIViewController {
                                                                                     leftTitle: leftAxisTitle(for: key)!,
                                                                                     rightTitle: rightAxisTitle(for: key)!,
                                                                                     leftColor: leftAxisColor(for: key)!,
-                                                                                    rightColor: rightAxisColor(for: key)!)))
+                                                                                    rightColor: rightAxisColor(for: key)!,
+                                                                                    leftIcon: leftAxisImage(for: key)!,
+                                                                                    rightIcon: rightAxisImage(for: key)!)))
         }
     }
     
@@ -136,6 +138,9 @@ class ResultRowView: UIView {
     var rightIcon = UIImageView()
     var leftProgress = OneSideProgressView(side: OneSideProgressView.Side.left)
     var rightProgress = OneSideProgressView(side: OneSideProgressView.Side.right)
+    var leftNumberLabel = UILabel()
+    var rightNumberLabel = UILabel()
+    var neutralNumberLabel = UILabel()
     
     init(resultItem: ResultItem) {
         super.init(frame: .zero)
@@ -161,24 +166,42 @@ class ResultRowView: UIView {
         leftIcon.height(40)
         leftIcon.layer.cornerRadius = 40 / 2
         leftIcon.aspectRatio(1)
-        leftIcon.backgroundColor = UIColor(white: 0.95, alpha: 1) // TODO: replace with icon image
+        leftIcon.image = resultItem.leftIcon
         leftIcon.centerY(to: barView)
         leftIcon.leadingToSuperview()
         self.addSubview(rightIcon)
         rightIcon.height(40)
         rightIcon.layer.cornerRadius = 40 / 2
         rightIcon.aspectRatio(1)
-        rightIcon.backgroundColor = UIColor(white: 0.95 , alpha: 1) // TODO: replace with icon image
+        rightIcon.image = resultItem.rightIcon
         rightIcon.centerY(to: barView)
         rightIcon.trailingToSuperview()
         barView.addSubview(leftProgress)
         leftProgress.backgroundColor = resultItem.leftColor
-        leftProgress.widthToSuperview(multiplier: CGFloat(resultItem.values.0) / CGFloat(100))
+        leftProgress.widthToSuperview(multiplier: CGFloat(resultItem.values.0) / CGFloat(100)) // TODO: animate progress?
         leftProgress.edgesToSuperview(excluding: [.trailing])
         barView.addSubview(rightProgress)
         rightProgress.backgroundColor = resultItem.rightColor
-        rightProgress.widthToSuperview(multiplier: CGFloat(resultItem.values.1) / CGFloat(100))
+        rightProgress.widthToSuperview(multiplier: CGFloat(resultItem.values.1) / CGFloat(100)) // TODO: animate progress?
         rightProgress.edgesToSuperview(excluding: [.leading])
+        leftProgress.addSubview(leftNumberLabel)
+        leftNumberLabel.text = "\(resultItem.values.0)%"
+        leftNumberLabel.textColor = UIColor.black.withAlphaComponent(0.25)
+        leftNumberLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        leftNumberLabel.centerYToSuperview()
+        leftNumberLabel.trailingToSuperview(offset: 10)
+        rightProgress.addSubview(rightNumberLabel)
+        rightNumberLabel.text = "\(resultItem.values.1)%"
+        rightNumberLabel.textColor = UIColor.black.withAlphaComponent(0.25)
+        rightNumberLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        rightNumberLabel.centerYToSuperview()
+        rightNumberLabel.leadingToSuperview(offset: 10)
+        barView.addSubview(neutralNumberLabel)
+        neutralNumberLabel.text = "\(100 - resultItem.values.0 - resultItem.values.1)%"
+        neutralNumberLabel.textColor = UIColor.black.withAlphaComponent(0.25)
+        neutralNumberLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        neutralNumberLabel.centerYToSuperview()
+        neutralNumberLabel.centerXToSuperview(multiplier: ((100 - CGFloat(resultItem.values.0) - CGFloat(resultItem.values.1)) / 2 + CGFloat(resultItem.values.0)) / 100 * 2)
     }
     
     required init?(coder: NSCoder) {
@@ -224,6 +247,8 @@ struct ResultItem {
     var rightTitle: String
     var leftColor: UIColor
     var rightColor: UIColor
+    var leftIcon: UIImage
+    var rightIcon: UIImage
     
 }
 
