@@ -91,6 +91,7 @@ class QuizViewController: UIViewController {
         }
     }
     
+    // Hidden now
     @objc func didTapEdit() {
         tryGenerateSelectionChangedHaptic()
         print("Edit tapped")
@@ -140,15 +141,38 @@ class QuizViewController: UIViewController {
     private func showExitConfirmationAlert() {
         let alertController = UIAlertController(title: "Do you want to save the current session?", message: "You can choose to save your answers and come back later to finish it, or delete the progress immediately. You cannot undo this action.", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Save and leave", style: .default, handler: { (_) in
-            // save here
+            self.saveCurrentSession()
             self.navigationController?.popViewController(animated: true)
         }))
         alertController.addAction(UIAlertAction(title: "Discard and leave", style: .destructive, handler: { (_) in
-            // discard here
+            self.discardSavedSession()
             self.navigationController?.popViewController(animated: true)
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
+    }
+    
+    private func saveCurrentSession() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(shuffled) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: "PreviousSession")
+        }
+    }
+    
+    private func loadPreviousSession() -> [Question]? {
+        if let previousSession = UserDefaults.standard.object(forKey: "PreviousSession") as? Data {
+            let decoder = JSONDecoder()
+            if let decodedSession = try? decoder.decode([Question].self, from: previousSession) {
+                return decodedSession
+            }
+        }
+        return nil
+    }
+    
+    private func discardSavedSession() {
+        let defaults = UserDefaults.standard
+        defaults.set(nil, forKey: "PreviousSession")
     }
     
     let shouldShuffle = !UserDefaults.standard.bool(forKey: "shouldShowQuestionsUnshuffled")
@@ -162,45 +186,57 @@ class QuizViewController: UIViewController {
         }
     }
     
-    // TODO: add a simulate button when implementing debug mode that jump right into result VC with random result
+    var isLoadingFromLastSession = false
+    
     var currentQuestionNumber = 0 {
         didSet {
+            // TODO: why is the progress bar animating its frame when loading a previous session?
             let progress = Float(self.numOfAnsweredQuestions) / Float(shuffled.count)
             progressBar.progress = progress
-            if currentQuestionNumber != questions.count {
-                let isMovingBack = currentQuestionNumber < oldValue
-                let animationDistance: CGFloat = (self.view.bounds.width + self.questionCard.bounds.width) / 2 * (isMovingBack ? -1 : 1)
-                UIView.animate(withDuration: 0.4, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.curveLinear], animations: {
-                    self.questionCard.transform = CGAffineTransform(translationX: -animationDistance, y: 0)
-                }) { (_) in
-                    self.questionCard.alpha = 0
-                    self.questionCard.transform = CGAffineTransform(translationX: animationDistance, y: 0)
-                    self.questionCardLabel.text = self.shuffled[self.currentQuestionNumber].questionText
-                    self.questionCardTitleLabel.text = "Question \(self.currentQuestionNumber + 1) of \(questions.count)"
-                    self.questionCardIcon.image = UIImage(named: self.shuffled[self.currentQuestionNumber].imageName)
-                    self.goBackButton.setTitle(self.currentQuestionNumber == 0 ? "Go back to home page" : "Return to the previous question", for: .normal)
-                    self.anwersContainerViewTopConstraint.isActive = false
-                    self.anwersContainerViewTopConstraint = self.anwersContainerView.topToBottom(of: self.questionCard, offset: 20)
-                    UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
-                        self.questionCard.alpha = 1
-                        self.questionCard.transform = CGAffineTransform.identity
-                        self.resetSelectedIndicator()
-                        if let selectedIndex = self.shuffled[self.currentQuestionNumber].selectedIndex {
-                            self.showSelectedAnswer(from: selectedIndex)
-                        }
-                        self.view.layoutIfNeeded()
-                    }, completion: nil)
+            if !isLoadingFromLastSession {
+                if currentQuestionNumber != questions.count {
+                    let isMovingBack = currentQuestionNumber < oldValue
+                    let animationDistance: CGFloat = (self.view.bounds.width + self.questionCard.bounds.width) / 2 * (isMovingBack ? -1 : 1)
+                    UIView.animate(withDuration: 0.4, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.curveLinear], animations: {
+                        self.questionCard.transform = CGAffineTransform(translationX: -animationDistance, y: 0)
+                    }) { (_) in
+                        self.questionCard.alpha = 0
+                        self.questionCard.transform = CGAffineTransform(translationX: animationDistance, y: 0)
+                        self.questionCardLabel.text = self.shuffled[self.currentQuestionNumber].questionText
+                        self.questionCardTitleLabel.text = "Question \(self.currentQuestionNumber + 1) of \(questions.count)"
+                        self.questionCardIcon.image = UIImage(named: self.shuffled[self.currentQuestionNumber].imageName)
+                        self.goBackButton.setTitle(self.currentQuestionNumber == 0 ? "Go back to home page" : "Return to the previous question", for: .normal)
+                        self.anwersContainerViewTopConstraint.isActive = false
+                        self.anwersContainerViewTopConstraint = self.anwersContainerView.topToBottom(of: self.questionCard, offset: 20)
+                        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: [.curveEaseOut], animations: {
+                            self.questionCard.alpha = 1
+                            self.questionCard.transform = CGAffineTransform.identity
+                            self.resetSelectedIndicator()
+                            if let selectedIndex = self.shuffled[self.currentQuestionNumber].selectedIndex {
+                                self.showSelectedAnswer(from: selectedIndex)
+                            }
+                            self.view.layoutIfNeeded()
+                        }, completion: nil)
+                    }
+                } else {
+                    calculateResult()
+                    performSegue(withIdentifier: "ResultSegue", sender: self)
                 }
             } else {
-                calculateResult()
-                performSegue(withIdentifier: "ResultSegue", sender: self)
+                isLoadingFromLastSession = false
             }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.shuffled = self.shouldShuffle ? questions.shuffled() : questions
+        if let loaded = loadPreviousSession() {
+            self.isLoadingFromLastSession = true
+            self.shuffled = loaded
+            self.currentQuestionNumber = loaded.firstIndex { $0.selectedIndex == nil }!
+        } else {
+            self.shuffled = self.shouldShuffle ? questions.shuffled() : questions
+        }
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.title = "PolitiScale"
         let exitButton = UIButton()
@@ -228,7 +264,8 @@ class QuizViewController: UIViewController {
             fixedSpace.width = 15
             self.navigationItem.rightBarButtonItems?.append(fixedSpace)
         }
-        self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(customView: editButton))
+        // hide for now
+        // self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(customView: editButton))
         for item in self.navigationItem.rightBarButtonItems! {
             item.customView?.height(20)
             item.customView?.aspectRatio(1)
@@ -241,6 +278,10 @@ class QuizViewController: UIViewController {
         addAnswersContainerView()
         addConstraints()
         prepareAudioPlayer()
+    }
+    
+    private func tryDisplayMotivationMessage() {
+        // TODO
     }
     
     private func prepareAudioPlayer() {
@@ -317,10 +358,10 @@ class QuizViewController: UIViewController {
         questionCardRightStack.addArrangedSubview(questionCardTitleLabel)
         questionCardRightStack.addArrangedSubview(questionCardLabel)
         // TODO: Fix code priming in currentQuestionNumber didSet
-        questionCardIcon.image = UIImage(named: shuffled[0].imageName)
+        questionCardIcon.image = UIImage(named: shuffled[currentQuestionNumber].imageName)
         questionCardTitleLabel.text = "Question \(currentQuestionNumber + 1) of \(questions.count)"
         questionCardLabel.numberOfLines = 0
-        questionCardLabel.text = shuffled[0].questionText
+        questionCardLabel.text = shuffled[currentQuestionNumber].questionText
         self.view.addSubview(questionCard)
     }
     

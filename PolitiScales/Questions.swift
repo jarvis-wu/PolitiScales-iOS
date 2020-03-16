@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-struct ValueItem {
+struct ValueItem: Codable {
     var axis: String
     var value: Int
 }
 
-struct Question {
+struct Question: Codable {
     var questionText: String
     var weightedAnswer: Double
     var selectedIndex: Int? = nil
@@ -296,7 +296,7 @@ func leftAxisColor(for key: String) -> UIColor? {
     let leftAxisColors = ["c" : UIColor(red: 235 / 255, green: 120 / 255, blue: 156 / 255, alpha: 1),
                           "j" : UIColor(red: 129 / 255, green: 131 / 255, blue: 247 / 255, alpha: 1),
                           "s" : UIColor(red: 105 / 255, green: 200 / 255, blue: 150 / 255, alpha: 1),
-                          "b" : UIColor(red: 123 / 255, green: 170 / 255, blue: 233 / 255, alpha: 1),
+                          "b" : UIColor(red: 115 / 255, green: 162 / 255, blue: 255 / 255, alpha: 1),
                           "p" : UIColor(red: 237 / 255, green: 137 / 255, blue: 107 / 255, alpha: 1),
                           "m" : UIColor(red: 247 / 255, green: 204 / 255, blue: 87 / 255, alpha: 1),
                           "e" : UIColor(red: 110 / 255, green: 204 / 255, blue: 127 / 255, alpha: 1),
@@ -314,7 +314,7 @@ func rightAxisColor(for key: String) -> UIColor? {
                            "s" : UIColor(red: 240 / 255, green: 186 / 255, blue: 117 / 255, alpha: 1),
                            "b" : UIColor(red: 245 / 255, green: 112 / 255, blue: 105 / 255, alpha: 1),
                            "p" : UIColor(red: 54 / 255, green: 185 / 255, blue: 144 / 255, alpha: 1),
-                           "m" : UIColor(red: 115 / 255, green: 162 / 255, blue: 255 / 255, alpha: 1),
+                           "m" : UIColor(red: 123 / 255, green: 170 / 255, blue: 233 / 255, alpha: 1),
                            "e" : UIColor(red: 129 / 255, green: 222 / 255, blue: 177 / 255, alpha: 1),
                            "t" : UIColor(red: 89 / 255, green: 217 / 255, blue: 200 / 255, alpha: 1)]
     if let color = rightAxisColors[key] {
