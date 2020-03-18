@@ -8,6 +8,16 @@
 
 import UIKit
 
+struct ResultValues: Codable {
+    var l: Int
+    var r: Int
+    
+    init(_ l: Int, _ r: Int) {
+        self.l = l
+        self.r = r
+    }
+}
+
 class ResultViewController: UIViewController {
 
     var ui = DuoUI.shared
@@ -18,7 +28,9 @@ class ResultViewController: UIViewController {
     let navBarSeparator = DuolingoSeparator()
     var goHomeButton = DuolingoButton()
     var resultStackView = UIStackView()
-    var results: [String : (Int, Int)]! {
+    var qrCodeView = UIImageView()
+    
+    var results: [String : ResultValues]! {
         didSet {
             setupResultStackView()
         }
@@ -49,6 +61,7 @@ class ResultViewController: UIViewController {
         addBottomView()
         addScrollView()
         addResultStackView()
+        addQRCodeView()
     }
     
     private func addBottomView() {
@@ -63,6 +76,21 @@ class ResultViewController: UIViewController {
         goHomeButton.addTarget(self, action: #selector(self.didTapGoHomeButton), for: .touchUpInside)
     }
     
+    private func addQRCodeView() {
+        view.addSubview(qrCodeView)
+        let encoder = JSONEncoder()
+        // TODO: maybe we should encode in a simpler way?
+        if let encoded = try? encoder.encode(results) {
+            if let filter = CIFilter(name: "CIQRCodeGenerator") {
+                filter.setValue(encoded, forKey: "inputMessage")
+                let transform = CGAffineTransform(scaleX: 5, y: 5)
+                if let output = filter.outputImage?.transformed(by: transform) {
+                    qrCodeView.image = UIImage(ciImage: output)
+                }
+            }
+        }
+    }
+    
     private func addConstraints() {
         goHomeButton.centerXToSuperview()
         goHomeButton.bottomToSuperview(offset: -25, usingSafeArea: true)
@@ -74,7 +102,11 @@ class ResultViewController: UIViewController {
         resultStackView.leadingToSuperview(offset: 30)
         resultStackView.trailingToSuperview(offset: 30)
         resultStackView.top(to: contentView, offset: 25)
-        resultStackView.bottom(to: contentView, offset: -30)
+        resultStackView.bottomToTop(of: qrCodeView, offset: -25)
+        qrCodeView.height(200)
+        qrCodeView.aspectRatio(1)
+        qrCodeView.centerXToSuperview()
+        qrCodeView.bottom(to: contentView, offset: -30)
         self.view.bringSubviewToFront(bottomView)
     }
     
@@ -178,30 +210,30 @@ class ResultRowView: UIView {
         rightIcon.trailingToSuperview()
         barView.addSubview(leftProgress)
         leftProgress.backgroundColor = resultItem.leftColor
-        leftProgress.widthToSuperview(multiplier: CGFloat(resultItem.values.0) / CGFloat(100)) // TODO: animate progress?
+        leftProgress.widthToSuperview(multiplier: CGFloat(resultItem.values.l) / CGFloat(100)) // TODO: animate progress?
         leftProgress.edgesToSuperview(excluding: [.trailing])
         barView.addSubview(rightProgress)
         rightProgress.backgroundColor = resultItem.rightColor
-        rightProgress.widthToSuperview(multiplier: CGFloat(resultItem.values.1) / CGFloat(100)) // TODO: animate progress?
+        rightProgress.widthToSuperview(multiplier: CGFloat(resultItem.values.r) / CGFloat(100)) // TODO: animate progress?
         rightProgress.edgesToSuperview(excluding: [.leading])
         leftProgress.addSubview(leftNumberLabel)
-        leftNumberLabel.text = "\(resultItem.values.0)%"
+        leftNumberLabel.text = "\(resultItem.values.l)%"
         leftNumberLabel.textColor = UIColor.black.withAlphaComponent(0.25)
         leftNumberLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         leftNumberLabel.centerYToSuperview()
         leftNumberLabel.trailingToSuperview(offset: 10)
         rightProgress.addSubview(rightNumberLabel)
-        rightNumberLabel.text = "\(resultItem.values.1)%"
+        rightNumberLabel.text = "\(resultItem.values.r)%"
         rightNumberLabel.textColor = UIColor.black.withAlphaComponent(0.25)
         rightNumberLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         rightNumberLabel.centerYToSuperview()
         rightNumberLabel.leadingToSuperview(offset: 10)
         barView.addSubview(neutralNumberLabel)
-        neutralNumberLabel.text = "\(100 - resultItem.values.0 - resultItem.values.1)%"
+        neutralNumberLabel.text = "\(100 - resultItem.values.l - resultItem.values.r)%"
         neutralNumberLabel.textColor = UIColor.black.withAlphaComponent(0.25)
         neutralNumberLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         neutralNumberLabel.centerYToSuperview()
-        neutralNumberLabel.centerXToSuperview(multiplier: ((100 - CGFloat(resultItem.values.0) - CGFloat(resultItem.values.1)) / 2 + CGFloat(resultItem.values.0)) / 100 * 2)
+        neutralNumberLabel.centerXToSuperview(multiplier: ((100 - CGFloat(resultItem.values.l) - CGFloat(resultItem.values.r)) / 2 + CGFloat(resultItem.values.l)) / 100 * 2)
     }
     
     required init?(coder: NSCoder) {
@@ -242,7 +274,7 @@ class OneSideProgressView: UIView {
 
 struct ResultItem {
     
-    var values: (Int, Int)
+    var values: ResultValues
     var leftTitle: String
     var rightTitle: String
     var leftColor: UIColor

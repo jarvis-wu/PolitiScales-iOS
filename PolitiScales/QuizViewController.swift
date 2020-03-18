@@ -178,7 +178,7 @@ class QuizViewController: UIViewController {
     let shouldShuffle = !UserDefaults.standard.bool(forKey: "shouldShowQuestionsUnshuffled")
     
     let multiplierFromIndex: [Int: Double] = [0: 1, 1: 2/3, 2: 0, 3: -2/3, 4: -1]
-    var results = [String : (Int, Int)]()
+    var results = [String : ResultValues]()
     var shuffled: [Question]!
     var numOfAnsweredQuestions: Int {
         get {
@@ -435,76 +435,76 @@ class QuizViewController: UIViewController {
         
         // TODO: refactor following duplicative maths into helper funcs
         
-        results["c"] = (Int(((axes["c0"]!.0) / (axes["c0"]!.1) * 100).rounded()), Int(((axes["c1"]!.0) / (axes["c1"]!.1) * 100).rounded()))
-        results["j"] = (Int(((axes["j0"]!.0) / (axes["j0"]!.1) * 100).rounded()), Int(((axes["j1"]!.0) / (axes["j1"]!.1) * 100).rounded()))
-        results["s"] = (Int(((axes["s0"]!.0) / (axes["s0"]!.1) * 100).rounded()), Int(((axes["s1"]!.0) / (axes["s1"]!.1) * 100).rounded()))
-        results["b"] = (Int(((axes["b0"]!.0) / (axes["b0"]!.1) * 100).rounded()), Int(((axes["b1"]!.0) / (axes["b1"]!.1) * 100).rounded()))
-        results["p"] = (Int(((axes["p0"]!.0) / (axes["p0"]!.1) * 100).rounded()), Int(((axes["p1"]!.0) / (axes["p1"]!.1) * 100).rounded()))
-        results["m"] = (Int(((axes["m0"]!.0) / (axes["m0"]!.1) * 100).rounded()), Int(((axes["m1"]!.0) / (axes["m1"]!.1) * 100).rounded()))
-        results["e"] = (Int(((axes["e0"]!.0) / (axes["e0"]!.1) * 100).rounded()), Int(((axes["e1"]!.0) / (axes["e1"]!.1) * 100).rounded()))
-        results["t"] = (Int(((axes["t0"]!.0) / (axes["t0"]!.1) * 100).rounded()), Int(((axes["t1"]!.0) / (axes["t1"]!.1) * 100).rounded()))
+        results["c"] = ResultValues(Int(((axes["c0"]!.0) / (axes["c0"]!.1) * 100).rounded()), Int(((axes["c1"]!.0) / (axes["c1"]!.1) * 100).rounded()))
+        results["j"] = ResultValues(Int(((axes["j0"]!.0) / (axes["j0"]!.1) * 100).rounded()), Int(((axes["j1"]!.0) / (axes["j1"]!.1) * 100).rounded()))
+        results["s"] = ResultValues(Int(((axes["s0"]!.0) / (axes["s0"]!.1) * 100).rounded()), Int(((axes["s1"]!.0) / (axes["s1"]!.1) * 100).rounded()))
+        results["b"] = ResultValues(Int(((axes["b0"]!.0) / (axes["b0"]!.1) * 100).rounded()), Int(((axes["b1"]!.0) / (axes["b1"]!.1) * 100).rounded()))
+        results["p"] = ResultValues(Int(((axes["p0"]!.0) / (axes["p0"]!.1) * 100).rounded()), Int(((axes["p1"]!.0) / (axes["p1"]!.1) * 100).rounded()))
+        results["m"] = ResultValues(Int(((axes["m0"]!.0) / (axes["m0"]!.1) * 100).rounded()), Int(((axes["m1"]!.0) / (axes["m1"]!.1) * 100).rounded()))
+        results["e"] = ResultValues(Int(((axes["e0"]!.0) / (axes["e0"]!.1) * 100).rounded()), Int(((axes["e1"]!.0) / (axes["e1"]!.1) * 100).rounded()))
+        results["t"] = ResultValues(Int(((axes["t0"]!.0) / (axes["t0"]!.1) * 100).rounded()), Int(((axes["t1"]!.0) / (axes["t1"]!.1) * 100).rounded()))
         
-        results["femi"] = (Int(((axes["femi"]!.0 / axes["femi"]!.1) * 100).rounded()), 100 - Int(((axes["femi"]!.0 / axes["femi"]!.1) * 100).rounded()))
-        results["reli"] = (Int(((axes["reli"]!.0 / axes["reli"]!.1) * 100).rounded()), 100 - Int(((axes["reli"]!.0 / axes["reli"]!.1) * 100).rounded()))
-        results["comp"] = (Int(((axes["comp"]!.0 / axes["comp"]!.1) * 100).rounded()), 100 - Int(((axes["comp"]!.0 / axes["comp"]!.1) * 100).rounded()))
-        results["prag"] = (Int(((axes["prag"]!.0 / axes["prag"]!.1) * 100).rounded()), 100 - Int(((axes["prag"]!.0 / axes["prag"]!.1) * 100).rounded()))
-        results["mona"] = (Int(((axes["mona"]!.0 / axes["mona"]!.1) * 100).rounded()), 100 - Int(((axes["mona"]!.0 / axes["mona"]!.1) * 100).rounded()))
-        results["vega"] = (Int(((axes["vega"]!.0 / axes["vega"]!.1) * 100).rounded()), 100 - Int(((axes["vega"]!.0 / axes["vega"]!.1) * 100).rounded()))
-        results["anar"] = (Int(((axes["anar"]!.0 / axes["anar"]!.1) * 100).rounded()), 100 - Int(((axes["anar"]!.0 / axes["anar"]!.1) * 100).rounded()))
+        results["femi"] = ResultValues(Int(((axes["femi"]!.0 / axes["femi"]!.1) * 100).rounded()), 100 - Int(((axes["femi"]!.0 / axes["femi"]!.1) * 100).rounded()))
+        results["reli"] = ResultValues(Int(((axes["reli"]!.0 / axes["reli"]!.1) * 100).rounded()), 100 - Int(((axes["reli"]!.0 / axes["reli"]!.1) * 100).rounded()))
+        results["comp"] = ResultValues(Int(((axes["comp"]!.0 / axes["comp"]!.1) * 100).rounded()), 100 - Int(((axes["comp"]!.0 / axes["comp"]!.1) * 100).rounded()))
+        results["prag"] = ResultValues(Int(((axes["prag"]!.0 / axes["prag"]!.1) * 100).rounded()), 100 - Int(((axes["prag"]!.0 / axes["prag"]!.1) * 100).rounded()))
+        results["mona"] = ResultValues(Int(((axes["mona"]!.0 / axes["mona"]!.1) * 100).rounded()), 100 - Int(((axes["mona"]!.0 / axes["mona"]!.1) * 100).rounded()))
+        results["vega"] = ResultValues(Int(((axes["vega"]!.0 / axes["vega"]!.1) * 100).rounded()), 100 - Int(((axes["vega"]!.0 / axes["vega"]!.1) * 100).rounded()))
+        results["anar"] = ResultValues(Int(((axes["anar"]!.0 / axes["anar"]!.1) * 100).rounded()), 100 - Int(((axes["anar"]!.0 / axes["anar"]!.1) * 100).rounded()))
         
         // Begin logging the results
         print("\n============================================== Results =============================================")
         
         print("\n--------------------------------------------- Main axes --------------------------------------------\n")
         // For this section: left + Neutral + right = 100
-        print("💡 Constructivism \(results["c"]!.0) : Neutral \(100 - results["c"]!.0 - results["c"]!.1) : Essentialism \(results["c"]!.1) 🧬")
-        print("\(String(repeating: "▒", count: results["c"]!.0 ))\(String(repeating: "░", count: 100 - results["c"]!.0 - results["c"]!.1))\(String(repeating: "▓", count: results["c"]!.1))\n")
+        print("💡 Constructivism \(results["c"]!.l) : Neutral \(100 - results["c"]!.l - results["c"]!.r) : Essentialism \(results["c"]!.r) 🧬")
+        print("\(String(repeating: "▒", count: results["c"]!.l ))\(String(repeating: "░", count: 100 - results["c"]!.l - results["c"]!.r))\(String(repeating: "▓", count: results["c"]!.r))\n")
         
-        print("😇 Rehabilitative justice \(results["j"]!.0) : Neutral \(100 - results["j"]!.0 - results["j"]!.1) : Punitive justice \(results["j"]!.1) 👿")
-        print("\(String(repeating: "▒", count: results["j"]!.0 ))\(String(repeating: "░", count: 100 - results["j"]!.0 - results["j"]!.1))\(String(repeating: "▓", count: results["j"]!.1))\n")
+        print("😇 Rehabilitative justice \(results["j"]!.l) : Neutral \(100 - results["j"]!.l - results["j"]!.r) : Punitive justice \(results["j"]!.r) 👿")
+        print("\(String(repeating: "▒", count: results["j"]!.l ))\(String(repeating: "░", count: 100 - results["j"]!.l - results["j"]!.r))\(String(repeating: "▓", count: results["j"]!.r))\n")
         
-        print("🚀 Progressivism \(results["s"]!.0) : Neutral \(100 - results["s"]!.0 - results["s"]!.1) : Conservatism \(results["s"]!.1) ✍🏼")
-        print("\(String(repeating: "▒", count: results["s"]!.0))\(String(repeating: "░", count: 100 - results["s"]!.0 - results["s"]!.1))\(String(repeating: "▓", count: results["s"]!.1))\n")
+        print("🚀 Progressivism \(results["s"]!.l) : Neutral \(100 - results["s"]!.l - results["s"]!.r) : Conservatism \(results["s"]!.r) ✍🏼")
+        print("\(String(repeating: "▒", count: results["s"]!.l))\(String(repeating: "░", count: 100 - results["s"]!.l - results["s"]!.r))\(String(repeating: "▓", count: results["s"]!.r))\n")
         
-        print("🌍 Internationalism \(results["b"]!.0) : Neutral\(100 - results["b"]!.0 - results["b"]!.1) : Nationalism \(results["b"]!.1) 🚩")
-        print("\(String(repeating: "▒", count: results["b"]!.0))\(String(repeating: "░", count: 100 - results["b"]!.0 - results["b"]!.1))\(String(repeating: "▓", count: results["b"]!.1))\n")
+        print("🌍 Internationalism \(results["b"]!.l) : Neutral\(100 - results["b"]!.l - results["b"]!.r) : Nationalism \(results["b"]!.r) 🚩")
+        print("\(String(repeating: "▒", count: results["b"]!.l))\(String(repeating: "░", count: 100 - results["b"]!.l - results["b"]!.r))\(String(repeating: "▓", count: results["b"]!.r))\n")
         
-        print("⚒️ Communism \(results["p"]!.0) : Neutral \(100 - results["p"]!.0 - results["p"]!.1) : Capitalism \(results["p"]!.1) 💰")
-        print("\(String(repeating: "▒", count: results["p"]!.0))\(String(repeating: "░", count: 100 - results["p"]!.0 - results["p"]!.1))\(String(repeating: "▓", count: results["p"]!.1))\n")
+        print("⚒️ Communism \(results["p"]!.l) : Neutral \(100 - results["p"]!.l - results["p"]!.r) : Capitalism \(results["p"]!.r) 💰")
+        print("\(String(repeating: "▒", count: results["p"]!.l))\(String(repeating: "░", count: 100 - results["p"]!.l - results["p"]!.r))\(String(repeating: "▓", count: results["p"]!.r))\n")
         
-        print("📐 Regulationism \(results["m"]!.0) : Neutral \(100 - results["m"]!.0 - results["m"]!.1) : Laissez-faire \(results["m"]!.1) 🦋")
-        print("\(String(repeating: "▒", count: results["m"]!.0))\(String(repeating: "░", count: 100 - results["m"]!.0 - results["m"]!.1))\(String(repeating: "▓", count: results["m"]!.1))\n")
+        print("📐 Regulationism \(results["m"]!.l) : Neutral \(100 - results["m"]!.l - results["m"]!.r) : Laissez-faire \(results["m"]!.r) 🦋")
+        print("\(String(repeating: "▒", count: results["m"]!.l))\(String(repeating: "░", count: 100 - results["m"]!.l - results["m"]!.r))\(String(repeating: "▓", count: results["m"]!.r))\n")
         
-        print("🌱 Ecology \(results["e"]!.0) : Neutral \(100 - results["e"]!.0 - results["e"]!.1) : Productivism \(results["e"]!.1) ⚙️")
-        print("\(String(repeating: "▒", count: results["e"]!.0))\(String(repeating: "░", count: 100 - results["e"]!.0 - results["e"]!.1))\(String(repeating: "▓", count: results["e"]!.1))\n")
+        print("🌱 Ecology \(results["e"]!.l) : Neutral \(100 - results["e"]!.l - results["e"]!.r) : Productivism \(results["e"]!.r) ⚙️")
+        print("\(String(repeating: "▒", count: results["e"]!.l))\(String(repeating: "░", count: 100 - results["e"]!.l - results["e"]!.r))\(String(repeating: "▓", count: results["e"]!.r))\n")
         
-        print("✊🏼 Revolution \(results["t"]!.0) : Neutral \(100 - results["t"]!.0 - results["t"]!.1) : Reformism \(results["t"]!.1) 🗳")
-        print("\(String(repeating: "▒", count: results["t"]!.0))\(String(repeating: "░", count: 100 - results["t"]!.0 - results["t"]!.1))\(String(repeating: "▓", count: results["t"]!.1))\n")
+        print("✊🏼 Revolution \(results["t"]!.l) : Neutral \(100 - results["t"]!.l - results["t"]!.r) : Reformism \(results["t"]!.r) 🗳")
+        print("\(String(repeating: "▒", count: results["t"]!.l))\(String(repeating: "░", count: 100 - results["t"]!.l - results["t"]!.r))\(String(repeating: "▓", count: results["t"]!.r))\n")
         
         print("\n-------------------------------------------- Bonus axes --------------------------------------------\n")
         // For this bonus section: yes + no = 100; if user selects anything neutral or negative, it will be 100% "no",
         // because only positive values are added to the valueYes axis, and there is no valueNo axis for any of the following.
         // i.e.: if 100%: strong characteristic; if 66%: weak characteristic; if other: no such characteristic presented
-        print("👩🏻‍🦰 Feminism \(results["femi"]!.0) : Non-Feminism \(results["femi"]!.1)")
-        print("\(String(repeating: "▓", count: results["femi"]!.0 ))\(String(repeating: "░", count: results["femi"]!.1))\n")
+        print("👩🏻‍🦰 Feminism \(results["femi"]!.l) : Non-Feminism \(results["femi"]!.r)")
+        print("\(String(repeating: "▓", count: results["femi"]!.l ))\(String(repeating: "░", count: results["femi"]!.r))\n")
         
-        print("✝️ Missionary \(results["reli"]!.0) : Non-Missionary \(results["reli"]!.1)")
-        print("\(String(repeating: "▓", count: results["reli"]!.0))\(String(repeating: "░", count: results["reli"]!.1))\n")
+        print("✝️ Missionary \(results["reli"]!.l) : Non-Missionary \(results["reli"]!.r)")
+        print("\(String(repeating: "▓", count: results["reli"]!.l))\(String(repeating: "░", count: results["reli"]!.r))\n")
         
-        print("👁 Complotism \(results["comp"]!.0) : Non-Complotism \(results["comp"]!.1)")
-        print("\(String(repeating: "▓", count: results["comp"]!.0))\(String(repeating: "░", count: results["comp"]!.1))\n")
+        print("👁 Complotism \(results["comp"]!.l) : Non-Complotism \(results["comp"]!.r)")
+        print("\(String(repeating: "▓", count: results["comp"]!.l))\(String(repeating: "░", count: results["comp"]!.r))\n")
         
-        print("🛠 Pragmatism \(results["prag"]!.0) : Non-Pragmatism \(results["prag"]!.1)")
-        print("\(String(repeating: "▓", count: results["prag"]!.0))\(String(repeating: "░", count: results["prag"]!.1))\n")
+        print("🛠 Pragmatism \(results["prag"]!.l) : Non-Pragmatism \(results["prag"]!.r)")
+        print("\(String(repeating: "▓", count: results["prag"]!.l))\(String(repeating: "░", count: results["prag"]!.r))\n")
         
-        print("👑 Monarchism \(results["mona"]!.0) : Non-Monarchism \(results["mona"]!.1)")
-        print("\(String(repeating: "▓", count: results["mona"]!.0))\(String(repeating: "░", count: results["mona"]!.1))\n")
+        print("👑 Monarchism \(results["mona"]!.l) : Non-Monarchism \(results["mona"]!.r)")
+        print("\(String(repeating: "▓", count: results["mona"]!.l))\(String(repeating: "░", count: results["mona"]!.r))\n")
         
-        print("🥬 Veganism \(results["vega"]!.0) : Non-Veganism \(results["vega"]!.1)")
-        print("\(String(repeating: "▓", count: results["vega"]!.0))\(String(repeating: "░", count: results["vega"]!.1))\n")
+        print("🥬 Veganism \(results["vega"]!.l) : Non-Veganism \(results["vega"]!.r)")
+        print("\(String(repeating: "▓", count: results["vega"]!.l))\(String(repeating: "░", count: results["vega"]!.r))\n")
         
-        print("🏴 Anarchism \(results["anar"]!.0) : Non-Anarchism \(results["anar"]!.1)")
-        print("\(String(repeating: "▓", count: results["anar"]!.0))\(String(repeating: "░", count: results["anar"]!.1))\n")
+        print("🏴 Anarchism \(results["anar"]!.l) : Non-Anarchism \(results["anar"]!.r)")
+        print("\(String(repeating: "▓", count: results["anar"]!.l))\(String(repeating: "░", count: results["anar"]!.r))\n")
         
     }
     
