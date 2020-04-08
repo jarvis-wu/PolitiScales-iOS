@@ -47,6 +47,8 @@ class ResultViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.title = "Your results"
         let shareButton = UIButton()
+        // TODO: share is not available yet
+        shareButton.isHidden = true
         let shareIcon = UIImage(named: "share")?.withRenderingMode(.alwaysTemplate)
         shareButton.setImage(shareIcon, for: .normal)
         shareButton.tintColor = .lightGray

@@ -68,6 +68,8 @@ class HomeViewController: UIViewController {
         self.navigationItem.rightBarButtonItem?.customView?.height(20)
         self.navigationItem.rightBarButtonItem?.customView?.aspectRatio(1)
         let shareButton = UIButton()
+        // TODO: share is not available yet
+        shareButton.isHidden = true
         let shareIcon = UIImage(named: "share")?.withRenderingMode(.alwaysTemplate)
         shareButton.setImage(shareIcon, for: .normal)
         shareButton.tintColor = .lightGray
