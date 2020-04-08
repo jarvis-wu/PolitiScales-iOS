@@ -173,8 +173,12 @@ class ResultRowView: UIView {
     var leftNumberLabel = UILabel()
     var rightNumberLabel = UILabel()
     var neutralNumberLabel = UILabel()
+    var leftProgressWidth: NSLayoutConstraint!
+    var rightProgressWidth: NSLayoutConstraint!
+    var resultItem: ResultItem!
     
     init(resultItem: ResultItem) {
+        self.resultItem = resultItem
         super.init(frame: .zero)
         isUserInteractionEnabled = false
         titleStack.axis = .horizontal
@@ -210,11 +214,11 @@ class ResultRowView: UIView {
         rightIcon.trailingToSuperview()
         barView.addSubview(leftProgress)
         leftProgress.backgroundColor = resultItem.leftColor
-        leftProgress.widthToSuperview(multiplier: CGFloat(resultItem.values.l) / CGFloat(100)) // TODO: animate progress?
+        leftProgressWidth = leftProgress.width(1)
         leftProgress.edgesToSuperview(excluding: [.trailing])
         barView.addSubview(rightProgress)
         rightProgress.backgroundColor = resultItem.rightColor
-        rightProgress.widthToSuperview(multiplier: CGFloat(resultItem.values.r) / CGFloat(100)) // TODO: animate progress?
+        rightProgressWidth = rightProgress.width(1)
         rightProgress.edgesToSuperview(excluding: [.leading])
         leftProgress.addSubview(leftNumberLabel)
         leftNumberLabel.text = "\(resultItem.values.l)%"
@@ -234,6 +238,20 @@ class ResultRowView: UIView {
         neutralNumberLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         neutralNumberLabel.centerYToSuperview()
         neutralNumberLabel.centerXToSuperview(multiplier: ((100 - CGFloat(resultItem.values.l) - CGFloat(resultItem.values.r)) / 2 + CGFloat(resultItem.values.l)) / 100 * 2)
+        layoutIfNeeded()
+        animateProgress()
+    }
+    
+    private func animateProgress() {
+        DispatchQueue.main.async {
+            self.leftProgressWidth.isActive = false
+            self.rightProgressWidth.isActive = false
+            self.leftProgressWidth = self.leftProgress.widthToSuperview(multiplier: CGFloat(self.resultItem.values.l) / CGFloat(100))
+            self.rightProgressWidth = self.rightProgress.widthToSuperview(multiplier: CGFloat(self.resultItem.values.r) / CGFloat(100))
+            UIView.animate(withDuration: 1) {
+                self.layoutIfNeeded()
+            }
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -262,11 +280,12 @@ class OneSideProgressView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        self.layer.cornerRadius = 30 / 2
         switch side {
         case .left:
-            self.roundCorners(corners: [.topRight, .bottomRight], radius: 30 / 2)
+            self.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         case .right:
-            self.roundCorners(corners: [.topLeft, .bottomLeft], radius: 30 / 2)
+            self.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
         }
     }
     
@@ -282,13 +301,4 @@ struct ResultItem {
     var leftIcon: UIImage
     var rightIcon: UIImage
     
-}
-
-extension UIView {
-   func roundCorners(corners: UIRectCorner, radius: CGFloat) {
-        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        layer.mask = mask
-    }
 }
