@@ -458,53 +458,53 @@ class QuizViewController: UIViewController {
         print("\n--------------------------------------------- Main axes --------------------------------------------\n")
         // For this section: left + Neutral + right = 100
         print("💡 Constructivism \(results["c"]!.l) : Neutral \(100 - results["c"]!.l - results["c"]!.r) : Essentialism \(results["c"]!.r) 🧬")
-        print("\(String(repeating: "▒", count: results["c"]!.l ))\(String(repeating: "░", count: 100 - results["c"]!.l - results["c"]!.r))\(String(repeating: "▓", count: results["c"]!.r))\n")
+        print("\(String(repeating: "*", count: results["c"]!.l ))\(String(repeating: "-", count: 100 - results["c"]!.l - results["c"]!.r))\(String(repeating: "*", count: results["c"]!.r))\n")
         
         print("😇 Rehabilitative justice \(results["j"]!.l) : Neutral \(100 - results["j"]!.l - results["j"]!.r) : Punitive justice \(results["j"]!.r) 👿")
-        print("\(String(repeating: "▒", count: results["j"]!.l ))\(String(repeating: "░", count: 100 - results["j"]!.l - results["j"]!.r))\(String(repeating: "▓", count: results["j"]!.r))\n")
+        print("\(String(repeating: "*", count: results["j"]!.l ))\(String(repeating: "-", count: 100 - results["j"]!.l - results["j"]!.r))\(String(repeating: "*", count: results["j"]!.r))\n")
         
         print("🚀 Progressivism \(results["s"]!.l) : Neutral \(100 - results["s"]!.l - results["s"]!.r) : Conservatism \(results["s"]!.r) ✍🏼")
-        print("\(String(repeating: "▒", count: results["s"]!.l))\(String(repeating: "░", count: 100 - results["s"]!.l - results["s"]!.r))\(String(repeating: "▓", count: results["s"]!.r))\n")
+        print("\(String(repeating: "*", count: results["s"]!.l))\(String(repeating: "-", count: 100 - results["s"]!.l - results["s"]!.r))\(String(repeating: "*", count: results["s"]!.r))\n")
         
         print("🌍 Internationalism \(results["b"]!.l) : Neutral\(100 - results["b"]!.l - results["b"]!.r) : Nationalism \(results["b"]!.r) 🚩")
-        print("\(String(repeating: "▒", count: results["b"]!.l))\(String(repeating: "░", count: 100 - results["b"]!.l - results["b"]!.r))\(String(repeating: "▓", count: results["b"]!.r))\n")
+        print("\(String(repeating: "*", count: results["b"]!.l))\(String(repeating: "-", count: 100 - results["b"]!.l - results["b"]!.r))\(String(repeating: "*", count: results["b"]!.r))\n")
         
         print("⚒️ Communism \(results["p"]!.l) : Neutral \(100 - results["p"]!.l - results["p"]!.r) : Capitalism \(results["p"]!.r) 💰")
-        print("\(String(repeating: "▒", count: results["p"]!.l))\(String(repeating: "░", count: 100 - results["p"]!.l - results["p"]!.r))\(String(repeating: "▓", count: results["p"]!.r))\n")
+        print("\(String(repeating: "*", count: results["p"]!.l))\(String(repeating: "-", count: 100 - results["p"]!.l - results["p"]!.r))\(String(repeating: "*", count: results["p"]!.r))\n")
         
         print("📐 Regulationism \(results["m"]!.l) : Neutral \(100 - results["m"]!.l - results["m"]!.r) : Laissez-faire \(results["m"]!.r) 🦋")
-        print("\(String(repeating: "▒", count: results["m"]!.l))\(String(repeating: "░", count: 100 - results["m"]!.l - results["m"]!.r))\(String(repeating: "▓", count: results["m"]!.r))\n")
+        print("\(String(repeating: "*", count: results["m"]!.l))\(String(repeating: "-", count: 100 - results["m"]!.l - results["m"]!.r))\(String(repeating: "*", count: results["m"]!.r))\n")
         
         print("🌱 Ecology \(results["e"]!.l) : Neutral \(100 - results["e"]!.l - results["e"]!.r) : Productivism \(results["e"]!.r) ⚙️")
-        print("\(String(repeating: "▒", count: results["e"]!.l))\(String(repeating: "░", count: 100 - results["e"]!.l - results["e"]!.r))\(String(repeating: "▓", count: results["e"]!.r))\n")
+        print("\(String(repeating: "*", count: results["e"]!.l))\(String(repeating: "-", count: 100 - results["e"]!.l - results["e"]!.r))\(String(repeating: "*", count: results["e"]!.r))\n")
         
         print("✊🏼 Revolution \(results["t"]!.l) : Neutral \(100 - results["t"]!.l - results["t"]!.r) : Reformism \(results["t"]!.r) 🗳")
-        print("\(String(repeating: "▒", count: results["t"]!.l))\(String(repeating: "░", count: 100 - results["t"]!.l - results["t"]!.r))\(String(repeating: "▓", count: results["t"]!.r))\n")
+        print("\(String(repeating: "*", count: results["t"]!.l))\(String(repeating: "-", count: 100 - results["t"]!.l - results["t"]!.r))\(String(repeating: "*", count: results["t"]!.r))\n")
         
         print("\n-------------------------------------------- Bonus axes --------------------------------------------\n")
         // For this bonus section: yes + no = 100; if user selects anything neutral or negative, it will be 100% "no",
         // because only positive values are added to the valueYes axis, and there is no valueNo axis for any of the following.
         // i.e.: if 100%: strong characteristic; if 66%: weak characteristic; if other: no such characteristic presented
         print("👩🏻‍🦰 Feminism \(results["femi"]!.l) : Non-Feminism \(results["femi"]!.r)")
-        print("\(String(repeating: "▓", count: results["femi"]!.l ))\(String(repeating: "░", count: results["femi"]!.r))\n")
+        print("\(String(repeating: "*", count: results["femi"]!.l ))\(String(repeating: "-", count: results["femi"]!.r))\n")
         
         print("✝️ Missionary \(results["reli"]!.l) : Non-Missionary \(results["reli"]!.r)")
-        print("\(String(repeating: "▓", count: results["reli"]!.l))\(String(repeating: "░", count: results["reli"]!.r))\n")
+        print("\(String(repeating: "*", count: results["reli"]!.l))\(String(repeating: "-", count: results["reli"]!.r))\n")
         
         print("👁 Complotism \(results["comp"]!.l) : Non-Complotism \(results["comp"]!.r)")
-        print("\(String(repeating: "▓", count: results["comp"]!.l))\(String(repeating: "░", count: results["comp"]!.r))\n")
+        print("\(String(repeating: "*", count: results["comp"]!.l))\(String(repeating: "-", count: results["comp"]!.r))\n")
         
         print("🛠 Pragmatism \(results["prag"]!.l) : Non-Pragmatism \(results["prag"]!.r)")
-        print("\(String(repeating: "▓", count: results["prag"]!.l))\(String(repeating: "░", count: results["prag"]!.r))\n")
+        print("\(String(repeating: "*", count: results["prag"]!.l))\(String(repeating: "-", count: results["prag"]!.r))\n")
         
         print("👑 Monarchism \(results["mona"]!.l) : Non-Monarchism \(results["mona"]!.r)")
-        print("\(String(repeating: "▓", count: results["mona"]!.l))\(String(repeating: "░", count: results["mona"]!.r))\n")
+        print("\(String(repeating: "*", count: results["mona"]!.l))\(String(repeating: "-", count: results["mona"]!.r))\n")
         
         print("🥬 Veganism \(results["vega"]!.l) : Non-Veganism \(results["vega"]!.r)")
-        print("\(String(repeating: "▓", count: results["vega"]!.l))\(String(repeating: "░", count: results["vega"]!.r))\n")
+        print("\(String(repeating: "*", count: results["vega"]!.l))\(String(repeating: "-", count: results["vega"]!.r))\n")
         
         print("🏴 Anarchism \(results["anar"]!.l) : Non-Anarchism \(results["anar"]!.r)")
-        print("\(String(repeating: "▓", count: results["anar"]!.l))\(String(repeating: "░", count: results["anar"]!.r))\n")
+        print("\(String(repeating: "*", count: results["anar"]!.l))\(String(repeating: "-", count: results["anar"]!.r))\n")
         
     }
     
