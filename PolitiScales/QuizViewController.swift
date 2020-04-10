@@ -309,8 +309,7 @@ class QuizViewController: UIViewController {
         goBackButton.bottomToSuperview(offset: -25, usingSafeArea: true)
         goBackButton.leadingToSuperview(offset: 30)
         bottomView.topToBottom(of: goBackButton, offset: -75) // 50 + 25
-        bottomView.widthToSuperview()
-        bottomView.bottomToSuperview()
+        bottomView.edgesToSuperview(excluding: [.top])
         anwersContainerViewTopConstraint = anwersContainerView.topToBottom(of: questionCard, offset: 20)
         anwersContainerView.centerXToSuperview()
         anwersContainerView.leadingToSuperview(offset: 30)
@@ -344,8 +343,6 @@ class QuizViewController: UIViewController {
     private func addProgressBar() {
         self.view.addSubview(progressBar)
         progressBar.isUserInteractionEnabled = false
-        // TODO: load correct progress when we implement saving session
-        progressBar.setProgress(0, animated: false)
     }
     
     private func addQuestionCard() {

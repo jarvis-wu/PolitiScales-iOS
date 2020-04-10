@@ -111,8 +111,7 @@ class HomeViewController: UIViewController {
         startButton.leadingToSuperview(offset: 30)
         navBarSeparator.topToSuperview()
         bottomView.topToBottom(of: startButton, offset: -75)
-        bottomView.widthToSuperview()
-        bottomView.bottomToSuperview()
+        bottomView.edgesToSuperview(excluding: [.top])
         
         titleLabel.top(to: contentView, offset: 25)
         titleLabel.leadingToSuperview(offset: 30)

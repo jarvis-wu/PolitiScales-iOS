@@ -80,6 +80,15 @@ class SettingsViewController: UIViewController {
 
 }
 
+extension SettingsViewController: SetLanguageViewControllerDelegate {
+    
+    func didUpdateLanguage() {
+        // TODO: Actual localization change happens here
+        tableView.reloadData()
+    }
+    
+}
+
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     // TODO: maintain a view model of settings item, etc
@@ -98,9 +107,17 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsTableViewCell", for: indexPath) as! SettingsTableViewCell
         switch indexPath.section {
         case 0:
-            let languageRow = SettingsSelectionRowView(withTitle: "Language", selectionText: "English", didTap: { button in
+            let languageCode = UserDefaults.standard.string(forKey: "language") ?? "en"
+            let languageName = SetLanguageModel().languages.first {
+                $0.2 == languageCode
+            }!.0
+            let languageRow = SettingsSelectionRowView(withTitle: "Language", selectionText: languageName, didTap: { button in
+                self.tryGenerateSelectionChangedHaptic()
                 // TODO: implement localization
-                self.showAlert(withTitle: "Oops", message: "Language selection is not available yet.")
+                let setLanguageController = SetLanguageViewController()
+                setLanguageController.delegate = self
+                let navController = UINavigationController(rootViewController: setLanguageController)
+                self.present(navController, animated: true, completion: nil)
             }) // populate current language
             let soundEffectRow = SettingsSwitchRowView(withTitle: "Sound effects", isOn: (defaults.value(forKey: "soundEffectOn") as? Bool) ?? true, didToggle: { toggle in
                 self.defaults.set(toggle.isOn, forKey: "soundEffectOn")
@@ -165,6 +182,9 @@ class SettingsTableViewCell: UITableViewCell {
     }
     
     func addRowsWithSeparators(rows: [UIView]) {
+        for view in rowStack.arrangedSubviews {
+            view.removeFromSuperview()
+        }
         for (index, row) in rows.enumerated() {
             addRow(subview: row)
             if index != rows.count - 1 {
@@ -227,11 +247,11 @@ class SettingsSelectionRowView: UIView {
         selectionButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         selectionButton.aspectRatio(1)
         selectionButton.height(20)
-        selectionButton.tintColor = UIColor(white: 0.8, alpha: 1)
+        selectionButton.tintColor = UIColor(white: 0.75, alpha: 1)
         selectionButton.centerYToSuperview()
         selectionButton.trailingToSuperview(offset: 20)
         selectionLabel.text = selectionText
-        selectionLabel.textColor = UIColor(white: 0.8, alpha: 1)
+        selectionLabel.textColor = UIColor(white: 0.75, alpha: 1)
         addSubview(selectionLabel)
         selectionLabel.centerYToSuperview()
         selectionLabel.trailingToLeading(of: selectionButton, offset: -10)

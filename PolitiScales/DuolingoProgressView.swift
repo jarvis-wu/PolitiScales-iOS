@@ -16,9 +16,11 @@ class DuolingoProgressView: UIProgressView {
     didSet {
       guard let _ = tintedProgressWidth, progress != 0 else { return }
       tintedProgressWidth.isActive = false
-      UIView.animate(withDuration: 0.5) {
-        self.tintedProgressWidth = self.tintedProgress.widthToSuperview(multiplier: CGFloat(self.progress))
-        self.layoutIfNeeded()
+      DispatchQueue.main.async {
+        UIView.animate(withDuration: 0.5) {
+          self.tintedProgressWidth = self.tintedProgress.widthToSuperview(multiplier: CGFloat(self.progress))
+          self.layoutIfNeeded()
+        }
       }
     }
   }
