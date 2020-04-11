@@ -98,7 +98,6 @@ class SetLanguageViewController: UIViewController, SetLanguageViewDelegate {
         bottomView.addSubview(separator)
         separator.topToSuperview()
         doneButton.setTitle("Done", for: .normal)
-        doneButton.isUserInteractionEnabled = true
         doneButton.addTarget(self, action: #selector(self.didTapDoneButton), for: .touchUpInside)
     }
     

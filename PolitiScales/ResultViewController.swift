@@ -74,7 +74,6 @@ class ResultViewController: UIViewController {
         bottomView.addSubview(separator)
         separator.topToSuperview()
         goHomeButton.setTitle("Return to home", for: .normal)
-        goHomeButton.isUserInteractionEnabled = true
         goHomeButton.addTarget(self, action: #selector(self.didTapGoHomeButton), for: .touchUpInside)
     }
     
@@ -123,8 +122,7 @@ class ResultViewController: UIViewController {
     }
     
     private func addResultStackView() {
-        self.view.addSubview(resultStackView)
-        resultStackView.isUserInteractionEnabled = false
+        contentView.addSubview(resultStackView)
         resultStackView.axis = .vertical
         resultStackView.spacing = 10
     }
@@ -182,7 +180,6 @@ class ResultRowView: UIView {
     init(resultItem: ResultItem) {
         self.resultItem = resultItem
         super.init(frame: .zero)
-        isUserInteractionEnabled = false
         titleStack.axis = .horizontal
         titleStack.distribution = .equalSpacing
         let leftTitleLabel = DuolingoLabel()

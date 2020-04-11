@@ -40,8 +40,6 @@ class QuizViewController: UIViewController {
         }
     }
     
-    // TODO: all isUserInteractionEnabled is used to let the scroll work on subviews; is this the only solution?
-    
     let hapticGenerator = UISelectionFeedbackGenerator()
     var clickSound: AVAudioPlayer?
     let scrollView = UIScrollView()
@@ -341,12 +339,10 @@ class QuizViewController: UIViewController {
     }
     
     private func addProgressBar() {
-        self.view.addSubview(progressBar)
-        progressBar.isUserInteractionEnabled = false
+        contentView.addSubview(progressBar)
     }
     
     private func addQuestionCard() {
-        questionCard.isUserInteractionEnabled = false
         questionCard.addSubview(questionCardIcon)
         questionCard.addSubview(questionCardRightStack)
         questionCardRightStack.axis = .vertical
@@ -359,7 +355,7 @@ class QuizViewController: UIViewController {
         questionCardTitleLabel.text = "Question \(currentQuestionNumber + 1) of \(questions.count)"
         questionCardLabel.numberOfLines = 0
         questionCardLabel.text = shuffled[currentQuestionNumber].questionText
-        self.view.addSubview(questionCard)
+        contentView.addSubview(questionCard)
     }
     
     private func addAnswersContainerView() {

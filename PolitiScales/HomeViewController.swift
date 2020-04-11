@@ -101,7 +101,7 @@ class HomeViewController: UIViewController {
     }
     
     private func addTitle() {
-        self.view.addSubview(titleLabel)
+        contentView.addSubview(titleLabel)
         titleLabel.text = "Welcome to PolitiScales."
     }
     
@@ -160,7 +160,6 @@ class HomeViewController: UIViewController {
     }
     
     private func addCards() {
-        card1.isUserInteractionEnabled = false
         card1.addSubview(card1Icon)
         card1.addSubview(card1RightStack)
         card1RightStack.axis = .vertical
@@ -170,9 +169,8 @@ class HomeViewController: UIViewController {
         card1Icon.image = UIImage(named: "question")
         card1Label.numberOfLines = 0
         card1Label.text = "The questions you are going to answer assume that your are a citizen of a multi-parti political system and a market economy."
-        self.view.addSubview(card1)
+        contentView.addSubview(card1)
         
-        card2.isUserInteractionEnabled = false
         card2.addSubview(card2Icon)
         card2.addSubview(card2RightStack)
         card2RightStack.axis = .vertical
@@ -182,9 +180,8 @@ class HomeViewController: UIViewController {
         card2Icon.image = UIImage(named: "dream")
         card2Label.numberOfLines = 0
         card2Label.text = "You can always avoid answering a question. But if you do not understand the meaning of one of them, try to invert its meaning for a better understanding of what is implied."
-        self.view.addSubview(card2)
+        contentView.addSubview(card2)
         
-        card3.isUserInteractionEnabled = false
         card3.addSubview(card3Icon)
         card3.addSubview(card3RightStack)
         card3RightStack.axis = .vertical
@@ -194,7 +191,7 @@ class HomeViewController: UIViewController {
         card3Icon.image = UIImage(named: "pride")
         card3Label.numberOfLines = 0
         card3Label.text = "This test tries to represent the wider set of ideas as possible and contains some phrases that can be shocking, notably concerning racism and homosexuality."
-        self.view.addSubview(card3)
+        contentView.addSubview(card3)
     }
     
     private func addBottomView() {
@@ -205,7 +202,6 @@ class HomeViewController: UIViewController {
         bottomView.addSubview(separator)
         separator.topToSuperview()
         startButton.setTitle("Start the test", for: .normal)
-        startButton.isUserInteractionEnabled = true
         startButton.addTarget(self, action: #selector(self.didTapStartButton), for: .touchUpInside)
     }
     
