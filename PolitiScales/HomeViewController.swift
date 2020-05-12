@@ -9,6 +9,9 @@
 import UIKit
 import TinyConstraints
 
+// TODO: add icon credit: freepik and smashicons
+// Source url can be found from picture file > Get Info
+
 class HomeViewController: UIViewController {
 
     var ui = DuoUI.shared

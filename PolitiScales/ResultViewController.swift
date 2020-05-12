@@ -26,12 +26,13 @@ class ResultViewController: UIViewController {
     let contentView = UIView()
     let bottomView = UIView()
     let navBarSeparator = DuolingoSeparator()
-    var goHomeButton = DuolingoButton()
+    var shareButton = DuolingoButton()
     var resultStackView = UIStackView()
     var qrCodeView = UIImageView()
     
     var results: [String : ResultValues]! {
         didSet {
+            // TODO: save results in app with timestamps and all metadata as necessary
             setupResultStackView()
         }
     }
@@ -46,16 +47,22 @@ class ResultViewController: UIViewController {
     private func setNavBar() {
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.title = "Your results"
-        let shareButton = UIButton()
-        // TODO: share is not available yet
-        shareButton.isHidden = true
-        let shareIcon = UIImage(named: "share")?.withRenderingMode(.alwaysTemplate)
-        shareButton.setImage(shareIcon, for: .normal)
-        shareButton.tintColor = .lightGray
-        shareButton.addTarget(self, action: #selector(didTapShareButton), for: .touchUpInside)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: shareButton)
+        let leaveButton = UIButton()
+        let leaveIcon = UIImage(named: "next")?.withRenderingMode(.alwaysTemplate)
+        leaveButton.setImage(leaveIcon, for: .normal)
+        leaveButton.tintColor = .lightGray
+        leaveButton.addTarget(self, action: #selector(didTapLeaveButton), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: leaveButton)
         self.navigationItem.rightBarButtonItem?.customView?.height(20)
         self.navigationItem.rightBarButtonItem?.customView?.aspectRatio(1)
+        let infoButton = UIButton()
+        let infoIcon = UIImage(named: "info")?.withRenderingMode(.alwaysTemplate)
+        infoButton.setImage(infoIcon, for: .normal)
+        infoButton.tintColor = .lightGray
+        infoButton.addTarget(self, action: #selector(didTapLeaveButton), for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: infoButton)
+        self.navigationItem.leftBarButtonItem?.customView?.height(20)
+        self.navigationItem.leftBarButtonItem?.customView?.aspectRatio(1)
         self.view.addSubview(navBarSeparator)
     }
     
@@ -69,12 +76,12 @@ class ResultViewController: UIViewController {
     private func addBottomView() {
         view.addSubview(bottomView)
         bottomView.backgroundColor = .white
-        bottomView.addSubview(goHomeButton)
+        bottomView.addSubview(shareButton)
         let separator = DuolingoSeparator()
         bottomView.addSubview(separator)
         separator.topToSuperview()
-        goHomeButton.setTitle("Return to home", for: .normal)
-        goHomeButton.addTarget(self, action: #selector(self.didTapGoHomeButton), for: .touchUpInside)
+        shareButton.setTitle("Share or save", for: .normal)
+        shareButton.addTarget(self, action: #selector(self.didTapShareButton), for: .touchUpInside)
     }
     
     private func addQRCodeView() {
@@ -93,11 +100,11 @@ class ResultViewController: UIViewController {
     }
     
     private func addConstraints() {
-        goHomeButton.centerXToSuperview()
-        goHomeButton.bottomToSuperview(offset: -25, usingSafeArea: true)
-        goHomeButton.leadingToSuperview(offset: 30)
+        shareButton.centerXToSuperview()
+        shareButton.bottomToSuperview(offset: -25, usingSafeArea: true)
+        shareButton.leadingToSuperview(offset: 30)
         navBarSeparator.topToSuperview()
-        bottomView.topToBottom(of: goHomeButton, offset: -75)
+        bottomView.topToBottom(of: shareButton, offset: -75)
         bottomView.widthToSuperview()
         bottomView.bottomToSuperview()
         resultStackView.leadingToSuperview(offset: 30)
@@ -142,15 +149,22 @@ class ResultViewController: UIViewController {
         }
     }
     
-    @objc func didTapGoHomeButton() {
+    @objc func didTapLeaveButton() {
         tryGenerateSelectionChangedHaptic()
-        navigationController?.popToRootViewController(animated: true)
+        let alertController = UIAlertController(title: "Do you want to leave without saving or sharing your result?", message: "You will still be able to see it on your dashboard.", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Leave", style: .default, handler: { (_) in
+            self.navigationController?.popToRootViewController(animated: true)
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc func didTapShareButton() {
-        print("Share tapped")
         tryGenerateSelectionChangedHaptic()
-        self.showAlert(withTitle: "Oops", message: "Share is not available yet.")
+        let shareController = ShareViewController()
+        shareController.results = self.results
+        shareController.modalPresentationStyle = .overFullScreen
+        present(shareController, animated: false, completion: nil)
     }
     
     // TODO: how to refactor this?
